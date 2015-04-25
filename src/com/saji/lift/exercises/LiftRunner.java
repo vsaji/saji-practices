@@ -1,0 +1,119 @@
+/**
+ * 
+ */
+package com.saji.lift.exercises;
+
+import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.TimeUnit;
+
+/**
+ * @author sv11741
+ * 
+ */
+public class LiftRunner implements Runnable {
+
+	private final Lift lift;
+	private final BlockingQueue<Integer> liftNotifierQ;
+	private final LiftController lc = LiftController.getInstance();
+
+	/**
+	 * 
+	 * @param lift
+	 * @param liftNotifierQ
+	 */
+	public LiftRunner(Lift lift, BlockingQueue<Integer> liftNotifierQ) {
+		this.lift = lift;
+		this.liftNotifierQ = liftNotifierQ;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see java.lang.Runnable#run()
+	 */
+	@Override
+	public void run() {
+
+		sop("[" + lift.getLiftNum() + "] Initialized.");
+
+		while (true) {
+
+			try {
+
+				liftNotifierQ.take();
+
+				//sop("--"+lift.hashCode());
+				sop("Starting Lift # [" + lift.getLiftNum() + "]["
+						+ lift.getDirection() + "]- CF[" + lift.getCurrLevel()
+						+ "] --> RF[" + lift.getReqLevel() + "]-->DF[" + lift.getDestLevel() + "]");
+
+				while (lift.getDirection() != Direction.STALL) { // reverse
+																	// request
+
+					if (lift.getDirection() == Direction.DOWN) {
+						for (; lift.getCurrLevel() > Lift.MIN_FLOOR; lift
+								.levelDown()) {
+
+							int status = checkLevel(Direction.DOWN);
+							if (status == -1) {
+								lift.setDirection(Direction.STALL);
+								break; // got to stall;
+							} else if (status == 1) {
+								break; // got to stall;
+							}
+						}
+					} else if (lift.getDirection() == Direction.UP) {
+						for (; lift.getCurrLevel() < Lift.MAX_FLOOR; lift
+								.levelUp()) {
+							int status = checkLevel(Direction.UP);
+							if (status == -1) {
+								lift.setDirection(Direction.STALL);
+								break; // got to stall;
+							} else if (status == 1) {
+								break; // got to stall;
+							}
+						}
+					}
+				}
+
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
+
+	}
+
+	/**
+	 * 
+	 * @param d
+	 * @return
+	 * @throws InterruptedException
+	 */
+	private int checkLevel(Direction d) throws InterruptedException {
+
+		int b = 0;
+
+		Action a = lc.adviceAction(lift, d);
+		if (a == Action.MOVE_FORWARD) {
+			sop("No STOP request from [" + lift.getCurrLevel() + "]. Moving ["+d.name()+"]");
+			TimeUnit.SECONDS.sleep(1);
+		} else if (a == Action.STOP_N_MOVE) {
+			sop("Serving Level : [" + lift.getCurrLevel() + "]");
+			TimeUnit.SECONDS.sleep(3);
+		} else if (a == Action.MOVE_REVERSE) {
+			sop("Serving Level : [" + lift.getCurrLevel() + "]["
+					+ lift.getDestLevel() + "]");
+			TimeUnit.SECONDS.sleep(3);
+			b = 1;
+		} else {
+			sop("Dest Level : [" + lift.getCurrLevel() + "]");
+			b = -1;
+		}
+		return b;
+	}
+
+	private void sop(String s) {
+		System.out.println("[" + Thread.currentThread().getName() + "] " + s);
+	}
+
+}
