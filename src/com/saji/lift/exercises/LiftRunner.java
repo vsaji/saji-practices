@@ -39,7 +39,7 @@ public class LiftRunner implements Runnable {
 		while (true) {
 
 			try {
-
+		
 				liftNotifierQ.take();
 
 				//sop("--"+lift.hashCode());
@@ -107,13 +107,14 @@ public class LiftRunner implements Runnable {
 			b = 1;
 		} else {
 			sop("Dest Level : [" + lift.getCurrLevel() + "]");
+			lc.printLevels();
 			b = -1;
 		}
 		return b;
 	}
 
 	private void sop(String s) {
-		System.out.println("[" + Thread.currentThread().getName() + "] " + s);
+		System.out.println("[#"+lift.getLiftNum()+"] [" + Thread.currentThread().getName() + "] " + s);
 	}
 
 }

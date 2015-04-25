@@ -113,7 +113,7 @@ public class Lift {
 	 * 
 	 */
 	public String toString() {
-		return "Lift Num : " + liftNum + "-->" + getCurrLevel() + "-->";
+		return "# : " + liftNum + "-->" + getCurrLevel()+"-->"+getDirection();
 	}
 
 
