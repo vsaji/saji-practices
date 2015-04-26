@@ -1,6 +1,6 @@
 package com.saji.lift.exercises;
 
-import java.util.LinkedHashMap;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * 
@@ -8,15 +8,15 @@ import java.util.LinkedHashMap;
  *
  */
 public enum Direction {
-	UP(new LinkedHashMap <Integer,Integer>()),DOWN(new LinkedHashMap <Integer,Integer>()),STALL(new LinkedHashMap <Integer,Integer>());
+	UP(new ConcurrentHashMap <Integer,Integer>()),DOWN(new ConcurrentHashMap <Integer,Integer>()),STALL(new ConcurrentHashMap <Integer,Integer>());
 	
-	private final LinkedHashMap <Integer,Integer> q;
+	private final ConcurrentHashMap <Integer,Integer> q;
 	
 	/**
 	 * 
 	 * @param q
 	 */
-	private Direction(LinkedHashMap <Integer,Integer> q){
+	private Direction(ConcurrentHashMap <Integer,Integer> q){
 		this.q = q;
 	}
 	
@@ -29,7 +29,7 @@ public enum Direction {
 	 * 
 	 * @return
 	 */
-	public LinkedHashMap <Integer,Integer> getQ(){
+	public ConcurrentHashMap <Integer,Integer> getQ(){
 		return q;
 	}
 	

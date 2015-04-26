@@ -98,11 +98,10 @@ public class LiftRunner implements Runnable {
 			sop("No STOP request from [" + lift.getCurrLevel() + "]. Moving ["+d.name()+"]");
 			TimeUnit.SECONDS.sleep(1);
 		} else if (a == Action.STOP_N_MOVE) {
-			sop("Serving Level : [" + lift.getCurrLevel() + "]");
+			sop("Serving Level : [" + lift.getCurrLevel() + "]["+ lift.getDestLevel() + "]");
 			TimeUnit.SECONDS.sleep(3);
-		} else if (a == Action.MOVE_REVERSE) {
-			sop("Serving Level : [" + lift.getCurrLevel() + "]["
-					+ lift.getDestLevel() + "]");
+		} else if (a == Action.MOVE_OPPOSITE) {
+			sop("Moving Opposite : [" + lift.getCurrLevel() + "]["+ lift.getDestLevel() + "]");
 			TimeUnit.SECONDS.sleep(3);
 			b = 1;
 		} else {
@@ -113,6 +112,11 @@ public class LiftRunner implements Runnable {
 		return b;
 	}
 
+	
+	/**
+	 * 
+	 * @param s
+	 */
 	private void sop(String s) {
 		System.out.println("[#"+lift.getLiftNum()+"] [" + Thread.currentThread().getName() + "] " + s);
 	}

@@ -1,5 +1,7 @@
 package com.saji.lift.exercises;
 
+import java.util.TreeSet;
+
 
 /**
  * 
@@ -10,7 +12,6 @@ public class Lift {
 
 	private int currLevel = 0;
 	private int reqLevel = 0;
-	private int destLevel = 0;
 	
 	private final int liftNum;
 
@@ -18,6 +19,8 @@ public class Lift {
 	public static final int MIN_FLOOR = 0;
 	
 	private Direction direction = Direction.STALL;
+		
+	private final TreeSet<Integer> stops; 
 
 	/**
 	 * 
@@ -26,6 +29,7 @@ public class Lift {
 	public Lift(int currLevel, int liftNum) {
 		this.currLevel = currLevel;
 		this.liftNum = liftNum;
+		this.stops = new TreeSet<Integer>();
 	}
 
 	/**
@@ -51,31 +55,40 @@ public class Lift {
 		currLevel++;
 	}
 	
+	
 	/**
 	 * 
 	 * @return
 	 */
-	public int getNearestLevel() {
-		if (direction != Direction.STALL) {
-			if (Math.abs(destLevel - currLevel) > 2) {
-				return (direction == Direction.UP) ? currLevel + 1
-						: currLevel - 1;
-			}
-			return destLevel;
-		} else {
-			return currLevel;
-		}
-
+	public boolean isCurrLevelIsDest(){
+		
+		return stops.contains(currLevel);
 	}
-
-
+	
+	/**
+	 * 
+	 * @return
+	 */
+	public synchronized void addStop(int level){
+		stops.add(level);
+	}
+	
 	/**
 	 * 
 	 * @param level
 	 */
-	public void setDestLevel(int destLevel) {
-			this.destLevel = destLevel;
+	public synchronized void removeStop(){
+		stops.remove(currLevel);
 	}
+	
+	/**
+	 * 
+	 * @return
+	 */
+	public boolean hasMoreStops(){
+		return stops.size() > 0;
+	}
+	
 
 	/**
 	 * 
@@ -113,7 +126,7 @@ public class Lift {
 	 * 
 	 */
 	public String toString() {
-		return "# : " + liftNum + "-->" + getCurrLevel()+"-->"+getDirection();
+		return "[#" + liftNum + "] CL-->[" + getCurrLevel()+"] RL["+reqLevel+"] CD-->["+getDirection()+"] DL-->["+getDestLevel()+"]";
 	}
 
 
@@ -122,7 +135,9 @@ public class Lift {
 	 * @return
 	 */
 	public int getDestLevel() {
-		return destLevel;
+		if(stops.size()==0) return 0;
+		return (direction==Direction.UP) ? stops.last() : stops.first();
+		
 	}
 
 	/**

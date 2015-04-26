@@ -19,10 +19,10 @@ public class LiftRequestor implements Runnable {
 
 		Scanner keyboard = new Scanner(System.in);
 		String input = null;
-		String[] args = { "2,8", "14,7", "1,7", "5,15", "9,4" };
+		//String[] args = { "2,8", "14,7", "1,7", "5,15", "9,4" };
 		//String[] args = { "1,10", "8,5", "3,15", "15,6", "7,1" };
-		//String[] args = { "1,10", "6,9", "15,1", "9,6", "4,2" };
-		//String[] args = { "1,10", "14,5","10,8" };
+		String[] args = { "1,10", "6,9", "15,1", "9,6", "4,2" };
+		//String[] args = { "15,4", "12,5"};
 
 		while (true) {
 			System.out
