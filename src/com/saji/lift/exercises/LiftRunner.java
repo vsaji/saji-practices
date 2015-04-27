@@ -106,7 +106,6 @@ public class LiftRunner implements Runnable {
 			b = 1;
 		} else {
 			sop("Dest Level : [" + lift.getCurrLevel() + "]");
-			lc.printLevels();
 			b = -1;
 		}
 		return b;

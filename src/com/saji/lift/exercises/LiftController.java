@@ -13,6 +13,8 @@ import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
+
 
 /**
  * @author sv11741
@@ -20,20 +22,17 @@ import java.util.concurrent.Executors;
  */
 public class LiftController {
 
-	private final ArrayList<Lift> lifts;
-
+	private final ArrayList<Lift> lifts = new ArrayList<Lift>();
 	private static final LiftController instance = new LiftController();
-
+	
 	private ExecutorService service = null;
-	private BlockingQueue<Integer>[] liftNotifierQ = null;
+	private BlockingQueue<Integer>[] liftNotifierQ;
 	private boolean initialized = false;
 
 	/**
 	 * 
 	 */
-	private LiftController() {
-		lifts = new ArrayList<Lift>();
-	}
+	private LiftController() {}
 
 	/**
 	 * 
@@ -69,8 +68,10 @@ public class LiftController {
 		}
 	}
 
+
 	/**
 	 * 
+	 * @param currFloorAndDestination
 	 */
 	public synchronized void sendRequest(String currFloorAndDestination) {
 
@@ -85,7 +86,7 @@ public class LiftController {
 		if (DOWN.getQ().isEmpty() && UP.getQ().isEmpty()) {
 			lift = getNearestAvailableLift(currFlr, Direction.STALL);
 			direction = (lift.getCurrLevel() > currFlr) ? DOWN : UP;
-	//		System.out.println("RULE-1 "+currFloorAndDestination);
+
 		} else {
 
 			direction = (currFlr > destFlr) ? DOWN : UP;
@@ -97,15 +98,12 @@ public class LiftController {
 				if (direction == DOWN && lift.getCurrLevel() < currFlr) { direction = UP;}
 				if (direction == UP && lift.getCurrLevel() > currFlr) { direction = DOWN;}
 				notificationReq = true;
-		//		System.out.println("RULE-2 "+currFloorAndDestination);
-				
+		
 			} else if (direction == DOWN) {// -----------------------------------------------------------------------
 				
 				if (lift.getCurrLevel() > currFlr) {
 					notificationReq = false;
-					
-			//		System.out.println("RULE-3 "+currFloorAndDestination);
-					
+				
 				} else {
 					
 					lift = getNearestAvailableLift(currFlr, UP); //
@@ -114,21 +112,23 @@ public class LiftController {
 							lift.addStop(currFlr);
 							direction = UP;
 							notificationReq = false;
-			//				System.out.println("RULE-3.1 "+currFloorAndDestination);
 						} else {
 							while((lift = getNearestAvailableLift(currFlr, Direction.STALL))==null){
-			//					System.out.println("Waiting for stalled");
+							try {
+								TimeUnit.MILLISECONDS.sleep(3000);
+							} catch (InterruptedException e) {
+							
+								e.printStackTrace();
+							}
 							}
 							direction = (lift.getCurrLevel() < currFlr) ? UP : DOWN;
 							notificationReq = true; // to start the lift
-			//				System.out.println("RULE-3.2 "+currFloorAndDestination);
 					}
 					
 				}
 			} else {// -----------------------------------------------------------------------------------------------
 				
 				if (lift.getCurrLevel() < currFlr) { // lift is below the requested floor
-			//		System.out.println("RULE-4 "+currFloorAndDestination);
 						notificationReq = false; // no notification is required as this is a moving lift.
 				} else { // lift is moving upwards and it is above the requested floor.
 
@@ -138,14 +138,16 @@ public class LiftController {
 						lift.addStop(currFlr);
 						direction = DOWN;
 						notificationReq = false;
-		//				System.out.println("RULE-4.1 "+currFloorAndDestination);
 					} else {
-						while ((lift = getNearestAvailableLift(currFlr,	Direction.STALL)) == null) {// find a stall lift as there is no lift which below															// the level
-							//System.out.println("No STALL lift found");
+						while ((lift = getNearestAvailableLift(currFlr,	Direction.STALL)) == null) {
+							try {
+								TimeUnit.MILLISECONDS.sleep(3000);
+							} catch (InterruptedException e) {
+								e.printStackTrace();
+							}
 						}
 						direction = (lift.getCurrLevel() > currFlr) ? DOWN : UP;
 						notificationReq = true; // to start the lift
-		//				System.out.println("RULE-4.2 "+currFloorAndDestination);
 					}
 				}
 			}
@@ -179,11 +181,9 @@ public class LiftController {
 			if (currDirection.getQ().keySet().contains(nextLevel)) {//check if anyone called lift for this level [PICK UP]
 
 				if (nextLevel > lift.getDestLevel() && currDirection==UP) {// Lift came from lower level and the requester want to go to the lower level again.
-					// System.out.println("RULE 2");
 					return applyOppositeAction(lift, currDirection, UP);
 
 				} else if (nextLevel < lift.getDestLevel() && currDirection==DOWN) { // change direction
-					// System.out.println("RULE 3");
 					return applyOppositeAction(lift, currDirection, DOWN);
 				}else{
 					currDirection.getQ().remove(nextLevel);
@@ -223,7 +223,7 @@ public class LiftController {
 	 * @param level
 	 * @return
 	 */
-	private Lift getNearestAvailableLift(int level, Direction d) {
+	protected Lift getNearestAvailableLift(int level, Direction d) {
 
 		List<Lift> l = (d != null) ? getLiftsByDirection(d) : lifts;
 		
@@ -249,7 +249,7 @@ public class LiftController {
 	 * 
 	 * @return
 	 */
-	private Lift getTheFirstAvailableLift(List<Lift> l,Direction d) {
+	protected Lift getTheFirstAvailableLift(List<Lift> l,Direction d) {
 		Lift avlift = null;
 
 		if (l != null) {
@@ -265,7 +265,7 @@ public class LiftController {
 	 * 
 	 * @return
 	 */
-	private List<Lift> getLiftsByDirection(Direction d) {
+	protected List<Lift> getLiftsByDirection(Direction d) {
 
 		List<Lift> l = new ArrayList<Lift>();
 
@@ -277,13 +277,7 @@ public class LiftController {
 		return l;
 	}
 
-	/**
-	 * 
-	 */
-	public void printLevels() {
-	//	System.out.println(lifts);
-	}
-
+	
 	/**
 	 * 
 	 * @param args
@@ -296,5 +290,4 @@ public class LiftController {
 		service1.submit(new LiftRequestor());
 		service1.shutdown();
 	}
-
 }
