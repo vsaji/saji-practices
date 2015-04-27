@@ -17,10 +17,12 @@ public class Lift {
 
 	public static final int MAX_FLOOR = 16;
 	public static final int MIN_FLOOR = 0;
+	public static final int ACCPT_NEAR_LIFT_GAP = 2;
 	
 	private Direction direction = Direction.STALL;
 		
-	private final TreeSet<Integer> stops; 
+	private final TreeSet<Integer> stops;
+	private Direction secDirection; 
 
 	/**
 	 * 
@@ -61,8 +63,7 @@ public class Lift {
 	 * @return
 	 */
 	public boolean isCurrLevelIsDest(){
-		
-		return stops.contains(currLevel);
+		return stops.contains(currLevel) && direction==secDirection;
 	}
 	
 	/**
@@ -111,6 +112,7 @@ public class Lift {
 	 * @param currentDirection
 	 */
 	public void setDirection(Direction currentDirection) {
+		setSecDirection(currentDirection);
 		this.direction = currentDirection;
 	}
 
@@ -154,6 +156,14 @@ public class Lift {
 	 */
 	public void setReqLevel(int reqLevel) {
 		this.reqLevel = reqLevel;
+	}
+
+	/**
+	 * 
+	 * @param secDirection
+	 */
+	public void setSecDirection(Direction secDirection) {
+		this.secDirection = secDirection;
 	}
 
 }

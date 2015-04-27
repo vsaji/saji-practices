@@ -43,7 +43,7 @@ public class LiftRunner implements Runnable {
 				liftNotifierQ.take();
 
 				//sop("--"+lift.hashCode());
-				sop("Starting Lift # [" + lift.getLiftNum() + "]["
+				sop("Starting Lift  [#" + lift.getLiftNum() + "]- CD["
 						+ lift.getDirection() + "]- CF[" + lift.getCurrLevel()
 						+ "] --> RF[" + lift.getReqLevel() + "]-->DF[" + lift.getDestLevel() + "]");
 

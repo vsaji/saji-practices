@@ -25,14 +25,16 @@ public class LiftController {
 	private final ArrayList<Lift> lifts = new ArrayList<Lift>();
 	private static final LiftController instance = new LiftController();
 	
-	private ExecutorService service = null;
 	private BlockingQueue<Integer>[] liftNotifierQ;
+	private BlockingQueue<int[]> waitingReqQ;
 	private boolean initialized = false;
 
 	/**
 	 * 
 	 */
-	private LiftController() {}
+	private LiftController() {
+		this.waitingReqQ = new ArrayBlockingQueue<int[]>(2);
+	}
 
 	/**
 	 * 
@@ -50,9 +52,8 @@ public class LiftController {
 	@SuppressWarnings("unchecked")
 	public void setup(int[] liftLevels) {
 
-		service = Executors.newFixedThreadPool(liftLevels.length);
-
 		if (!initialized) {
+			ExecutorService service = Executors.newFixedThreadPool(liftLevels.length);
 			liftNotifierQ = new BlockingQueue[liftLevels.length];
 
 			System.out.println("# OF LIFTS [" + liftLevels.length
@@ -64,6 +65,10 @@ public class LiftController {
 				lifts.add(i, l);
 				service.submit(new LiftRunner(l, liftNotifierQ[i]));
 			}
+			
+			ExecutorService service1 = Executors.newCachedThreadPool();
+			service1.submit(new LiftLocator(waitingReqQ));
+			
 			initialized = true;
 		}
 	}
@@ -80,27 +85,37 @@ public class LiftController {
 		int destFlr = Integer.parseInt(flrDest[1]);
 
 		Direction direction = null;
+		Direction secDirection = null;
 		Lift lift = null;
 		boolean notificationReq = true;
 
-		if (DOWN.getQ().isEmpty() && UP.getQ().isEmpty()) {
+		if (isAllLiftStall()) {
+			
 			lift = getNearestAvailableLift(currFlr, Direction.STALL);
 			direction = (lift.getCurrLevel() > currFlr) ? DOWN : UP;
 
+			
 		} else {
 
 			direction = (currFlr > destFlr) ? DOWN : UP;
 			lift = getNearestAvailableLift(currFlr, direction);
 			lift = (lift==null) ? getNearestAvailableLift(currFlr, Direction.STALL) : lift;
 			
-			if (lift.getDirection() == Direction.STALL) {// ----------------------------------------------------------
+			if(lift==null){
 				
-				if (direction == DOWN && lift.getCurrLevel() < currFlr) { direction = UP;}
-				if (direction == UP && lift.getCurrLevel() > currFlr) { direction = DOWN;}
+				waitList(new int[]{currFlr,destFlr});
+				return;
+			}
+			
+		
+			if (lift.getDirection() == Direction.STALL) {// ----------------------------------------------------------
+
+				if (direction == DOWN && lift.getCurrLevel() < currFlr) { direction = UP;secDirection=DOWN;}
+				if (direction == UP && lift.getCurrLevel() > currFlr) { direction = DOWN;secDirection=UP;}
 				notificationReq = true;
 		
 			} else if (direction == DOWN) {// -----------------------------------------------------------------------
-				
+
 				if (lift.getCurrLevel() > currFlr) {
 					notificationReq = false;
 				
@@ -113,41 +128,32 @@ public class LiftController {
 							direction = UP;
 							notificationReq = false;
 						} else {
-							while((lift = getNearestAvailableLift(currFlr, Direction.STALL))==null){
-							try {
-								TimeUnit.MILLISECONDS.sleep(3000);
-							} catch (InterruptedException e) {
 							
-								e.printStackTrace();
-							}
-							}
-							direction = (lift.getCurrLevel() < currFlr) ? UP : DOWN;
-							notificationReq = true; // to start the lift
-					}
-					
+							waitList(new int[]{currFlr,destFlr});
+							
+							return;
+						}
 				}
-			} else {// -----------------------------------------------------------------------------------------------
-				
+			}else {// -----------------------------------------------------------------------------------------------
+
+
 				if (lift.getCurrLevel() < currFlr) { // lift is below the requested floor
-						notificationReq = false; // no notification is required as this is a moving lift.
+
+					notificationReq = false; // no notification is required as this is a moving lift.
+				
 				} else { // lift is moving upwards and it is above the requested floor.
 
 					lift = getNearestAvailableLift(currFlr, DOWN); //
 
 					if (lift != null && lift.getDestLevel() > currFlr && (Math.abs(lift.getCurrLevel()-currFlr) < 3)) { // check if the down coming lift last stop is above the requested level.
+
 						lift.addStop(currFlr);
 						direction = DOWN;
 						notificationReq = false;
+						
 					} else {
-						while ((lift = getNearestAvailableLift(currFlr,	Direction.STALL)) == null) {
-							try {
-								TimeUnit.MILLISECONDS.sleep(3000);
-							} catch (InterruptedException e) {
-								e.printStackTrace();
-							}
-						}
-						direction = (lift.getCurrLevel() > currFlr) ? DOWN : UP;
-						notificationReq = true; // to start the lift
+						waitList(new int[]{currFlr,destFlr});
+						return;
 					}
 				}
 			}
@@ -162,6 +168,7 @@ public class LiftController {
 
 		lift.addStop(destFlr);
 		lift.setDirection(direction);
+		lift.setSecDirection(secDirection==null ? direction : secDirection);
 		direction.getQ().put(currFlr, destFlr);
 		
 		if (notificationReq) {
@@ -169,6 +176,19 @@ public class LiftController {
 		}
 	}
 
+	
+	/**
+	 * 
+	 * @param currFlr
+	 * @return
+	 */
+	private void waitList(int[] flrs){
+		
+		sop("All lifts are busy. Adding ["+flrs[0]+"],["+flrs[1]+"] into waiting list.");
+		waitingReqQ.offer(flrs);
+	}
+	
+	
 	/**
 	 * 
 	 * @return
@@ -223,7 +243,7 @@ public class LiftController {
 	 * @param level
 	 * @return
 	 */
-	protected Lift getNearestAvailableLift(int level, Direction d) {
+	private Lift getNearestAvailableLift(int level, Direction d) {
 
 		List<Lift> l = (d != null) ? getLiftsByDirection(d) : lifts;
 		
@@ -242,6 +262,14 @@ public class LiftController {
 			}
 		}
 		
+		if(nearestLift!=null){
+		//	sop(nearestLift+"--"+Math.abs(nearestLift.getCurrLevel()-level));
+			int gap = Math.abs(nearestLift.getCurrLevel()-level);
+			if( d!=Direction.STALL && gap > Lift.ACCPT_NEAR_LIFT_GAP){
+				nearestLift = null;
+			}
+		}
+					
 		return nearestLift;
 	}
 
@@ -249,7 +277,7 @@ public class LiftController {
 	 * 
 	 * @return
 	 */
-	protected Lift getTheFirstAvailableLift(List<Lift> l,Direction d) {
+	private Lift getTheFirstAvailableLift(List<Lift> l,Direction d) {
 		Lift avlift = null;
 
 		if (l != null) {
@@ -265,7 +293,7 @@ public class LiftController {
 	 * 
 	 * @return
 	 */
-	protected List<Lift> getLiftsByDirection(Direction d) {
+	private List<Lift> getLiftsByDirection(Direction d) {
 
 		List<Lift> l = new ArrayList<Lift>();
 
@@ -280,14 +308,88 @@ public class LiftController {
 	
 	/**
 	 * 
+	 * @return
+	 */
+	private boolean isAllLiftStall(){
+		return lifts.size()==getLiftsByDirection(Direction.STALL).size(); 
+	}
+	
+	/**
+	 * 
+	 */
+	private void sop(String msg){
+		System.out.println("[CONT]["+msg+"]");
+	}
+	
+	/**
+	 * 
 	 * @param args
 	 */
 	public static void main(String[] args) {
 		LiftController lc = LiftController.getInstance();
-		lc.setup(new int[] { 10, 3, 9,8,15 });
+		lc.setup(new int[] { 15, 14 });
 
 		ExecutorService service1 = Executors.newCachedThreadPool();
 		service1.submit(new LiftRequestor());
 		service1.shutdown();
 	}
+	
+	
+	/**
+	 * 
+	 * @author sv11741
+	 *
+	 */
+	public class LiftLocator implements Runnable {
+	     
+		
+		private BlockingQueue<int[]> waitReqQ; 
+		
+		/**
+		 * 
+		 * @param waitReqQ
+		 */
+	    public LiftLocator(BlockingQueue<int[]> waitReqQ){ 
+	    	this.waitReqQ=waitReqQ; 
+	    }
+	    
+
+		@Override
+		public void run() {
+			try{
+				while(true){
+					int[] flrs = waitReqQ.take();
+					
+					Lift lift = null;
+				    
+					while ((lift = getNearestAvailableLift(flrs[0],	Direction.STALL)) == null) {
+						TimeUnit.MILLISECONDS.sleep(1000);
+				    }
+				    	
+			    	Direction direction = (flrs[0] > flrs[1]) ? DOWN : UP;
+			    	Direction secDirection = direction;
+			    	
+			    	if(direction==DOWN){
+			    		if(lift.getCurrLevel() < flrs[0]){direction = UP; secDirection=DOWN;}
+			    	}else{
+			    		if(lift.getCurrLevel() > flrs[0]){direction = DOWN;	secDirection=UP;}
+			    	}
+				    	
+					if (lift.getCurrLevel() == flrs[0]) { lift.setReqLevel(-1);	}
+					else {lift.setReqLevel(flrs[0]);}
+
+					lift.addStop(flrs[1]);
+					lift.setDirection(direction);
+					lift.setSecDirection(secDirection==null ? direction : secDirection);
+					direction.getQ().put(flrs[0], flrs[1]);
+					liftNotifierQ[lift.getLiftNum()].offer(flrs[0]);
+				    	
+				}
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+		}
+	 
+	}
+	
 }
