@@ -4,8 +4,10 @@ import java.util.TreeSet;
 
 
 /**
+ * This is a POJO representation of Lift.
  * 
- * @author sv11741
+ * 
+ * @author Saji Venugopalan
  * 
  */
 public class Lift {
@@ -15,9 +17,12 @@ public class Lift {
 	
 	private final int liftNum;
 
-	public static final int MAX_FLOOR = 16;
-	public static final int MIN_FLOOR = 0;
-	public static final int ACCPT_NEAR_LIFT_GAP = 2;
+	public static final int MAX_FLOOR = 15;
+	public static final int MIN_FLOOR = 1;
+	public static final int ACCEPTABLE_DISTANCE = 2;
+	public static final int LIFT_MOVE_DELAY = 1;
+	public static final int LIFT_STOP_DELAY = 2;
+	
 	
 	private Direction direction = Direction.STALL;
 		
@@ -26,7 +31,8 @@ public class Lift {
 
 	/**
 	 * 
-	 * @param pos
+	 * @param currLevel
+	 * @param liftNum
 	 */
 	public Lift(int currLevel, int liftNum) {
 		this.currLevel = currLevel;
@@ -36,7 +42,7 @@ public class Lift {
 
 	/**
 	 * 
-	 * @return
+	 * @return Current Level of the elevator
 	 */
 	public int getCurrLevel() {
 		return currLevel;
@@ -44,14 +50,17 @@ public class Lift {
 
 	
 	/**
-	 * 
+	 * Decrement the current level
+	 * @see LiftRunner#run()
 	 */
 	public void levelDown(){
 		currLevel--;
 	}
 	
+	
 	/**
-	 * 
+	 * Increment the current level
+	 * @see LiftRunner#run()
 	 */
 	public void levelUp(){
 		currLevel++;
@@ -60,31 +69,35 @@ public class Lift {
 	
 	/**
 	 * 
-	 * @return
+	 * @return true if the current level is also a destination
 	 */
 	public boolean isCurrLevelIsDest(){
 		return stops.contains(currLevel) && direction==secDirection;
 	}
 	
 	/**
-	 * 
-	 * @return
+	 * To accept a new destination for this elevator
+	 * @see LiftController#sendRequest(String);
 	 */
 	public synchronized void addStop(int level){
 		stops.add(level);
 	}
 	
+	
 	/**
-	 * 
-	 * @param level
+	 * Remove if the destination has been already served. 
+	 * @see LiftController#adviceAction(Lift, Direction);
 	 */
 	public synchronized void removeStop(){
 		stops.remove(currLevel);
 	}
 	
+	
+	
 	/**
+	 * @see LiftController#adviceAction(Lift, Direction);
+	 * @return true if the elevator has some more stops. 
 	 * 
-	 * @return
 	 */
 	public boolean hasMoreStops(){
 		return stops.size() > 0;
@@ -93,7 +106,7 @@ public class Lift {
 
 	/**
 	 * 
-	 * @return
+	 * @return Number associated to this elevator
 	 */
 	public int getLiftNum() {	
 		return liftNum;
@@ -101,13 +114,15 @@ public class Lift {
 
 	/**
 	 * 
-	 * @return
+	 * @return current direction of this elevator
 	 */
 	public Direction getDirection() {
 		return direction;
 	}
 
 	/**
+	 * Sets the current direction of the lift.
+	 * Also sets secondary direction of this lift. It will be overridden in setSecDirection.
 	 * 
 	 * @param currentDirection
 	 */
@@ -117,13 +132,14 @@ public class Lift {
 	}
 
 	/**
-	 * 
+	 * Sets the current level
 	 * @param currLevel
 	 */
 	public void setCurrLevel(int currLevel) {
 		this.currLevel = currLevel;
 	}
 
+	
 	/**
 	 * 
 	 */
@@ -134,7 +150,7 @@ public class Lift {
 
 	/**
 	 * 
-	 * @return
+	 * @return Max/Min destination level based on the direction. 
 	 */
 	public int getDestLevel() {
 		if(stops.size()==0) return 0;
@@ -144,14 +160,14 @@ public class Lift {
 
 	/**
 	 * 
-	 * @return
+	 * @return requested level
 	 */
 	public int getReqLevel() {
 		return reqLevel;
 	}
 
 	/**
-	 * 
+	 * Sets the requested level
 	 * @param reqLevel
 	 */
 	public void setReqLevel(int reqLevel) {
@@ -159,6 +175,8 @@ public class Lift {
 	}
 
 	/**
+	 * Sets secondary direction of this lift.
+	 * This method should be set only after setDirection, else  secondary direction will be overridden by primary direction.
 	 * 
 	 * @param secDirection
 	 */

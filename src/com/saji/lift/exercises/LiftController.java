@@ -15,9 +15,14 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
-
 /**
- * @author sv11741
+ * LiftController class has the following responsibility
+ * --> Receive concurrent user request 
+ * --> assign the nearest and same direction traveling lift to the request
+ * --> wait-list the user request if the lifts are not available
+ * --> receive lift notification and instruct the next action/direction
+ * 
+ * @author Saji Venugopalan
  * 
  */
 public class LiftController {
@@ -37,7 +42,7 @@ public class LiftController {
 	}
 
 	/**
-	 * 
+	 * Singleton Method.
 	 * @return
 	 */
 	public static LiftController getInstance() {
@@ -46,13 +51,17 @@ public class LiftController {
 
 	/**
 	 * 
-	 * @param numberOfLifts
-	 * @param liftLevels
+	 * Initializer method to setup and start the LiftController and LiftLocator.
+	 * 
+	 * @param liftLevels - levels where lifts are currently halted
 	 */
 	@SuppressWarnings("unchecked")
-	public void setup(int[] liftLevels) {
+	public void setup(int[] liftLevels) throws ProcessingException{
 
 		if (!initialized) {
+			
+			validateLevels(liftLevels);
+			
 			ExecutorService service = Executors.newFixedThreadPool(liftLevels.length);
 			liftNotifierQ = new BlockingQueue[liftLevels.length];
 
@@ -70,20 +79,48 @@ public class LiftController {
 			service1.submit(new LiftLocator(waitingReqQ));
 			
 			initialized = true;
+		}else{
+			throw new ProcessingException("Lift[s] have been already intialized.");
 		}
 	}
 
 
 	/**
 	 * 
-	 * @param currFloorAndDestination
+	 * @param liftLevels
 	 */
-	public synchronized void sendRequest(String currFloorAndDestination) {
+	private void validateLevels(int[] liftLevels) throws ProcessingException {
+		
+		for (int i = 0; i<liftLevels.length ; i++) {
+			if(liftLevels[i] > Lift.MAX_FLOOR || liftLevels[i] < Lift.MIN_FLOOR){
+				throw new ProcessingException("Lift Level ["+liftLevels[i]+"] is > MAX Floor ["+Lift.MAX_FLOOR+"] or < MIN Floor ["+Lift.MIN_FLOOR+"] ");
+			}
+		}
+	}
+	
 
-		String[] flrDest = currFloorAndDestination.split("[,]");
-		int currFlr = Integer.parseInt(flrDest[0]);
-		int destFlr = Integer.parseInt(flrDest[1]);
+	/**
+	 * This method is kernel of the LiftController. 
+	 * It receive elevator request from LiftRequestor and evaluate the direction 
+	 * and locate the appropriate elevator for the requester.
+	 * If no elevator is found, it wait-list the request for future processing.
+	 * 
+	 * @see LiftRequestor#run()
+	 * @param reqLevelAndDestination - format currentLevel,Distination Level
+	 */
+	public synchronized void sendRequest(String reqLevelAndDestination) {
 
+		String[] LvlDest = reqLevelAndDestination.split("[,]");
+		int reqLvl = Integer.parseInt(LvlDest[0]);
+		int destLvl = Integer.parseInt(LvlDest[1]);
+
+		try {
+			validateLevels(new int[] {reqLvl,destLvl});
+		} catch (ProcessingException e) {
+			e.printStackTrace();
+			sop("Discarding request ["+reqLevelAndDestination+"]");
+		}
+		
 		Direction direction = null;
 		Direction secDirection = null;
 		Lift lift = null;
@@ -91,45 +128,45 @@ public class LiftController {
 
 		if (isAllLiftStall()) {
 			
-			lift = getNearestAvailableLift(currFlr, Direction.STALL);
-			direction = (lift.getCurrLevel() > currFlr) ? DOWN : UP;
+			lift = getNearestAvailableLift(reqLvl, Direction.STALL);
+			direction = (lift.getCurrLevel() > reqLvl) ? DOWN : UP;
 
 			
 		} else {
 
-			direction = (currFlr > destFlr) ? DOWN : UP;
-			lift = getNearestAvailableLift(currFlr, direction);
-			lift = (lift==null) ? getNearestAvailableLift(currFlr, Direction.STALL) : lift;
+			direction = (reqLvl > destLvl) ? DOWN : UP;
+			lift = getNearestAvailableLift(reqLvl, direction);
+			lift = (lift==null) ? getNearestAvailableLift(reqLvl, Direction.STALL) : lift;
 			
 			if(lift==null){
 				
-				waitList(new int[]{currFlr,destFlr});
+				waitList(new int[]{reqLvl,destLvl});
 				return;
 			}
 			
 		
 			if (lift.getDirection() == Direction.STALL) {// ----------------------------------------------------------
 
-				if (direction == DOWN && lift.getCurrLevel() < currFlr) { direction = UP;secDirection=DOWN;}
-				if (direction == UP && lift.getCurrLevel() > currFlr) { direction = DOWN;secDirection=UP;}
+				if (direction == DOWN && lift.getCurrLevel() < reqLvl) { direction = UP;secDirection=DOWN;}
+				if (direction == UP && lift.getCurrLevel() > reqLvl) { direction = DOWN;secDirection=UP;}
 				notificationReq = true;
 		
 			} else if (direction == DOWN) {// -----------------------------------------------------------------------
 
-				if (lift.getCurrLevel() > currFlr) {
+				if (lift.getCurrLevel() > reqLvl) {
 					notificationReq = false;
 				
 				} else {
 					
-					lift = getNearestAvailableLift(currFlr, UP); //
+					lift = getNearestAvailableLift(reqLvl, UP); //
 
-						if (lift != null && lift.getDestLevel() < currFlr && (Math.abs(lift.getCurrLevel()-currFlr) < 3)) { // check if the down coming lift last stop is above the requested level.
-							lift.addStop(currFlr);
+						if (lift != null && lift.getDestLevel() < reqLvl && isWithinTheAcceptableDistance(lift.getCurrLevel(),reqLvl)) {
+							lift.addStop(reqLvl);
 							direction = UP;
 							notificationReq = false;
 						} else {
 							
-							waitList(new int[]{currFlr,destFlr});
+							waitList(new int[]{reqLvl,destLvl});
 							
 							return;
 						}
@@ -137,68 +174,91 @@ public class LiftController {
 			}else {// -----------------------------------------------------------------------------------------------
 
 
-				if (lift.getCurrLevel() < currFlr) { // lift is below the requested floor
+				if (lift.getCurrLevel() < reqLvl) { 
 
-					notificationReq = false; // no notification is required as this is a moving lift.
+					notificationReq = false; 
 				
-				} else { // lift is moving upwards and it is above the requested floor.
+				} else { 
 
-					lift = getNearestAvailableLift(currFlr, DOWN); //
+					lift = getNearestAvailableLift(reqLvl, DOWN); //
 
-					if (lift != null && lift.getDestLevel() > currFlr && (Math.abs(lift.getCurrLevel()-currFlr) < 3)) { // check if the down coming lift last stop is above the requested level.
+					if (lift != null && lift.getDestLevel() > reqLvl && isWithinTheAcceptableDistance(lift.getCurrLevel(),reqLvl)) { 
 
-						lift.addStop(currFlr);
+						lift.addStop(reqLvl);
 						direction = DOWN;
 						notificationReq = false;
 						
 					} else {
-						waitList(new int[]{currFlr,destFlr});
+						waitList(new int[]{reqLvl,destLvl});
 						return;
 					}
 				}
 			}
 		}
 
-		if (lift.getCurrLevel() == currFlr) {
-			direction = (currFlr > destFlr) ? DOWN : UP;
+		if (lift.getCurrLevel() == reqLvl) {
+			direction = (reqLvl > destLvl) ? DOWN : UP;
 			lift.setReqLevel(-1);
 		} else {
-			lift.setReqLevel(currFlr);
+			lift.setReqLevel(reqLvl);
 		}
 
-		lift.addStop(destFlr);
+		lift.addStop(destLvl);
 		lift.setDirection(direction);
 		lift.setSecDirection(secDirection==null ? direction : secDirection);
-		direction.getQ().put(currFlr, destFlr);
+		direction.getQ().add(reqLvl);
 		
 		if (notificationReq) {
-			liftNotifierQ[lift.getLiftNum()].offer(currFlr);
+			liftNotifierQ[lift.getLiftNum()].offer(reqLvl);
 		}
 	}
 
 	
 	/**
 	 * 
-	 * @param currFlr
-	 * @return
+	 * Directs the request to waiting Q.
+	 * 
+	 * @see LiftLocator#run()
+	 * @param Lvls - [currentLevel,destination Level]
+	 * 
 	 */
-	private void waitList(int[] flrs){
+	private void waitList(int[] Lvls){
 		
-		sop("All lifts are busy. Adding ["+flrs[0]+"],["+flrs[1]+"] into waiting list.");
-		waitingReqQ.offer(flrs);
+		sop("All lifts are busy. Adding ["+Lvls[0]+"],["+Lvls[1]+"] into waiting list.");
+		waitingReqQ.offer(Lvls);
+	}
+	
+	
+	/**
+	 * Checks if the given elevator is within the acceptable distance.
+	 * 
+	 * @see Lift#ACCEPTABLE_DISTANCE
+	 * @param liftLevel
+	 * @param reqLevel
+	 * @return true if the list is within the acceptable distance
+	 */
+	private boolean isWithinTheAcceptableDistance(int liftLevel,int reqLevel){
+		return (liftLevel-reqLevel) >= Lift.ACCEPTABLE_DISTANCE;
 	}
 	
 	
 	/**
 	 * 
-	 * @return
+	 * This method will be called by all elevators at each level.
+	 * This method will determine 
+	 * --> if any passenger is waiting for the current direction elevator  
+	 * --> if any passenger need to get down.
+	 * 
+	 *  
+	 * @see LiftRunner#checkLevel
+	 * @return Action 
 	 */
-	public synchronized Action adviceAction(Lift lift, Direction currDirection) {
+	public Action adviceAction(Lift lift, Direction currDirection) {
 		int nextLevel = lift.getCurrLevel();
 
 		synchronized (currDirection.getQ()) {
 
-			if (currDirection.getQ().keySet().contains(nextLevel)) {//check if anyone called lift for this level [PICK UP]
+			if (currDirection.getQ().contains(nextLevel)) {//check if anyone called lift for this level [PICK UP]
 
 				if (nextLevel > lift.getDestLevel() && currDirection==UP) {// Lift came from lower level and the requester want to go to the lower level again.
 					return applyOppositeAction(lift, currDirection, UP);
@@ -218,7 +278,10 @@ public class LiftController {
 		}
 	}
 
+	
 	/**
+	 * 
+	 * Checks if the elevator need to travel to the opposit direction.
 	 * 
 	 * @param lift
 	 * @param currDirection
@@ -238,10 +301,15 @@ public class LiftController {
 		}
 	}
 
+	
+	
 	/**
 	 * 
+	 * Helper method to locate the nearest elevator based on their direction.
+	 * Also ensures the elevator is within the acceptable distance.
+	 * 
 	 * @param level
-	 * @return
+	 * @return Lift
 	 */
 	private Lift getNearestAvailableLift(int level, Direction d) {
 
@@ -263,9 +331,8 @@ public class LiftController {
 		}
 		
 		if(nearestLift!=null){
-		//	sop(nearestLift+"--"+Math.abs(nearestLift.getCurrLevel()-level));
-			int gap = Math.abs(nearestLift.getCurrLevel()-level);
-			if( d!=Direction.STALL && gap > Lift.ACCPT_NEAR_LIFT_GAP){
+
+			if( d!=Direction.STALL && isWithinTheAcceptableDistance(nearestLift.getCurrLevel(),level)){
 				nearestLift = null;
 			}
 		}
@@ -273,9 +340,13 @@ public class LiftController {
 		return nearestLift;
 	}
 
+	
+	
+	
 	/**
+	 * Retunrs the first available elevator for the given direction.
 	 * 
-	 * @return
+	 * @return 
 	 */
 	private Lift getTheFirstAvailableLift(List<Lift> l,Direction d) {
 		Lift avlift = null;
@@ -289,7 +360,10 @@ public class LiftController {
 		return avlift;
 	}
 
+	
+	
 	/**
+	 * Returns the collection of elevators traveling to the given direction.
 	 * 
 	 * @return
 	 */
@@ -308,6 +382,8 @@ public class LiftController {
 	
 	/**
 	 * 
+	 * Checks if all elevators are in stopped state.
+	 * 
 	 * @return
 	 */
 	private boolean isAllLiftStall(){
@@ -315,29 +391,23 @@ public class LiftController {
 	}
 	
 	/**
-	 * 
+	 * Utility method to print messages
 	 */
 	private void sop(String msg){
 		System.out.println("[CONT]["+msg+"]");
 	}
 	
-	/**
-	 * 
-	 * @param args
-	 */
-	public static void main(String[] args) {
-		LiftController lc = LiftController.getInstance();
-		lc.setup(new int[] { 15, 14 });
+	
 
-		ExecutorService service1 = Executors.newCachedThreadPool();
-		service1.submit(new LiftRequestor());
-		service1.shutdown();
-	}
-	
-	
 	/**
+	 * This class is a consumer class of waitingQ BlockingQueue
+	 * LiftController#sendRequest method will publish waiting request to waitingQ.
+	 * The run method will consume and locate the STALL lift and assign to it.
 	 * 
-	 * @author sv11741
+	 * {@link LiftController#sendRequest(String)}
+	 * {@link LiftRunner#run()}
+	 * 
+	 *  @author Saji Venugopalan
 	 *
 	 */
 	public class LiftLocator implements Runnable {
@@ -358,31 +428,31 @@ public class LiftController {
 		public void run() {
 			try{
 				while(true){
-					int[] flrs = waitReqQ.take();
+					int[] Lvls = waitReqQ.take();
 					
 					Lift lift = null;
 				    
-					while ((lift = getNearestAvailableLift(flrs[0],	Direction.STALL)) == null) {
+					while ((lift = getNearestAvailableLift(Lvls[0],	Direction.STALL)) == null) {
 						TimeUnit.MILLISECONDS.sleep(1000);
 				    }
 				    	
-			    	Direction direction = (flrs[0] > flrs[1]) ? DOWN : UP;
+			    	Direction direction = (Lvls[0] > Lvls[1]) ? DOWN : UP;
 			    	Direction secDirection = direction;
 			    	
 			    	if(direction==DOWN){
-			    		if(lift.getCurrLevel() < flrs[0]){direction = UP; secDirection=DOWN;}
+			    		if(lift.getCurrLevel() < Lvls[0]){direction = UP; secDirection=DOWN;}
 			    	}else{
-			    		if(lift.getCurrLevel() > flrs[0]){direction = DOWN;	secDirection=UP;}
+			    		if(lift.getCurrLevel() > Lvls[0]){direction = DOWN;	secDirection=UP;}
 			    	}
 				    	
-					if (lift.getCurrLevel() == flrs[0]) { lift.setReqLevel(-1);	}
-					else {lift.setReqLevel(flrs[0]);}
+					if (lift.getCurrLevel() == Lvls[0]) { lift.setReqLevel(-1);	}
+					else {lift.setReqLevel(Lvls[0]);}
 
-					lift.addStop(flrs[1]);
+					lift.addStop(Lvls[1]);
 					lift.setDirection(direction);
 					lift.setSecDirection(secDirection==null ? direction : secDirection);
-					direction.getQ().put(flrs[0], flrs[1]);
-					liftNotifierQ[lift.getLiftNum()].offer(flrs[0]);
+					direction.getQ().add(Lvls[0]);
+					liftNotifierQ[lift.getLiftNum()].offer(Lvls[0]);
 				    	
 				}
 			}catch(Exception e){
@@ -391,5 +461,31 @@ public class LiftController {
 		}
 	 
 	}
+	
+	
+	
+	
+	
+	/**
+	 * Main method.
+	 * 
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		LiftController lc = LiftController.getInstance();
+		try {
+			lc.setup(new int[] { 15, 14 });
+			ExecutorService service1 = Executors.newCachedThreadPool();
+			service1.submit(new LiftRequestor());
+			service1.shutdown();
+		} catch (ProcessingException e) {
+			e.printStackTrace();
+			System.exit(1);
+		}
+
+		
+	}
+	
+	
 	
 }

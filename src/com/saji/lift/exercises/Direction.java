@@ -1,35 +1,43 @@
 package com.saji.lift.exercises;
 
+import java.util.Collections;
+import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
+ * This class defines the Elevator Directions through enumeration
+ * Uses ConcurrentHashMap to store the req
  * 
- * @author sv11741
+ * @author Saji Venugopalan
  *
  */
 public enum Direction {
-	UP(new ConcurrentHashMap <Integer,Integer>()),DOWN(new ConcurrentHashMap <Integer,Integer>()),STALL(new ConcurrentHashMap <Integer,Integer>());
+	UP,DOWN,STALL;
 	
-	private final ConcurrentHashMap <Integer,Integer> q;
+	//Set backed up ConcurrentHashMap
+	private final Set <Integer> q;
 	
 	/**
 	 * 
 	 * @param q
 	 */
-	private Direction(ConcurrentHashMap <Integer,Integer> q){
-		this.q = q;
+	private Direction(){
+		this.q = Collections.newSetFromMap(new ConcurrentHashMap <Integer,Boolean>());
 	}
 	
-	
+	/**
+	 * 
+	 * @return reverse of the current direction
+	 */
 	public Direction reverse(){
 		return ("UP".equals(this.name())) ? DOWN : UP;  
 	}
 	
 	/**
 	 * 
-	 * @return
+	 * @return Set that stores requester level
 	 */
-	public ConcurrentHashMap <Integer,Integer> getQ(){
+	public Set <Integer> getQ(){
 		return q;
 	}
 	
