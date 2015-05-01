@@ -9,6 +9,7 @@ import static com.saji.lift.exercises.Direction.UP;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Scanner;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.ExecutorService;
@@ -86,8 +87,9 @@ public class LiftController {
 
 
 	/**
-	 * 
+	 * Checks if the requested lift levels are within the defined range.
 	 * @param liftLevels
+	 * @throws ProcessingException
 	 */
 	private void validateLevels(int[] liftLevels) throws ProcessingException {
 		
@@ -390,14 +392,7 @@ public class LiftController {
 		return lifts.size()==getLiftsByDirection(Direction.STALL).size(); 
 	}
 	
-	/**
-	 * Utility method to print messages
-	 */
-	private void sop(String msg){
-		System.out.println("[CONT]["+msg+"]");
-	}
-	
-	
+
 
 	/**
 	 * This class is a consumer class of waitingQ BlockingQueue
@@ -474,18 +469,70 @@ public class LiftController {
 	public static void main(String[] args) {
 		LiftController lc = LiftController.getInstance();
 		try {
-			lc.setup(new int[] { 15, 14 });
+			
+			Scanner keyboard = new Scanner(System.in);
+			
+			int[] levels = readLiftLevels(keyboard);			
+			ArrayList<String> reqDestLevels = readReqDestLevels(keyboard);
+			
+			lc.setup(levels);
+
 			ExecutorService service1 = Executors.newCachedThreadPool();
-			service1.submit(new LiftRequestor());
+			service1.submit(new LiftRequestor(reqDestLevels));
 			service1.shutdown();
+			
 		} catch (ProcessingException e) {
 			e.printStackTrace();
 			System.exit(1);
 		}
 
-		
+	
 	}
 	
 	
+	/**
+	 * To read the intial lift levels from the user
+	 * 
+	 * @param keyboard
+	 * @return
+	 */
+	private static int[] readLiftLevels(Scanner keyboard){
+		sop("Enter the current stages of the lifts: MAX floor["+Lift.MAX_FLOOR+"] and MIN floor["+Lift.MIN_FLOOR+"]. Format[12,5,3..]:>");
+		String temp = keyboard.nextLine();
+		String[] lvls = temp.split("[,]");
+		int[] levels = new int[lvls.length];
+		for (int i = 0; i < lvls.length; i++) {
+			levels[i] = Integer.parseInt(lvls[i]);
+		}
+		return levels;
+	}
+	
+	
+	/**
+	 * To read the req/destination levels from the user
+	 * @param keyboard
+	 * @return
+	 */
+	private static ArrayList<String> readReqDestLevels(Scanner keyboard){
+		ArrayList<String> reqDestLevels = new ArrayList<String>();
+		
+		while(true){
+			sop("Enter request/destination levels : Format [12,3]:>");
+			String temp = keyboard.nextLine();
+			if("c".equalsIgnoreCase(temp)){ break;}
+			else{reqDestLevels.add(temp);}
+			sop("Enter 'c' for Complete");
+		}
+		return reqDestLevels;
+	}
+	
+	
+
+	/**
+	 * Utility method to print messages
+	 */
+	private static void sop(String msg){
+		System.out.println("[CONT]["+msg+"]");
+	}
 	
 }
