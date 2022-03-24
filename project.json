@@ -1,0 +1,144 @@
+{
+    "projectMeta":{
+        "menuInfo" : {
+            "displayName":"General Setting",
+            "pageTitle":"General Setting",
+            "subMenuItems": null,
+            "subMenuItemsFromReference": true,
+            "subMenuItemsRefPath": "",
+            "subMenuExist": true
+        },
+        "projectName" : {
+            "label" : "Project Name",
+            "required" : true,
+            "referencePath" : null,
+            "note" : null,
+            "value" : "My Project",
+            "type" : "text",
+            "valueFromRef" : false,
+            "defaultValues" : [],
+            "validation" : null
+        },
+        "projectTeamDL" : {},
+        "projectCSI" : {},
+        "packageName" : {},
+        "projectNameSpace" : {
+            "label" : "Openshift Project Name Space",
+            "required" : true,
+            "type" : "text",
+            "note":"",
+            "validation" : "regexp:(\\s)"
+        },
+        "serviceCount" : {},
+        "serviceConfig":{
+            "label" : "Service Config",
+            "required" : true,
+            "type" : "collection",
+            "collectionRefPath" : "template.serviceConfig"
+        },
+        "serviceConfigs":[]           
+    },
+    "Targets":{
+        "menuInfo" : {
+            "displayName":"Deployment",
+            "pageTitle":"Deployment",
+            "subMenuItems": null,
+            "subMenuItemsFromReference": true,
+            "subMenuItemsRefPath": "",
+            "subMenuExist": true
+        },
+        "noOfTargets" : {
+            "label" : "No of Targets",
+            "required" : true,
+            "type" : "text",
+            "validation" : "number"
+        },
+        "targetConfig":{
+            "label" : "Targets",
+            "required" : true,
+            "type" : "collection",
+            "collectionRefPath" : "template.targetConfig"
+        },
+        "targetConfigs":[],
+        "commonParameter":{
+            "label" : "Common Parameters",
+            "required" : true,
+            "type" : "collection",
+            "collectionRefPath" : "template.commonParameters"
+        },
+        "commonParameters":[]
+    },
+
+
+    
+    "template":{
+        "serviceConfig" : {
+            "name" : {
+                "label" : "Service Name",
+                "required" : true,
+                "value" : null,
+                "type" : "text"
+            },
+            "tracing" : {},
+            "type" : {
+                "label" : "Service Type",
+                "required" : true,
+                "value" : "GRPC",
+                "defaultValues" : ["GRPC","JMS","UMB","EMAIL","WEBSOCKET","TCP","REST","AMBROSIA"],
+                "type" : "select"
+            }
+        },
+        "GRPC":{
+            "name":{
+                "label" : "Service Name",
+                "required" : true,
+                "type" : "text",
+                "note":"Name without space",
+                "validation" : "regexp:(\\s)"
+            },
+            "port" : {},
+            "sslEnabled":{
+                "label" : "Service Type",
+                "required" : true,
+                "value" : "JKS",
+                "defaultValues" : ["JKS","PEM","PKCS12"],
+                "type" : "multi",
+                "note":""
+            },
+            "sslType":{},
+            "sslClientAuth":{},
+            "sslKeyStore":{
+                "label" : "grpc.ssl.key.store",
+                "required" : "conditional",
+                "requiredReferencePath" : "GRPC.sslEnabled",
+                "value" : null,
+                "type" : "text"
+            },
+            "sslKeystoreSafeNet":{},
+            "sslTrustore":{},
+            "sslTrustoreSafeNet":{},
+            "cyberarkCertId":{},
+            "cyberarkNickname":{},
+            "latencyMetricsEnabled":{}
+        },
+        "targetConfig":{
+            "environment":  {
+                "label" : "Environment",
+                "required" : true,
+                "defaultValues" : ["DEV","UAT","PROD","COB"],
+                "value" : "DEV",
+                "type" : "text"
+            },
+            "cluster":{
+                "label" : "Cluster Address",
+                "required" : true,
+                "type" : "text",
+                "note":"namicgswd13d"
+            }
+        },
+        "commonParameters":{
+            "key":{},
+            "value":{}
+        }
+    }
+}
