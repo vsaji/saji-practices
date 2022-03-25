@@ -199,7 +199,7 @@
             "readOnly" : true
         },
         "@provider":{
-            "providerRef" : null
+            "value" : null
         }
     },
     "jmsSetup":{
@@ -295,7 +295,7 @@
                 "type" : "select"
             },
             "@type" :{
-                "serviceSubConfig" : null
+                "value" : null
             }
         },
         "serviceTypeConfig":{
