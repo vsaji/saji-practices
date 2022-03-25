@@ -1,5 +1,5 @@
 {
-    "projectMeta":{
+    "instanceSetup":{
         "menuInfo" : {
             "displayName":"General Setting",
             "pageTitle":"General Setting",
@@ -101,22 +101,120 @@
             "type" : "text",
             "valueRef" : "projectMeta.projectTeamDL",
             "note":"Fatal/Critical failures will be notified to this emailID"
-        },
-        "serviceCount" : {
-            "label" : "No of Services",
-            "required" : "yes",
-            "type" : "text",
-            "value":"1",
-            "validation" : "regexp:(\b[1-3]\b)"
+        }
+    },
+    "serviceSetup":{
+        "menuInfo" : {
+            "displayName":"Service Setup",
+            "pageTitle":"Service Setup"
         },
         "serviceConfig":{
             "label" : "Service Config",
             "required" : "yes",
             "type" : "collection",
-            "collectionRefPath" : "template.serviceConfig"
+            "collectionTemplate" : "template.serviceConfig"
         },
-        "@serviceConfig":[]           
+        "@serviceConfig":[]   
     },
+    "dbSetup":{
+        "menuInfo" : {
+            "displayName":"Database Setup",
+            "pageTitle":"Database Connection Setup"
+        },
+        "dbConfig":{
+            "label" : "Add DB Configuration",
+            "required" : "yes",
+            "type" : "collection",
+            "collectionTemplate" : "template.dbConfig"
+        },
+        "@dbConfig":[]   
+    },
+    "itrsSetup":{
+        "menuInfo" : {
+            "displayName":"ITRS Setup",
+            "pageTitle":"ITRS Connection Setup"
+        },
+        "itrsHost":{
+            "label" : "ITRS Host",
+            "required" : "yes",
+            "type" : "text"
+        },
+        "itrsPort":{
+            "label" : "ITRS Port",
+            "required" : "yes",
+            "type" : "text",
+            "value" : "80",
+            "validation" : "regexp:(^[0-9]*$)"
+        },
+        "manageEntity":{
+            "label" : "Manage Entity",
+            "required" : "yes",
+            "type" : "text"
+        }
+    },
+    "refDataSetup":{
+        "menuInfo" : {
+            "displayName":"RefData Setup",
+            "pageTitle":"RefData Connection Setup"
+        },
+        "refDataHost":{
+            "label" : "Ref Data Host",
+            "required" : "yes",
+            "type" : "text"
+        },
+        "refDataPort":{
+            "label" : "Ref Data Port",
+            "required" : "yes",
+            "type" : "text",
+            "value" : "443",
+            "validation" : "regexp:(^[0-9]*$)"
+        },
+        "enableSSL":{
+            "label" : "Enable SSL",
+            "required" : "yes",
+            "type" : "checkbox",
+            "value" : "checked",
+            "readOnly" : true
+        },        
+        "transportMode":{
+            "label" : "Transport Mode",
+            "required" : "yes",
+            "value" : "WEBSOCKET",
+            "defaultValues" : ["WEBSOCKET","TCP"],
+            "type" : "select",
+            "readOnly" : true
+        }
+    },
+    "configuration":{
+        "menuInfo" : {
+            "displayName":"Configuration Setup",
+            "pageTitle":"Remote Configuration Setup"
+        },
+       "provider":{
+            "label" : "Provider",
+            "required" : "yes",
+            "value" : "PropertyCentral",
+            "type" : "text",
+            "template" : "template.configProvider",
+            "readOnly" : true
+        },
+        "@provider":{
+            "providerRef" : null
+        }
+    },
+    "jmsSetup":{
+        "menuInfo" : {
+            "displayName":"JMS Setup",
+            "pageTitle":"JMS Connection Setup"
+        },
+        "jmsConfig":{
+            "label" : "Add JMS Configuration",
+            "required" : "yes",
+            "type" : "collection",
+            "collectionTemplate" : "template.jmsConfig"
+        },
+        "@jmsConfig":[]   
+    },    
     "deployment":{
         "menuInfo" : {
             "displayName":"Deployment",
@@ -137,14 +235,14 @@
             "label" : "Targets",
             "required" : "yes",
             "type" : "collection",
-            "collectionRefPath" : "template.targetConfig"
+            "collectionTemplate" : "template.targetConfig"
         },
         "@targetConfig":[],          
         "commonParameter":{
             "label" : "Common Parameters",
             "required" : "yes",
             "type" : "collection",
-            "collectionRefPath" : "template.commonParameter",
+            "collectionTemplate" : "template.commonParameter",
             "note" : "These parameters will be added to the param files"
         },
         "@commonParameter":[]
@@ -193,185 +291,256 @@
                 "required" : "yes",
                 "value" : "GRPC",
                 "defaultValues" : ["GRPC","JMS","UMB","EMAIL","WEBSOCKET","TCP","REST","AMBROSIA"],
+                "template" : "template.serviceTypeConfig",
                 "type" : "select"
+            },
+            "@type" :{
+                "serviceSubConfig" : null
             }
         },
-        "JMS":{
-            "enableTracing" : {
-                "label" : "Enable tracing",
-                "required" : "yes",
-                "value" : "unchecked",
-                "type" : "checkbox"
-            },
-            "enableAsync" :{
-                "label" : "Enable Async Processing",
-                "required" : "yes",
-                "value" : "unchecked",
-                "type" : "checkbox"
-            },
-            "consumerThreadCount" :{
-                "label" : "Paralell Stream Count",
-                "required" : "conditional",
-                "requiredRef" : "this.enableAsync",
-                "value" : "unchecked",
-                "type" : "text",
-                "validation" : "regexp:(^[0-9]*$)"
-            },            
-            "consumerConfig" : {
-                "label" : "Consumers",
-                "required" : "yes",
-                "type" : "collection",
-                "collectionRefPath" : "template.jmsConsumerConfig"
-            },
-            "@consumerConfig":[]
-        },
-        "REST":{
-            "name":{
-                "label" : "Service Name",
-                "required" : "yes",
-                "type" : "text",
-                "note":"Name without space",
-                "validation" : "regexp:(\\s)"
-            },
-            "port" : {
-                "label" : "http.port",
-                "required" : "yes",
-                "type" : "text",
-                "value" : "5999",
-                "validation" : "regexp:(^[0-9]*$)"
-            },
-            "routeName":{
-                "label" : "Route name",
-                "required" : "yes",
-                "valueRef" : "this.name",
-                "type" : "text"
-            },
-            "sslEnabled":{
-                "label" : "http.ssl.enabled",
-                "required" : "yes",
-                "value" : "unchecked",
-                "type" : "checkbox"
-            },
-            "sslType":{
-                "label" : "http.ssl.keystore.type",
-                "required" : "conditional",
-                "requiredRef": "this.sslEnabled",
-                "value" : "JKS",
-                "defaultValues" : ["JKS","PEM","PKCS12"],
-                "type" : "select",
-                "note":""
-            },
-            "sslClientAuth":{
-                "label" : "http.ssl.client.auth",
-                "required" : "conditional",
-                "requiredRef": "this.sslEnabled",
-                "value" : "unchecked",
-                "type" : "checkbox"
-            },
-            "sslKeyStore":{
-                "label" : "http.ssl.keystore",
-                "required" : "conditional",
-                "requiredRef" : "this.sslEnabled",
-                "type" : "text",
-                "note" : "Enter Cert ID (API_xxx) if this value is Venafi issues cert"                
-            },
-            "sslKeystoreSafeNet":{
-                "label" : "http.ssl.keystore.safenet",
-                "required" : "conditional",
-                "requiredRef": "this.sslEnabled",
-                "type" : "secure",
-                "note" : "Prefix with [CA] if the value is Cyberark NickName"
-            },
-            "sslTrustore":{
-                "label" : "http.ssl.truststore",
-                "required" : "no",
-                "requiredRef": "this.sslEnabled",
-                "type" : "text"
-            },
-            "sslTrustoreSafeNet":{
-                "label" : "http.ssl.truststore.safenet",
-                "required" : "no",
-                "requiredRef": "this.sslEnabled",
-                "type" : "secure",
-                "note" : "Prefix with [CA] if the value is Cyberark NickName"                
-            }
-        },
-        "GRPC":{
-            "name":{
-                "label" : "Service Name",
-                "required" : "yes",
-                "type" : "text",
-                "note":"Name without space",
-                "validation" : "regexp:(\\s)"
-            },
-            "port" : {
-                "label" : "grpc.port",
-                "required" : "yes",
-                "type" : "text",
-                "value" : "9090",
-                "validation" : "regexp:(^[0-9]*$)"
-            },
-            "routeName":{
-                "label" : "Route name",
-                "required" : "yes",
-                "valueRef" : "this.name",
-                "type" : "text"
-            },
-            "sslEnabled":{
-                "label" : "grpc.ssl.enabled",
-                "required" : "yes",
-                "value" : "unchecked",
-                "type" : "checkbox"
-            },
-            "sslType":{
-                "label" : "grpc.ssl.type",
-                "required" : "conditional",
-                "requiredRef": "this.sslEnabled",
-                "value" : "JKS",
-                "defaultValues" : ["JKS","PEM","PKCS12"],
-                "type" : "select",
-                "note":""
-            },
-            "sslClientAuth":{
-                "label" : "grpc.ssl.client.auth",
-                "required" : "conditional",
-                "requiredRef": "this.sslEnabled",
-                "value" : "unchecked",
-                "type" : "checkbox"
-            },
-            "sslKeyStore":{
-                "label" : "grpc.ssl.keystore",
-                "required" : "conditional",
-                "requiredRef" : "this.sslEnabled",
-                "type" : "text",
-                "note" : "Enter Cert ID (API_xxx) if this value is Venafi issues cert"                
-            },
-            "sslKeystoreSafeNet":{
-                "label" : "grpc.ssl.keystore.safenet",
-                "required" : "conditional",
-                "requiredRef": "this.sslEnabled",
-                "type" : "secure",
-                "note" : "Prefix with [CA] if the value is Cyberark NickName"
-            },
-            "sslTrustore":{
-                "label" : "grpc.ssl.truststore",
-                "required" : "no",
-                "requiredRef": "this.sslEnabled",
-                "type" : "text"
-            },
-            "sslTrustoreSafeNet":{
-                "label" : "grpc.ssl.truststore.safenet",
-                "required" : "no",
-                "requiredRef": "this.sslEnabled",
-                "type" : "secure",
-                "note" : "Prefix with [CA] if the value is Cyberark NickName"                
-            },
-            "latencyMetricsEnabled":{
-                "label" : "latency.metric.enabled",
-                "required" : "no",
-                "value": "unchecked",
-                "type" : "checkbox"
-            }
+        "serviceTypeConfig":{
+
+           "EMAIL":{
+                "type" :{
+                    "label" : "Service Type",
+                    "required" : "yes",
+                    "value" : "EMAIL",
+                    "type" : "text",
+                    "readOnly" : true
+                },
+                "emailFid" :{
+                    "label" : "Email FID",
+                    "required" : "yes",
+                    "type" : "text",
+                },
+                "emailPassowrd" :{
+                    "label" : "Email password",
+                    "required" : "yes",
+                    "type" : "text",
+                    "note" : "Prefix with [CA] if the value is Cyberark NickName"
+                },
+                "region" :{
+                    "label" : "Email Account Region",
+                    "required" : "yes",
+                    "value" : "NAM",
+                    "type" : "select",
+                    "defaultValues" : ["NAM","APAC","EMEA"]
+                },
+                "retryCount" :{
+                    "label" : "Connection Retry Count",
+                    "required" : "yes",
+                    "value" : "-1",
+                    "type" : "text",
+                    "validation":"regexp:(^[0-9]*$)",
+                    "note":"-1=infinitive / >0=retry count / 0=disabled"
+                },
+                "retryDelay" :{
+                    "label" : "Connection Retry interval",
+                    "required" : "yes",
+                    "value" : "10",
+                    "type" : "text",
+                    "validation":"regexp:(^[0-9]*$)",
+                    "note":"Value in seconds"
+                }                                     
+           },    
+           "JMS":{
+                "type" :{
+                    "label" : "Service Type",
+                    "required" : "yes",
+                    "value" : "JMS",
+                    "type" : "text",
+                    "readOnly" : true
+                },
+                "enableTracing" : {
+                    "label" : "Enable tracing",
+                    "required" : "yes",
+                    "value" : "unchecked",
+                    "type" : "checkbox"
+                },
+                "enableAsync" :{
+                    "label" : "Enable Async Processing",
+                    "required" : "yes",
+                    "value" : "unchecked",
+                    "type" : "checkbox"
+                },
+                "consumerThreadCount" :{
+                    "label" : "Paralell Stream Count",
+                    "required" : "conditional",
+                    "requiredRef" : "this.enableAsync",
+                    "value" : "unchecked",
+                    "type" : "text",
+                    "validation" : "regexp:(^[0-9]*$)"
+                },            
+                "consumerConfig" : {
+                    "label" : "Consumers",
+                    "required" : "yes",
+                    "type" : "collection",
+                    "collectionTemplate" : "template.jmsConsumerConfig"
+                },
+                "@consumerConfig":[]
+           },
+           "REST":{
+                "type" :{
+                    "label" : "Service Type",
+                    "required" : "yes",
+                    "value" : "REST",
+                    "type" : "text",
+                    "readOnly" : true
+                },
+                "name":{
+                    "label" : "Service Name",
+                    "required" : "yes",
+                    "type" : "text",
+                    "note":"Name without space",
+                    "validation" : "regexp:(\\s)"
+                },
+                "port" : {
+                    "label" : "http.port",
+                    "required" : "yes",
+                    "type" : "text",
+                    "value" : "5999",
+                    "validation" : "regexp:(^[0-9]*$)"
+                },
+                "routeName":{
+                    "label" : "Route name",
+                    "required" : "yes",
+                    "valueRef" : "this.name",
+                    "type" : "text"
+                },
+                "sslEnabled":{
+                    "label" : "http.ssl.enabled",
+                    "required" : "yes",
+                    "value" : "unchecked",
+                    "type" : "checkbox"
+                },
+                "sslType":{
+                    "label" : "http.ssl.keystore.type",
+                    "required" : "conditional",
+                    "requiredRef": "this.sslEnabled",
+                    "value" : "JKS",
+                    "defaultValues" : ["JKS","PEM","PKCS12"],
+                    "type" : "select",
+                    "note":""
+                },
+                "sslClientAuth":{
+                    "label" : "http.ssl.client.auth",
+                    "required" : "conditional",
+                    "requiredRef": "this.sslEnabled",
+                    "value" : "unchecked",
+                    "type" : "checkbox"
+                },
+                "sslKeyStore":{
+                    "label" : "http.ssl.keystore",
+                    "required" : "conditional",
+                    "requiredRef" : "this.sslEnabled",
+                    "type" : "text",
+                    "note" : "Enter Cert ID (API_xxx) if this value is Venafi issues cert"                
+                },
+                "sslKeystoreSafeNet":{
+                    "label" : "http.ssl.keystore.safenet",
+                    "required" : "conditional",
+                    "requiredRef": "this.sslEnabled",
+                    "type" : "secure",
+                    "note" : "Prefix with [CA] if the value is Cyberark NickName"
+                },
+                "sslTrustore":{
+                    "label" : "http.ssl.truststore",
+                    "required" : "no",
+                    "requiredRef": "this.sslEnabled",
+                    "type" : "text"
+                },
+                "sslTrustoreSafeNet":{
+                    "label" : "http.ssl.truststore.safenet",
+                    "required" : "no",
+                    "requiredRef": "this.sslEnabled",
+                    "type" : "secure",
+                    "note" : "Prefix with [CA] if the value is Cyberark NickName"                
+                }
+           },
+           "GRPC":{
+                "type" :{
+                    "label" : "Service Type",
+                    "required" : "yes",
+                    "value" : "GRPC",
+                    "type" : "text",
+                    "readOnly" : true
+                },
+                "name":{
+                    "label" : "Service Name",
+                    "required" : "yes",
+                    "type" : "text",
+                    "note":"Name without space",
+                    "validation" : "regexp:(\\s)"
+                },
+                "port" : {
+                    "label" : "grpc.port",
+                    "required" : "yes",
+                    "type" : "text",
+                    "value" : "9090",
+                    "validation" : "regexp:(^[0-9]*$)"
+                },
+                "routeName":{
+                    "label" : "Route name",
+                    "required" : "yes",
+                    "valueRef" : "this.name",
+                    "type" : "text"
+                },
+                "sslEnabled":{
+                    "label" : "grpc.ssl.enabled",
+                    "required" : "yes",
+                    "value" : "unchecked",
+                    "type" : "checkbox"
+                },
+                "sslType":{
+                    "label" : "grpc.ssl.type",
+                    "required" : "conditional",
+                    "requiredRef": "this.sslEnabled",
+                    "value" : "JKS",
+                    "defaultValues" : ["JKS","PEM","PKCS12"],
+                    "type" : "select",
+                    "note":""
+                },
+                "sslClientAuth":{
+                    "label" : "grpc.ssl.client.auth",
+                    "required" : "conditional",
+                    "requiredRef": "this.sslEnabled",
+                    "value" : "unchecked",
+                    "type" : "checkbox"
+                },
+                "sslKeyStore":{
+                    "label" : "grpc.ssl.keystore",
+                    "required" : "conditional",
+                    "requiredRef" : "this.sslEnabled",
+                    "type" : "text",
+                    "note" : "Enter Cert ID (API_xxx) if this value is Venafi issues cert"                
+                },
+                "sslKeystoreSafeNet":{
+                    "label" : "grpc.ssl.keystore.safenet",
+                    "required" : "conditional",
+                    "requiredRef": "this.sslEnabled",
+                    "type" : "secure",
+                    "note" : "Prefix with [CA] if the value is Cyberark NickName"
+                },
+                "sslTrustore":{
+                    "label" : "grpc.ssl.truststore",
+                    "required" : "no",
+                    "requiredRef": "this.sslEnabled",
+                    "type" : "text"
+                },
+                "sslTrustoreSafeNet":{
+                    "label" : "grpc.ssl.truststore.safenet",
+                    "required" : "no",
+                    "requiredRef": "this.sslEnabled",
+                    "type" : "secure",
+                    "note" : "Prefix with [CA] if the value is Cyberark NickName"                
+                },
+                "latencyMetricsEnabled":{
+                    "label" : "latency.metric.enabled",
+                    "required" : "no",
+                    "value": "unchecked",
+                    "type" : "checkbox"
+                }
+           }
         },
         "targetConfig":{
             "environment":  {
@@ -427,11 +596,163 @@
                 "label" : "Environment Specific Parameters",
                 "required" : "yes",
                 "type" : "collection",
-                "collectionRefPath" : "template.commonParameter",
+                "collectionTemplate" : "template.commonParameter",
                 "note" : "These parameters will be added to the param files"
             },
             "@envParams":[]
         },
+        "dbConfig":{
+            "id":  {
+                "label" : "Connection ID",
+                "required" : "yes",
+                "type" : "text",
+                "validation":"regexp:(\\s)",
+                "note" : "ID should a non-space value"
+            },
+            "name":{
+                "label" : "Connection Name",
+                "required" : "yes",
+                "type" : "text"
+            },
+            "jdbcURL":{
+                "label" : "JDBC Url",
+                "required" : "yes",
+                "type" : "text"
+            },
+            "jdbcDriverClass":{
+                "label" : "JDBC Driver Class",
+                "required" : "yes",
+                "type" : "text",
+                "validation":"regexp:(^(?:\\w+|\\w+\\.\\w+)+$)"
+            },            
+            "jdbcUser":{
+                "label" : "User Name",
+                "required" : "yes",
+                "type" : "text",
+                "validation":"regexp:(\\s)"
+            },
+            "jdbcPassword":{
+                "label" : "Password",
+                "required" : "yes",
+                "type" : "secure",
+                "validation":"regexp:(\\s)",
+                "note" : "Prefix with [CA] if the value is Cyberark NickName"
+            },
+            "testSQL":{
+                "label" : "Test SQL",
+                "required" : "yes",
+                "type" : "text",
+                "note" : "SQL to test connection"
+            }
+        },
+        "jmsConfig":{
+            "id":  {
+                "label" : "Connection ID",
+                "required" : "yes",
+                "type" : "text",
+                "validation":"regexp:(\\s)",
+                "note" : "ID should a non-space value"
+            },
+            "name":{
+                "label" : "Connection Name",
+                "required" : "yes",
+                "type" : "text"
+            },
+            "brokerUrl":{
+                "label" : "Broker Url",
+                "required" : "yes",
+                "type" : "text",
+                "note":"Provide Host name here for IBM MQ Setup"
+            },
+            "port":{
+                "label" : "Broker Url",
+                "required" : "no",
+                "type" : "text",
+                "validation":"regexp:(^[0-9]*$)",
+                "note":"Applicable only for IBM MQ Setup"
+            },
+            "middlewareType":{
+                "label" : "Middleware Type",
+                "required" : "yes",
+                "value" : "TIBCO",
+                "defaultValues" : ["SOLACE","TIBCOEMS","MQ","AMQ"],
+                "type" : "select"
+            },         
+            "queueManager":{
+                "label" : "Queue Manager",
+                "required" : "no",
+                "type" : "text",
+                "note":"Applicable only for IBM MQ Setup"
+            },
+            "vpnName":{
+                "label" : "VPN Name",
+                "required" : "no",
+                "type" : "text",
+                "note" : "Applicable only for SOLACE Setup"
+            },  
+            "channel":{
+                "label" : "Channel",
+                "required" : "no",
+                "type" : "text",
+                "note":"Applicable only for IBM MQ Setup"
+            },
+            "sslEnabled":{
+                "label" : "SSL Enabled",
+                "required" : "yes",
+                "type" : "checkbox",
+                "value" : "checked"
+            },
+            "sslKeyStoreType":{
+                "label" : "Keystore Type",
+                "required" : "conditional",
+                "requiredRef" : "this.sslEnabled",
+                "type" : "text",
+                "value" : "JKS",
+                "defaultValues" : ["JKS","PKCS12"]
+            },
+            "sslKeyStore":{
+                "label" : "Keystore",
+                "required" : "conditional",
+                "requiredRef" : "this.sslEnabled",
+                "type" : "text"
+            },
+            "sslKeystoreSafeNet":{
+                "label" : "Keystore Password",
+                "required" : "conditional",
+                "requiredRef": "this.sslEnabled",
+                "type" : "secure"
+            },
+            "sslTrutstore":{
+                "label" : "Truststore",
+                "required" : "no",
+                "requiredRef": "this.sslEnabled",
+                "type" : "text"
+            },
+            "sslTrustoreSafeNet":{
+                "label" : "Truststore password",
+                "required" : "no",
+                "requiredRef": "this.sslEnabled",
+                "type" : "secure",
+            },  
+            "sslCipherSuite":{
+                "label" : "SSL Cipher Suite",
+                "required" : "no",
+                "requiredRef": "this.sslEnabled",
+            },                       
+            "jmsPassword":{
+                "label" : "Password",
+                "required" : "yes",
+                "type" : "secure",
+                "validation":"regexp:(\\s)",
+                "note" : "Prefix with [CA] if the value is Cyberark NickName"
+            },
+            "jmsUser":{
+                "label" : "User Name",
+                "required" : "yes",
+                "type" : "text",
+                "validation":"regexp:(\\s)"
+            }
+        },       
         "commonParameter":{
             "key":{},
             "value":{}
@@ -447,8 +768,69 @@
             "name":{
                 "label" : "Consumer Name",
                 "required" : "yes",
+                "type" : "text"
+            },
+            "jmsConnection":{
+                "label" : "Jms Connection Name",
+                "required" : "yes",
+                "type" : "select",
+                "valueRef" : "jmsConnection.jmsConnectionConfig.name"
+            },
+            "destinationType":{
+                "label" : "Destination Type",
+                "required" : "yes",
+                "type" : "select",
+                "value" : "QUEUE",
+                "defaultValues" : ["QUEUE","TOPIC"]
+            },
+            "destinationName":{
+                "label" : "Destination Name",
+                "required" : "no",
+                "type" : "text"
+            },
+            "sessionAckMode":{
+                "label" : "Session Acknowledge Mode",
+                "required" : "yes",
+                "type" : "select",
+                "value" : "AUTO",
+                "defaultValues" : ["AUTO","CLIENT","DUPE_OK"]
+            },
+            "sessionTransacted":{
+                "label" : "Session Transacted",
+                "required" : "yes",
+                "type" : "checkbox",
+                "value" : "unchecked"
+            },
+            "enableDurable":{
+                "label" : "Enable Durable",
+                "required" : "yes",
+                "type" : "checkbox",
+                "value" : "unchecked"
+            },
+            "durableName":{
+                "label" : "Durable Name",
+                "required" : "conditional",
+                "requiredRef" : "this.enableDurable",
+                "type" : "text"
+            },          
+            "msgHandlerAlias":{
+                "label" : "Message handler Alias",
+                "required" : "no",
+                "type" : "text"
+            }
+        },
+        "jmsPublisherConfig":{
+            "id":{
+                "label" : "Publisher ID",
+                "required" : "yes",
                 "type" : "text",
-                "validation":"regexp:(\\s)"
+                "validation":"regexp:(\\s)",
+                "note" : "ID should a non-space value"
+            },
+            "name":{
+                "label" : "Publisher Name",
+                "required" : "yes",
+                "type" : "text"
             },
             "jmsConnection":{
                 "label" : "Jms Connection Name",
@@ -472,6 +854,15 @@
                 "label" : "Message handler Alias",
                 "required" : "no",
                 "type" : "text"
+            }
+        },
+        "configProvider" :{
+             "PropertyCentral":{
+                "pcCompID":{
+                    "label" : "PC Component ID",
+                    "required" : "yes",
+                    "type" : "text"
+                }
             }
         }
     }
