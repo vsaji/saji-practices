@@ -4,141 +4,475 @@
             "displayName":"General Setting",
             "pageTitle":"General Setting",
             "subMenuItems": null,
-            "subMenuItemsFromReference": true,
+            "subMenuItemsFromReference": false,
             "subMenuItemsRefPath": "",
-            "subMenuExist": true
+            "subMenuExist": false
         },
         "projectName" : {
             "label" : "Project Name",
-            "required" : true,
-            "referencePath" : null,
+            "required" : "yes",
             "note" : null,
             "value" : "My Project",
-            "type" : "text",
-            "valueFromRef" : false,
-            "defaultValues" : [],
-            "validation" : null
+            "type" : "text"
         },
-        "projectTeamDL" : {},
-        "projectCSI" : {},
-        "packageName" : {},
+        "projectTeamDL" : {
+            "label" : "Team DL",
+            "required" : "yes",
+            "type" : "text",
+            "validation" : "regexp:(^\\S+@\\S+\\.\\S+$)"
+        },
+        "projectCSI" : {
+            "label" : "Application CSI",
+            "required" : "yes",
+            "type" : "text",
+            "validation" : "regexp:(^[0-9]*$)"
+        },
+        "packageName" : {
+            "label" : "Package Name",
+            "required" : "yes",
+            "type" : "text",
+            "validation" : "regexp:(^(?:\\w+|\\w+\\.\\w+)+$)"
+        },
+        "instanceId" : {            
+            "label" : "Instance Id",
+            "required" : "yes",
+            "type" : "text",
+            "note":"Unique Identifier of the instance",
+            "validation" : "regexp:(\\s)"},
         "projectNameSpace" : {
             "label" : "Openshift Project Name Space",
-            "required" : true,
+            "required" : "yes",
             "type" : "text",
             "note":"",
             "validation" : "regexp:(\\s)"
         },
-        "serviceCount" : {},
+        "enableSwagger" : {
+            "label" : "Enable Swagger",
+            "required" : "yes",
+            "type" : "checkbox",
+            "value" : "checked"
+        },
+        "enableActuator" : {
+            "label" : "Enable Actuator",
+            "required" : "yes",
+            "type" : "checkbox",
+            "value" : "checked",
+            "note":"Runs on port 8999"
+        },
+        "enableHealthCheck" : {
+            "label" : "Enable Health Check",
+            "required" : "yes",
+            "type" : "checkbox",
+            "value" : "checked"
+        },        
+        "enableRefData": {
+            "label" : "Enable RefData Connection",
+            "required" : "yes",
+            "type" : "checkbox",
+            "value" : "unchecked"
+        },
+        "enableITRS": {
+            "label" : "Enable ITRS Connection",
+            "required" : "yes",
+            "type" : "checkbox",
+            "value" : "unchecked"
+        },
+        "enableConfigProvider": {
+            "label" : "Enable Configuration Provider",
+            "required" : "yes",
+            "type" : "checkbox",
+            "value" : "unchecked"
+        },
+        "enableCyberark": {
+            "label" : "Enable Cyberark",
+            "required" : "yes",
+            "type" : "checkbox",
+            "value" : "checked"
+        }, 
+        "enableCache": {
+            "label" : "Enable Cache",
+            "required" : "yes",
+            "type" : "checkbox",
+            "value" : "checked"
+        },                             
+        "notificationEmailID": {
+            "label" : "Failure notification EmailID",
+            "required" : "yes",
+            "type" : "text",
+            "valueRef" : "projectMeta.projectTeamDL",
+            "note":"Fatal/Critical failures will be notified to this emailID"
+        },
+        "serviceCount" : {
+            "label" : "No of Services",
+            "required" : "yes",
+            "type" : "text",
+            "value":"1",
+            "validation" : "regexp:(\b[1-3]\b)"
+        },
         "serviceConfig":{
             "label" : "Service Config",
-            "required" : true,
+            "required" : "yes",
             "type" : "collection",
             "collectionRefPath" : "template.serviceConfig"
         },
-        "serviceConfigs":[]           
+        "@serviceConfig":[]           
     },
-    "Targets":{
+    "deployment":{
         "menuInfo" : {
             "displayName":"Deployment",
             "pageTitle":"Deployment",
             "subMenuItems": null,
             "subMenuItemsFromReference": true,
             "subMenuItemsRefPath": "",
-            "subMenuExist": true
+            "subMenuExist": true,
+            "note":""
         },
         "noOfTargets" : {
             "label" : "No of Targets",
-            "required" : true,
+            "required" : "yes",
             "type" : "text",
-            "validation" : "number"
+            "validation" : "regexp:(^[0-9]*$)"
         },
         "targetConfig":{
             "label" : "Targets",
-            "required" : true,
+            "required" : "yes",
             "type" : "collection",
             "collectionRefPath" : "template.targetConfig"
         },
-        "targetConfigs":[],
+        "@targetConfig":[],          
         "commonParameter":{
             "label" : "Common Parameters",
-            "required" : true,
+            "required" : "yes",
             "type" : "collection",
-            "collectionRefPath" : "template.commonParameters"
+            "collectionRefPath" : "template.commonParameter",
+            "note" : "These parameters will be added to the param files"
         },
-        "commonParameters":[]
+        "@commonParameter":[]
     },
-
-
-    
+    "build":{
+        "menuInfo" : {
+            "displayName":"CI/CD",
+            "pageTitle":"CI/CD",
+            "notes":""
+        },
+        "artifactorUserName" : {
+            "label" : "Artifactory User Name",
+            "required" : "yes",
+            "type" : "text"
+        },
+        "artifactoryPassword":{
+            "label" : "Artifactory Password/Api key",
+            "required" : "yes",
+            "type" : "secure"
+        },
+        "dependenceExlusion":{
+            "label" : "Dependency Exclusion",
+            "required" : "no",
+            "type" : "multi",
+            "defaultValues":["Sybase","Tibco","Solace","Log4J","Ambrosia Logger","GRPC","IBM MQ"] 
+        }
+    },
+   
     "template":{
         "serviceConfig" : {
             "name" : {
                 "label" : "Service Name",
-                "required" : true,
+                "required" : "yes",
                 "value" : null,
                 "type" : "text"
             },
-            "tracing" : {},
+            "enableTracing" : {
+                "label" : "Enable tracing",
+                "required" : "yes",
+                "value" : "unchecked",
+                "type" : "checkbox",
+                "readOnly" : true
+            },
             "type" : {
                 "label" : "Service Type",
-                "required" : true,
+                "required" : "yes",
                 "value" : "GRPC",
                 "defaultValues" : ["GRPC","JMS","UMB","EMAIL","WEBSOCKET","TCP","REST","AMBROSIA"],
                 "type" : "select"
             }
         },
-        "GRPC":{
+        "JMS":{
+            "enableTracing" : {
+                "label" : "Enable tracing",
+                "required" : "yes",
+                "value" : "unchecked",
+                "type" : "checkbox"
+            },
+            "enableAsync" :{
+                "label" : "Enable Async Processing",
+                "required" : "yes",
+                "value" : "unchecked",
+                "type" : "checkbox"
+            },
+            "consumerThreadCount" :{
+                "label" : "Paralell Stream Count",
+                "required" : "conditional",
+                "requiredRef" : "this.enableAsync",
+                "value" : "unchecked",
+                "type" : "text",
+                "validation" : "regexp:(^[0-9]*$)"
+            },            
+            "consumerConfig" : {
+                "label" : "Consumers",
+                "required" : "yes",
+                "type" : "collection",
+                "collectionRefPath" : "template.jmsConsumerConfig"
+            },
+            "@consumerConfig":[]
+        },
+        "REST":{
             "name":{
                 "label" : "Service Name",
-                "required" : true,
+                "required" : "yes",
                 "type" : "text",
                 "note":"Name without space",
                 "validation" : "regexp:(\\s)"
             },
-            "port" : {},
-            "sslEnabled":{
-                "label" : "Service Type",
-                "required" : true,
-                "value" : "JKS",
-                "defaultValues" : ["JKS","PEM","PKCS12"],
-                "type" : "multi",
-                "note":""
+            "port" : {
+                "label" : "http.port",
+                "required" : "yes",
+                "type" : "text",
+                "value" : "5999",
+                "validation" : "regexp:(^[0-9]*$)"
             },
-            "sslType":{},
-            "sslClientAuth":{},
-            "sslKeyStore":{
-                "label" : "grpc.ssl.key.store",
-                "required" : "conditional",
-                "requiredReferencePath" : "GRPC.sslEnabled",
-                "value" : null,
+            "routeName":{
+                "label" : "Route name",
+                "required" : "yes",
+                "valueRef" : "this.name",
                 "type" : "text"
             },
-            "sslKeystoreSafeNet":{},
-            "sslTrustore":{},
-            "sslTrustoreSafeNet":{},
-            "cyberarkCertId":{},
-            "cyberarkNickname":{},
-            "latencyMetricsEnabled":{}
+            "sslEnabled":{
+                "label" : "http.ssl.enabled",
+                "required" : "yes",
+                "value" : "unchecked",
+                "type" : "checkbox"
+            },
+            "sslType":{
+                "label" : "http.ssl.keystore.type",
+                "required" : "conditional",
+                "requiredRef": "this.sslEnabled",
+                "value" : "JKS",
+                "defaultValues" : ["JKS","PEM","PKCS12"],
+                "type" : "select",
+                "note":""
+            },
+            "sslClientAuth":{
+                "label" : "http.ssl.client.auth",
+                "required" : "conditional",
+                "requiredRef": "this.sslEnabled",
+                "value" : "unchecked",
+                "type" : "checkbox"
+            },
+            "sslKeyStore":{
+                "label" : "http.ssl.keystore",
+                "required" : "conditional",
+                "requiredRef" : "this.sslEnabled",
+                "type" : "text",
+                "note" : "Enter Cert ID (API_xxx) if this value is Venafi issues cert"                
+            },
+            "sslKeystoreSafeNet":{
+                "label" : "http.ssl.keystore.safenet",
+                "required" : "conditional",
+                "requiredRef": "this.sslEnabled",
+                "type" : "secure",
+                "note" : "Prefix with [CA] if the value is Cyberark NickName"
+            },
+            "sslTrustore":{
+                "label" : "http.ssl.truststore",
+                "required" : "no",
+                "requiredRef": "this.sslEnabled",
+                "type" : "text"
+            },
+            "sslTrustoreSafeNet":{
+                "label" : "http.ssl.truststore.safenet",
+                "required" : "no",
+                "requiredRef": "this.sslEnabled",
+                "type" : "secure",
+                "note" : "Prefix with [CA] if the value is Cyberark NickName"                
+            }
+        },
+        "GRPC":{
+            "name":{
+                "label" : "Service Name",
+                "required" : "yes",
+                "type" : "text",
+                "note":"Name without space",
+                "validation" : "regexp:(\\s)"
+            },
+            "port" : {
+                "label" : "grpc.port",
+                "required" : "yes",
+                "type" : "text",
+                "value" : "9090",
+                "validation" : "regexp:(^[0-9]*$)"
+            },
+            "routeName":{
+                "label" : "Route name",
+                "required" : "yes",
+                "valueRef" : "this.name",
+                "type" : "text"
+            },
+            "sslEnabled":{
+                "label" : "grpc.ssl.enabled",
+                "required" : "yes",
+                "value" : "unchecked",
+                "type" : "checkbox"
+            },
+            "sslType":{
+                "label" : "grpc.ssl.type",
+                "required" : "conditional",
+                "requiredRef": "this.sslEnabled",
+                "value" : "JKS",
+                "defaultValues" : ["JKS","PEM","PKCS12"],
+                "type" : "select",
+                "note":""
+            },
+            "sslClientAuth":{
+                "label" : "grpc.ssl.client.auth",
+                "required" : "conditional",
+                "requiredRef": "this.sslEnabled",
+                "value" : "unchecked",
+                "type" : "checkbox"
+            },
+            "sslKeyStore":{
+                "label" : "grpc.ssl.keystore",
+                "required" : "conditional",
+                "requiredRef" : "this.sslEnabled",
+                "type" : "text",
+                "note" : "Enter Cert ID (API_xxx) if this value is Venafi issues cert"                
+            },
+            "sslKeystoreSafeNet":{
+                "label" : "grpc.ssl.keystore.safenet",
+                "required" : "conditional",
+                "requiredRef": "this.sslEnabled",
+                "type" : "secure",
+                "note" : "Prefix with [CA] if the value is Cyberark NickName"
+            },
+            "sslTrustore":{
+                "label" : "grpc.ssl.truststore",
+                "required" : "no",
+                "requiredRef": "this.sslEnabled",
+                "type" : "text"
+            },
+            "sslTrustoreSafeNet":{
+                "label" : "grpc.ssl.truststore.safenet",
+                "required" : "no",
+                "requiredRef": "this.sslEnabled",
+                "type" : "secure",
+                "note" : "Prefix with [CA] if the value is Cyberark NickName"                
+            },
+            "latencyMetricsEnabled":{
+                "label" : "latency.metric.enabled",
+                "required" : "no",
+                "value": "unchecked",
+                "type" : "checkbox"
+            }
         },
         "targetConfig":{
             "environment":  {
                 "label" : "Environment",
-                "required" : true,
+                "required" : "yes",
                 "defaultValues" : ["DEV","UAT","PROD","COB"],
                 "value" : "DEV",
                 "type" : "text"
             },
             "cluster":{
                 "label" : "Cluster Address",
-                "required" : true,
+                "required" : "yes",
                 "type" : "text",
                 "note":"namicgswd13d"
-            }
+            },
+            "resourceCPULimit":{
+                "label" : "Container Resource limit",
+                "required" : "yes",
+                "type" : "text",
+                "value" : "500m"
+            },
+            "resourceCPURequest":{
+                "label" : "Container Resource Request",
+                "required" : "yes",
+                "type" : "text",
+                "value" : "100m"
+            },
+            "resourceMemLimit":{
+                "label" : "Container Memory limit",
+                "required" : "yes",
+                "type" : "text",
+                "value" : "3Gi"
+            },
+            "resourceMemRequest":{
+                "label" : "Container Memory Request",
+                "required" : "yes",
+                "type" : "text",
+                "value" : "500Mi"
+            },
+            "replicaLimit":{
+                "label" : "Replica Limit",
+                "required" : "yes",
+                "type" : "text",
+                "value" : "1"
+            },
+            "jvmOption":{
+                "label" : "Jvm -X options",
+                "required" : "no",
+                "type" : "text",
+                "value" : "-Xms500m -Xmx2g"
+            },
+            "envParams":{
+                "label" : "Environment Specific Parameters",
+                "required" : "yes",
+                "type" : "collection",
+                "collectionRefPath" : "template.commonParameter",
+                "note" : "These parameters will be added to the param files"
+            },
+            "@envParams":[]
         },
-        "commonParameters":{
+        "commonParameter":{
             "key":{},
             "value":{}
+        },
+        "jmsConsumerConfig":{
+            "id":{
+                "label" : "Consumer ID",
+                "required" : "yes",
+                "type" : "text",
+                "validation":"regexp:(\\s)",
+                "note" : "ID should a non-space value"
+            },
+            "name":{
+                "label" : "Consumer Name",
+                "required" : "yes",
+                "type" : "text",
+                "validation":"regexp:(\\s)"
+            },
+            "jmsConnection":{
+                "label" : "Jms Connection Name",
+                "required" : "yes",
+                "type" : "select",
+                "valueRef" : "jmsConnection.jmsConnectionConfig.name"
+            },
+            "destinationType":{
+                "label" : "Destination Type",
+                "required" : "yes",
+                "type" : "select",
+                "value" : "QUEUE",
+                "defaultValues" : ["QUEUE","TOPIC"]
+            },
+            "destinationName":{
+                "label" : "Destination Name",
+                "required" : "yes",
+                "type" : "text"
+            },
+            "msgHandlerAlias":{
+                "label" : "Message handler Alias",
+                "required" : "no",
+                "type" : "text"
+            }
         }
     }
 }
