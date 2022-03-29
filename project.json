@@ -8,99 +8,101 @@
             "subMenuItemsRefPath": "",
             "subMenuExist": false
         },
-        "projectName" : {
-            "label" : "Project Name",
-            "required" : "yes",
-            "note" : null,
-            "value" : "My Project",
-            "type" : "text"
-        },
-        "projectTeamDL" : {
-            "label" : "Team DL",
-            "required" : "yes",
-            "type" : "text",
-            "validation" : "regexp:(^\\S+@\\S+\\.\\S+$)"
-        },
-        "projectCSI" : {
-            "label" : "Application CSI",
-            "required" : "yes",
-            "type" : "text",
-            "validation" : "regexp:(^[0-9]*$)"
-        },
-        "packageName" : {
-            "label" : "Package Name",
-            "required" : "yes",
-            "type" : "text",
-            "validation" : "regexp:(^(?:\\w+|\\w+\\.\\w+)+$)"
-        },
-        "instanceId" : {            
-            "label" : "Instance Id",
-            "required" : "yes",
-            "type" : "text",
-            "note":"Unique Identifier of the instance",
-            "validation" : "regexp:(\\s)"},
-        "projectNameSpace" : {
-            "label" : "Openshift Project Name Space",
-            "required" : "yes",
-            "type" : "text",
-            "note":"",
-            "validation" : "regexp:(\\s)"
-        },
-        "enableSwagger" : {
-            "label" : "Enable Swagger",
-            "required" : "yes",
-            "type" : "checkbox",
-            "value" : "checked"
-        },
-        "enableActuator" : {
-            "label" : "Enable Actuator",
-            "required" : "yes",
-            "type" : "checkbox",
-            "value" : "checked",
-            "note":"Runs on port 8999"
-        },
-        "enableHealthCheck" : {
-            "label" : "Enable Health Check",
-            "required" : "yes",
-            "type" : "checkbox",
-            "value" : "checked"
-        },        
-        "enableRefData": {
-            "label" : "Enable RefData Connection",
-            "required" : "yes",
-            "type" : "checkbox",
-            "value" : "unchecked"
-        },
-        "enableITRS": {
-            "label" : "Enable ITRS Connection",
-            "required" : "yes",
-            "type" : "checkbox",
-            "value" : "unchecked"
-        },
-        "enableConfigProvider": {
-            "label" : "Enable Configuration Provider",
-            "required" : "yes",
-            "type" : "checkbox",
-            "value" : "unchecked"
-        },
-        "enableCyberark": {
-            "label" : "Enable Cyberark",
-            "required" : "yes",
-            "type" : "checkbox",
-            "value" : "checked"
-        }, 
-        "enableCache": {
-            "label" : "Enable Cache",
-            "required" : "yes",
-            "type" : "checkbox",
-            "value" : "checked"
-        },                             
-        "notificationEmailID": {
-            "label" : "Failure notification EmailID",
-            "required" : "yes",
-            "type" : "text",
-            "valueRef" : "projectMeta.projectTeamDL",
-            "note":"Fatal/Critical failures will be notified to this emailID"
+        "fields" :{
+            "projectName" : {
+                "label" : "Project Name",
+                "required" : "yes",
+                "note" : null,
+                "value" : "My Project",
+                "type" : "text"
+            },
+            "projectTeamDL" : {
+                "label" : "Team DL",
+                "required" : "yes",
+                "type" : "text",
+                "validation" : "regexp:(^\\S+@\\S+\\.\\S+$)"
+            },
+            "projectCSI" : {
+                "label" : "Application CSI",
+                "required" : "yes",
+                "type" : "text",
+                "validation" : "regexp:(^[0-9]*$)"
+            },
+            "packageName" : {
+                "label" : "Package Name",
+                "required" : "yes",
+                "type" : "text",
+                "validation" : "regexp:(^(?:\\w+|\\w+\\.\\w+)+$)"
+            },
+            "instanceId" : {            
+                "label" : "Instance Id",
+                "required" : "yes",
+                "type" : "text",
+                "note":"Unique Identifier of the instance",
+                "validation" : "regexp:(\\s)"},
+            "projectNameSpace" : {
+                "label" : "Openshift Project Name Space",
+                "required" : "yes",
+                "type" : "text",
+                "note":"",
+                "validation" : "regexp:(\\s)"
+            },
+            "enableSwagger" : {
+                "label" : "Enable Swagger",
+                "required" : "yes",
+                "type" : "checkbox",
+                "value" : "checked"
+            },
+            "enableActuator" : {
+                "label" : "Enable Actuator",
+                "required" : "yes",
+                "type" : "checkbox",
+                "value" : "checked",
+                "note":"Runs on port 8999"
+            },
+            "enableHealthCheck" : {
+                "label" : "Enable Health Check",
+                "required" : "yes",
+                "type" : "checkbox",
+                "value" : "checked"
+            },        
+            "enableRefData": {
+                "label" : "Enable RefData Connection",
+                "required" : "yes",
+                "type" : "checkbox",
+                "value" : "unchecked"
+            },
+            "enableITRS": {
+                "label" : "Enable ITRS Connection",
+                "required" : "yes",
+                "type" : "checkbox",
+                "value" : "unchecked"
+            },
+            "enableConfigProvider": {
+                "label" : "Enable Configuration Provider",
+                "required" : "yes",
+                "type" : "checkbox",
+                "value" : "unchecked"
+            },
+            "enableCyberark": {
+                "label" : "Enable Cyberark",
+                "required" : "yes",
+                "type" : "checkbox",
+                "value" : "checked"
+            }, 
+            "enableCache": {
+                "label" : "Enable Cache",
+                "required" : "yes",
+                "type" : "checkbox",
+                "value" : "checked"
+            },                             
+            "notificationEmailID": {
+                "label" : "Failure notification EmailID",
+                "required" : "yes",
+                "type" : "text",
+                "valueRef" : "instanceSetup.fields.projectTeamDL",
+                "note":"Fatal/Critical failures will be notified to this emailID"
+            }
         }
     },
     "serviceSetup":{
@@ -108,48 +110,54 @@
             "displayName":"Service Setup",
             "pageTitle":"Service Setup"
         },
-        "serviceConfig":{
-            "label" : "Service Config",
-            "required" : "yes",
-            "type" : "collection",
-            "collectionTemplate" : "template.serviceConfig"
-        },
-        "@serviceConfig":[]   
+        "fields":{
+            "serviceConfig":{
+                "label" : "Service Config",
+                "required" : "yes",
+                "valueCollection" : [],
+                "type" : "template-repeat",
+                "template" : "template.serviceConfig"
+            }
+        }
     },
     "dbSetup":{
         "menuInfo" : {
             "displayName":"Database Setup",
             "pageTitle":"Database Connection Setup"
         },
-        "dbConfig":{
-            "label" : "Add DB Configuration",
-            "required" : "yes",
-            "type" : "collection",
-            "collectionTemplate" : "template.dbConfig"
-        },
-        "@dbConfig":[]   
+        "fields":{
+            "dbConfig":{
+                "label" : "Add DB Configuration",
+                "required" : "yes",
+                "valueCollection" : [],
+                "type" : "template-repeat",
+                "template" : "template.dbConfig"
+            }
+        }
     },
     "itrsSetup":{
         "menuInfo" : {
             "displayName":"ITRS Setup",
             "pageTitle":"ITRS Connection Setup"
         },
-        "itrsHost":{
-            "label" : "ITRS Host",
-            "required" : "yes",
-            "type" : "text"
-        },
-        "itrsPort":{
-            "label" : "ITRS Port",
-            "required" : "yes",
-            "type" : "text",
-            "value" : "80",
-            "validation" : "regexp:(^[0-9]*$)"
-        },
-        "manageEntity":{
-            "label" : "Manage Entity",
-            "required" : "yes",
-            "type" : "text"
+        "fields":{
+            "itrsHost":{
+                "label" : "ITRS Host",
+                "required" : "yes",
+                "type" : "text"
+            },
+            "itrsPort":{
+                "label" : "ITRS Port",
+                "required" : "yes",
+                "type" : "text",
+                "value" : "80",
+                "validation" : "regexp:(^[0-9]*$)"
+            },
+            "manageEntity":{
+                "label" : "Manage Entity",
+                "required" : "yes",
+                "type" : "text"
+            }
         }
     },
     "refDataSetup":{
@@ -157,32 +165,34 @@
             "displayName":"RefData Setup",
             "pageTitle":"RefData Connection Setup"
         },
-        "refDataHost":{
-            "label" : "Ref Data Host",
-            "required" : "yes",
-            "type" : "text"
-        },
-        "refDataPort":{
-            "label" : "Ref Data Port",
-            "required" : "yes",
-            "type" : "text",
-            "value" : "443",
-            "validation" : "regexp:(^[0-9]*$)"
-        },
-        "enableSSL":{
-            "label" : "Enable SSL",
-            "required" : "yes",
-            "type" : "checkbox",
-            "value" : "checked",
-            "readOnly" : true
-        },        
-        "transportMode":{
-            "label" : "Transport Mode",
-            "required" : "yes",
-            "value" : "WEBSOCKET",
-            "defaultValues" : ["WEBSOCKET","TCP"],
-            "type" : "select",
-            "readOnly" : true
+        "fields":{        
+            "refDataHost":{
+                "label" : "Ref Data Host",
+                "required" : "yes",
+                "type" : "text"
+            },
+            "refDataPort":{
+                "label" : "Ref Data Port",
+                "required" : "yes",
+                "type" : "text",
+                "value" : "443",
+                "validation" : "regexp:(^[0-9]*$)"
+            },
+            "enableSSL":{
+                "label" : "Enable SSL",
+                "required" : "yes",
+                "type" : "checkbox",
+                "value" : "checked",
+                "readOnly" : true
+            },        
+            "transportMode":{
+                "label" : "Transport Mode",
+                "required" : "yes",
+                "value" : "WEBSOCKET",
+                "valueOptions" : ["WEBSOCKET","TCP"],
+                "type" : "select",
+                "readOnly" : true
+            }
         }
     },
     "configuration":{
@@ -190,32 +200,70 @@
             "displayName":"Configuration Setup",
             "pageTitle":"Remote Configuration Setup"
         },
-       "provider":{
-            "label" : "Provider",
-            "required" : "yes",
-            "value" : "PropertyCentral",
-            "type" : "text",
-            "template" : "template.configProvider",
-            "readOnly" : true
-        },
-        "@provider":{
-            "value" : null
+        "fields":{
+            "provider":{
+                "label" : "Provider",
+                "required" : "yes",
+                "value" : "PropertyCentral",
+                "type" : "text",
+                "readOnly" : true
+            },
+            "providerConfig":{
+                "label" : "",
+                "required" : "yes",
+                "valueObject" : null,
+                "type" : "template-single",
+                "template" : "template.providerConfig",
+                "templateRef" : "configuration.provider"
+            }
         }
     },
-    "jmsSetup":{
+    "jmsConnectionSetup":{
         "menuInfo" : {
             "displayName":"JMS Setup",
             "pageTitle":"JMS Connection Setup"
         },
-        "jmsConfig":{
-            "label" : "Add JMS Configuration",
-            "required" : "yes",
-            "type" : "collection",
-            "collectionTemplate" : "template.jmsConfig"
+        "fields":{        
+            "jmsConfig":{
+                "label" : "Add JMS Configuration",
+                "required" : "yes",
+                "type" : "template-repeat",
+                "template" : "template.jmsConfig"
+            }
+        }
+    },
+    "jmsConsumerSetup":{
+        "menuInfo" : {
+            "displayName":"JMS Consumer Setup",
+            "pageTitle":"JMS Consumer Setup"
         },
-        "@jmsConfig":[]   
+        "fields":{        
+            "jmsConsumerConfig":{
+                "label" : "Add Consumer",
+                "required" : "yes",
+                "valueCollection" : [],
+                "type" : "template-repeat",
+                "template" : "template.jmsConsumerConfig"
+            }
+        }
+    },
+    "jmsPublisherSetup":{
+        "menuInfo" : {
+            "displayName":"JMS Publisher Setup",
+            "pageTitle":"JMS Publisher Setup"
+        },
+        "fields":{        
+            "jmsConsumerConfig":{
+                "label" : "Add Publisher",
+                "required" : "yes",
+                "valueCollection" : [],
+                "type" : "template-repeat",
+                "template" : "template.jmsPublisherConfig"
+            }
+        }
     },    
     "deployment":{
+
         "menuInfo" : {
             "displayName":"Deployment",
             "pageTitle":"Deployment",
@@ -225,27 +273,29 @@
             "subMenuExist": true,
             "note":""
         },
-        "noOfTargets" : {
-            "label" : "No of Targets",
-            "required" : "yes",
-            "type" : "text",
-            "validation" : "regexp:(^[0-9]*$)"
-        },
-        "targetConfig":{
-            "label" : "Targets",
-            "required" : "yes",
-            "type" : "collection",
-            "collectionTemplate" : "template.targetConfig"
-        },
-        "@targetConfig":[],          
-        "commonParameter":{
-            "label" : "Common Parameters",
-            "required" : "yes",
-            "type" : "collection",
-            "collectionTemplate" : "template.commonParameter",
-            "note" : "These parameters will be added to the param files"
-        },
-        "@commonParameter":[]
+        "fields":{               
+            "noOfTargets" : {
+                "label" : "No of Targets",
+                "required" : "yes",
+                "type" : "text",
+                "validation" : "regexp:(^[0-9]*$)"
+            },
+            "targetConfig":{
+                "label" : "Targets",
+                "required" : "yes",
+                "valueCollection" : [],
+                "type" : "template-repeat",
+                "template" : "template.targetConfig"
+            },
+            "commonParameter":{
+                "label" : "Common Parameters",
+                "required" : "yes",
+                "valueCollection" : [],
+                "type" : "template-repeat",
+                "template" : "template.commonParameter",
+                "note" : "These parameters will be added to the param files"
+            }
+        }
     },
     "build":{
         "menuInfo" : {
@@ -253,21 +303,23 @@
             "pageTitle":"CI/CD",
             "notes":""
         },
-        "artifactorUserName" : {
-            "label" : "Artifactory User Name",
-            "required" : "yes",
-            "type" : "text"
-        },
-        "artifactoryPassword":{
-            "label" : "Artifactory Password/Api key",
-            "required" : "yes",
-            "type" : "secure"
-        },
-        "dependenceExlusion":{
-            "label" : "Dependency Exclusion",
-            "required" : "no",
-            "type" : "multi",
-            "defaultValues":["Sybase","Tibco","Solace","Log4J","Ambrosia Logger","GRPC","IBM MQ"] 
+        "fields":{           
+            "artifactorUserName" : {
+                "label" : "Artifactory User Name",
+                "required" : "yes",
+                "type" : "text"
+            },
+            "artifactoryPassword":{
+                "label" : "Artifactory Password/Api key",
+                "required" : "yes",
+                "type" : "secure"
+            },
+            "dependenceExlusion":{
+                "label" : "Dependency Exclusion",
+                "required" : "no",
+                "type" : "multi",
+                "valueOptions":["Sybase","Tibco","Solace","Log4J","Ambrosia Logger","GRPC","IBM MQ"] 
+            }
         }
     },
    
@@ -290,16 +342,13 @@
                 "label" : "Service Type",
                 "required" : "yes",
                 "value" : "GRPC",
-                "defaultValues" : ["GRPC","JMS","UMB","EMAIL","WEBSOCKET","TCP","REST","AMBROSIA"],
+                "valueOptions" : ["GRPC","JMS","UMB","EMAIL","WEBSOCKET","TCP","REST","AMBROSIA"],
+                "type" : "template-repeat",
                 "template" : "template.serviceTypeConfig",
-                "type" : "select"
-            },
-            "@type" :{
-                "value" : null
+                "templateRef" : "this.value"                
             }
         },
         "serviceTypeConfig":{
-
            "EMAIL":{
                 "type" :{
                     "label" : "Service Type",
@@ -311,7 +360,7 @@
                 "emailFid" :{
                     "label" : "Email FID",
                     "required" : "yes",
-                    "type" : "text",
+                    "type" : "text"
                 },
                 "emailPassowrd" :{
                     "label" : "Email password",
@@ -324,7 +373,7 @@
                     "required" : "yes",
                     "value" : "NAM",
                     "type" : "select",
-                    "defaultValues" : ["NAM","APAC","EMEA"]
+                    "valueOptions" : ["NAM","APAC","EMEA"]
                 },
                 "retryCount" :{
                     "label" : "Connection Retry Count",
@@ -374,10 +423,9 @@
                 "consumerConfig" : {
                     "label" : "Consumers",
                     "required" : "yes",
-                    "type" : "collection",
-                    "collectionTemplate" : "template.jmsConsumerConfig"
-                },
-                "@consumerConfig":[]
+                    "type" : "select",
+                    "valueOptionsRef" : "jmsConsumerSetup.fields.jmsConsumer.id" 
+                }
            },
            "REST":{
                 "type" :{
@@ -418,7 +466,7 @@
                     "required" : "conditional",
                     "requiredRef": "this.sslEnabled",
                     "value" : "JKS",
-                    "defaultValues" : ["JKS","PEM","PKCS12"],
+                    "valueOptions" : ["JKS","PEM","PKCS12"],
                     "type" : "select",
                     "note":""
                 },
@@ -496,7 +544,7 @@
                     "required" : "conditional",
                     "requiredRef": "this.sslEnabled",
                     "value" : "JKS",
-                    "defaultValues" : ["JKS","PEM","PKCS12"],
+                    "valueOptions" : ["JKS","PEM","PKCS12"],
                     "type" : "select",
                     "note":""
                 },
@@ -546,7 +594,7 @@
             "environment":  {
                 "label" : "Environment",
                 "required" : "yes",
-                "defaultValues" : ["DEV","UAT","PROD","COB"],
+                "valueOptions" : ["DEV","UAT","PROD","COB"],
                 "value" : "DEV",
                 "type" : "text"
             },
@@ -595,11 +643,10 @@
             "envParams":{
                 "label" : "Environment Specific Parameters",
                 "required" : "yes",
-                "type" : "collection",
-                "collectionTemplate" : "template.commonParameter",
+                "type" : "template-repeat",
+                "template" : "template.commonParameter",
                 "note" : "These parameters will be added to the param files"
-            },
-            "@envParams":[]
+            }
         },
         "dbConfig":{
             "id":  {
@@ -675,7 +722,7 @@
                 "label" : "Middleware Type",
                 "required" : "yes",
                 "value" : "TIBCO",
-                "defaultValues" : ["SOLACE","TIBCOEMS","MQ","AMQ"],
+                "valueOptions" : ["SOLACE","TIBCOEMS","MQ","AMQ"],
                 "type" : "select"
             },         
             "queueManager":{
@@ -708,7 +755,7 @@
                 "requiredRef" : "this.sslEnabled",
                 "type" : "text",
                 "value" : "JKS",
-                "defaultValues" : ["JKS","PKCS12"]
+                "valueOptions" : ["JKS","PKCS12"]
             },
             "sslKeyStore":{
                 "label" : "Keystore",
@@ -774,14 +821,14 @@
                 "label" : "Jms Connection Name",
                 "required" : "yes",
                 "type" : "select",
-                "valueRef" : "jmsConnection.jmsConnectionConfig.name"
+                "valueOptionsRef" : "jmsConnectionSetup.fields.jmsConfig.id"
             },
             "destinationType":{
                 "label" : "Destination Type",
                 "required" : "yes",
                 "type" : "select",
                 "value" : "QUEUE",
-                "defaultValues" : ["QUEUE","TOPIC"]
+                "valueOptions" : ["QUEUE","TOPIC"]
             },
             "destinationName":{
                 "label" : "Destination Name",
@@ -793,7 +840,7 @@
                 "required" : "yes",
                 "type" : "select",
                 "value" : "AUTO",
-                "defaultValues" : ["AUTO","CLIENT","DUPE_OK"]
+                "valueOptions" : ["AUTO","CLIENT","DUPE_OK"]
             },
             "sessionTransacted":{
                 "label" : "Session Transacted",
@@ -836,14 +883,14 @@
                 "label" : "Jms Connection Name",
                 "required" : "yes",
                 "type" : "select",
-                "valueRef" : "jmsConnection.jmsConnectionConfig.name"
+                "valueOptionsRef" : "jmsConnectionSetup.fields.jmsConfig.id"
             },
             "destinationType":{
                 "label" : "Destination Type",
                 "required" : "yes",
                 "type" : "select",
                 "value" : "QUEUE",
-                "defaultValues" : ["QUEUE","TOPIC"]
+                "valueOptions" : ["QUEUE","TOPIC"]
             },
             "destinationName":{
                 "label" : "Destination Name",
@@ -856,7 +903,7 @@
                 "type" : "text"
             }
         },
-        "configProvider" :{
+        "providerConfig" :{
              "PropertyCentral":{
                 "pcCompID":{
                     "label" : "PC Component ID",
