@@ -1,8 +1,20 @@
 {
-    "instanceSetup":{
+    "home" : {
+        "menuInfo" : {
+            "displayName":"Home",
+            "pageTitle":"Home",
+            "faIcon":"fa-home",
+            "subMenuItems": null,
+            "subMenuItemsFromReference": false,
+            "subMenuItemsRefPath": "",
+            "subMenuExist": false
+        }
+    },
+    "instanceSetup" : {
         "menuInfo" : {
             "displayName":"General Setting",
             "pageTitle":"General Setting",
+            "faIcon":"fa-sliders",
             "subMenuItems": null,
             "subMenuItemsFromReference": false,
             "subMenuItemsRefPath": "",
@@ -16,13 +28,27 @@
                 "value" : "My Project",
                 "type" : "text"
             },
+            "projectNameSpace" : {
+                "label" : "Openshift Project Name Space",
+                "required" : "yes",
+                "type" : "text",
+                "validation" : "regexp:(\\s)",
+                "note":"Eg: icg-msst-primo-154533"
+            },          
             "projectTeamDL" : {
                 "label" : "Team DL",
                 "required" : "yes",
                 "type" : "text",
                 "validation" : "regexp:(^\\S+@\\S+\\.\\S+$)"
             },
-            "projectCSI" : {
+            "applicationName" : {
+                "label" : "Application Name",
+                "required" : "yes",
+                "type" : "text",
+                "validation" : "regexp:(\\s)",
+                "note":"Application name without space"
+            },
+            "applicationCSI" : {
                 "label" : "Application CSI",
                 "required" : "yes",
                 "type" : "text",
@@ -39,12 +65,6 @@
                 "required" : "yes",
                 "type" : "text",
                 "note":"Unique Identifier of the instance",
-                "validation" : "regexp:(\\s)"},
-            "projectNameSpace" : {
-                "label" : "Openshift Project Name Space",
-                "required" : "yes",
-                "type" : "text",
-                "note":"",
                 "validation" : "regexp:(\\s)"
             },
             "enableSwagger" : {
@@ -108,7 +128,8 @@
     "serviceSetup":{
         "menuInfo" : {
             "displayName":"Service Setup",
-            "pageTitle":"Service Setup"
+            "pageTitle":"Service Setup",
+            "faIcon":"fa-cogs"
         },
         "fields":{
             "serviceConfig":{
@@ -123,7 +144,8 @@
     "dbSetup":{
         "menuInfo" : {
             "displayName":"Database Setup",
-            "pageTitle":"Database Connection Setup"
+            "pageTitle":"Database Connection Setup",
+            "faIcon":"fa-database"
         },
         "fields":{
             "dbConfig":{
@@ -138,7 +160,8 @@
     "itrsSetup":{
         "menuInfo" : {
             "displayName":"ITRS Setup",
-            "pageTitle":"ITRS Connection Setup"
+            "pageTitle":"ITRS Connection Setup",
+            "faIcon":"fa-eye"
         },
         "fields":{
             "itrsHost":{
@@ -163,7 +186,8 @@
     "refDataSetup":{
         "menuInfo" : {
             "displayName":"RefData Setup",
-            "pageTitle":"RefData Connection Setup"
+            "pageTitle":"RefData Connection Setup",
+            "faIcon":"fa-sitemap"
         },
         "fields":{        
             "refDataHost":{
@@ -198,7 +222,8 @@
     "configuration":{
         "menuInfo" : {
             "displayName":"Configuration Setup",
-            "pageTitle":"Remote Configuration Setup"
+            "pageTitle":"Remote Configuration Setup",
+            "faIcon":"fa-file-code-o"
         },
         "fields":{
             "provider":{
@@ -221,7 +246,8 @@
     "jmsConnectionSetup":{
         "menuInfo" : {
             "displayName":"JMS Setup",
-            "pageTitle":"JMS Connection Setup"
+            "pageTitle":"JMS Connection Setup",
+            "faIcon":"fa-exchange"
         },
         "fields":{        
             "jmsConfig":{
@@ -235,7 +261,8 @@
     "jmsConsumerSetup":{
         "menuInfo" : {
             "displayName":"JMS Consumer Setup",
-            "pageTitle":"JMS Consumer Setup"
+            "pageTitle":"JMS Consumer Setup",
+            "faIcon":"fa-sign-in"
         },
         "fields":{        
             "jmsConsumerConfig":{
@@ -250,7 +277,8 @@
     "jmsPublisherSetup":{
         "menuInfo" : {
             "displayName":"JMS Publisher Setup",
-            "pageTitle":"JMS Publisher Setup"
+            "pageTitle":"JMS Publisher Setup",
+            "faIcon":"fa-sign-out"
         },
         "fields":{        
             "jmsConsumerConfig":{
@@ -267,11 +295,7 @@
         "menuInfo" : {
             "displayName":"Deployment",
             "pageTitle":"Deployment",
-            "subMenuItems": null,
-            "subMenuItemsFromReference": true,
-            "subMenuItemsRefPath": "",
-            "subMenuExist": true,
-            "note":""
+            "faIcon":"fa-cloud-download"
         },
         "fields":{               
             "noOfTargets" : {
@@ -299,9 +323,9 @@
     },
     "build":{
         "menuInfo" : {
-            "displayName":"CI/CD",
-            "pageTitle":"CI/CD",
-            "notes":""
+            "displayName":"Build Configuration",
+            "pageTitle":"Build Configuration",
+            "faIcon":"fa-puzzle-piece"
         },
         "fields":{           
             "artifactorUserName" : {
@@ -779,12 +803,12 @@
                 "label" : "Truststore password",
                 "required" : "no",
                 "requiredRef": "this.sslEnabled",
-                "type" : "secure",
+                "type" : "secure"
             },  
             "sslCipherSuite":{
                 "label" : "SSL Cipher Suite",
                 "required" : "no",
-                "requiredRef": "this.sslEnabled",
+                "requiredRef": "this.sslEnabled"
             },                       
             "jmsPassword":{
                 "label" : "Password",
