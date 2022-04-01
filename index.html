@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Tron Service Builder - built using Tron DynaUI</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+        <link href="https://fonts.googleapis.com/css?family=Lato|Montserrat|Raleway|Roboto&display=swap" rel="stylesheet">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script>
+        // $(document).ready(function(){
+        //         setTimeout(function(){
+        //         $('#logo').animate({
+        //             'marginTop' : "-=80px" //moves up
+        //         },500,function() {
+        //             $("#regContainer").fadeIn();
+        //         });
+        //         },1000);
+        //     });
+
+        </script>
+
+        <style>
+
+        a {
+            text-decoration: none;
+            color: #fff
+        }
+        body {
+            margin: 0;
+            background: #2b2b43;    
+        }
+        .cntr-wide-container-1{
+            top: 0;
+            border-bottom: 1px solid #494966;
+            display: grid; 
+            width: 100%;
+            height: 50%;
+            background: #161621;            
+            position: absolute;
+            margin-bottom: 30px;
+        }
+
+        .logo{
+            top: 30%;
+            left: 41%;
+            z-index: 1;
+            border: 1px solid #494966;
+            position: absolute;
+            width: 20%;
+            height: 35%;
+            background: #161621;  
+            padding-top: 2em;
+            padding-bottom: 2em;
+            margin-bottom: 0px;
+        }
+
+        .rgt-container{
+            width: 50%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        img{
+            border: none;
+            display:block;
+            margin:auto;
+        }
+
+        .buttons{   
+            width: 100%;
+            text-align: center;
+            margin-top: 3em;
+            margin-left: 1em;
+
+        }
+        .button1{
+            display:inline-block;
+            padding:1em 1.2em;
+            border:0.1em solid #FFFFFF;
+            margin:0 2em 0.3em 0;
+            border-radius:0.12em;
+            box-sizing: border-box;
+            text-decoration:none;
+            font-family:'Montserrat',sans-serif;
+            font-weight:300;
+            color:#FFFFFF;
+            text-align:center;
+            transition: all 0.2s;
+            width: 220px;
+        }
+
+        .button1:hover{
+            color:#000000;
+            background-color:#FFFFFF;
+        }
+
+        @media all and (max-width:30em){
+             .button1{
+              display:block;
+              margin:0.4em auto;
+            }
+        } 
+
+        </style>
+    </head>
+    <body>
+        <div class="cntr-wide-container-1">
+        </div>
+        <div class="logo">
+            <img src="logo.png" width="221" height="137"/>
+            <div class="buttons">
+                <a href="createnew.html" class="button1">Create new service</a>
+            </br></br>
+                <a href="something" class="button1">Load existing service</a>
+            </div>
+        </div>
+       
+
+    </body>
+</html>

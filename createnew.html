@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Tron Service Builder - built using Tron DynaUI</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+        <link href="https://fonts.googleapis.com/css?family=Lato|Montserrat|Raleway|Roboto&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script>
+         var data;
+         $.getJSON("https://raw.githubusercontent.com/vsaji/saji-practices/master/project.json", function(json) {
+               data=json; // this will show the info it in firebug console
+            });
+        $(document).ready(function(){
+              buildNavigation();
+              buildPage();
+         });
+
+
+         function buildNavigation(){
+            var navItemHtml="";
+            $.each(data, function (i, v) {
+               if(v.menuInfo !== undefined){
+                  navItemHtml+="<li><a href=\"javascript:void(0);\" onclick=\"showPage('"+i+"');\"><i class=\"fa icon "+ v.menuInfo.faIcon+"\"></i>"+v.menuInfo.displayName+"</a></li>";
+               }
+            });
+            $("#nav-item-container").append(navItemHtml);
+            console.log("Navigation written")
+         }
+
+         function buildPage(){
+            var html="";
+            $.each(data, function (i, v) {
+               if(document.getElementById(i)==null && v.menuInfo !== undefined){
+                  html+="<div id=\""+i+"_container\" class=\"hide\">"
+                  html+="<div class=\"title-grid\">";
+                  html+="<div class=\"title-left\">";
+                  html+=v.menuInfo.pageTitle+"</div>"
+                  html+="<div class=\"title-right\">"
+                  html+="      <span class=\"button1\">Save</span>"
+                  html+="     <span class=\"button1\">Reset</span>"
+                  html+="</div></div>"
+               }
+            });
+            $("#page-container").append(html);
+         }
+
+         var previousVisit=$("#home_container");
+
+         function showPage(name){
+            pageName="#"+name+"_container";
+            if(previousVisit==null){
+               previousVisit=$(pageName);
+            }else{
+               alert(previousVisit.style.display);
+               previousVisit.removeClass("show");
+               previousVisit.addClass("hide");
+            }
+            previousVisit=$(pageName);
+            previousVisit.addClass("show");
+            
+         }
+
+
+//auto expand textarea
+function adjust_textarea(h) {
+    h.style.height = "20px";
+    h.style.height = (h.scrollHeight)+"px";
+}
+
+        </script>
+        <style>
+
+
+         .show{
+            display: block;
+         }
+
+         .hide{
+            display: none;
+         }
+
+        a {
+            text-decoration: none;
+            color: #fff
+        }
+       html, body {
+            height:100%; 
+            margin:0; 
+            padding:0; 
+            background: #2b2b43;  
+            font-family:'Montserrat',sans-serif;
+        }
+       
+
+        .angry-grid {
+            display: grid;
+            grid-template-rows: 110px auto 45px;
+            grid-template-columns: 210px auto 25%;
+            height: 100%;
+        }
+        #logo_container {
+            background: #161621;  
+            grid-row-start: 1;
+            grid-column-start: 1;
+            border-bottom: 1px solid #494966;
+            grid-row-end: 2;
+            grid-column-end: 2;
+         }
+         #logo_container > img {
+            margin-top: 15px;
+            margin-left: 10px;
+         }
+         #header_container {
+            background: #161621;  
+            grid-row-start: 1;
+            grid-column-start: 2;
+            border-bottom: 1px solid #494966;
+            grid-row-end: 2;
+            grid-column-end: 3;
+         }
+  
+#nav-container {
+   grid-row-start: 2;
+   grid-column-start: 1;
+   background: #2b2b43;   
+   border-right: 1px solid #494966;
+   grid-row-end: 3;
+   grid-column-end: 2;
+   
+}
+#page-container {
+
+   background: #161621;  
+   grid-row-start: 2;
+   grid-column-start: 2;
+
+   grid-row-end: 3;
+   grid-column-end: 3;
+   
+}
+#footer_container{
+
+   background: #161621;  
+   grid-row-start: 3;
+   grid-column-start: 1;
+   border-top: 1px solid #494966;
+   grid-row-end: 4;
+   grid-column-end: 4;
+   
+}
+#summary_container {
+
+   background: #2b2b43;  
+   grid-row-start: 1;
+   grid-column-start: 3;
+   border-left: 1px solid #494966;
+   grid-row-end: 3;
+   grid-column-end: 4;
+   
+}
+
+.menu_simple ul {
+    margin: 0; 
+    padding: 0;
+    width:205px;
+    list-style-type: none;
+}
+
+
+.menu_simple ul li a {
+    text-decoration: none;
+    color: white; 
+    padding: 10.5px 11px;
+    background: #2b2b43;
+    border-bottom: 1px solid #494966;
+    font-weight:300;
+    font-size: .9em;
+    color:#FFFFFF;
+    display:block;
+}
+ 
+.menu_simple ul li a:visited {
+    color: white;
+}
+ 
+.menu_simple ul li a:hover, .menu_simple ul li .current {
+    color: #2b2b43;
+    background-color: white;
+}
+.icon{
+   margin-right: .5em;
+   font-size: 15pt;
+}
+
+.icon{
+   margin-right: .5em;
+   font-size: 15pt;
+}
+
+.button1{
+   display:inline-block;
+   padding:.5em 1.2em;
+   border:0.1em solid #FFFFFF;
+   margin:0 2em 0.3em 0;
+   border-radius:0.12em;
+   box-sizing: border-box;
+   text-decoration:none;
+   font-family:'Montserrat',sans-serif;
+   font-weight:300;
+   color:#FFFFFF;
+   text-align:center;
+   transition: all 0.2s;
+   
+}
+
+.button1:hover{
+   color:#000000;
+   background-color:#FFFFFF;
+}
+
+@media all and (max-width:30em){
+    .button1{
+      display:block;
+      margin:0.4em auto;
+   }
+} 
+
+
+.title-grid {
+   display: grid; 
+   grid-template-rows: 1fr;
+   grid-template-columns: 1fr 1fr;
+   gap: 0px;
+   height: 60px;
+   border-bottom: 1px solid #494966;   
+}
+
+.title-left{
+   margin-top: .5em;
+   font-size: 20pt;
+   color: #ffbe00;
+   padding-bottom: .5em;
+   text-indent: .5em;
+   grid-row-start: 1;
+   grid-column-start: 1;
+   grid-row-end: 2;
+   grid-column-end: 2;
+}
+
+.title-right {
+   grid-row-start: 1;
+   grid-column-start: 2;
+   grid-row-end: 2;
+   grid-column-end: 3;
+   margin-top: .6em;
+   text-align: right;
+}
+
+
+.form-style-7{
+	max-width:50%;
+	margin:30px 20px;
+	border-radius:2px;
+	padding:20px;
+}
+.form-style-7 h1{
+	display: block;
+	text-align: center;
+	padding: 0;
+	margin: 0px 0px 20px 0px;
+	font-size:x-large;
+}
+.form-style-7 ul{
+	list-style:none;
+	padding:0;
+	margin:0;	
+}
+.form-style-7 li{
+	display: block;
+	padding: 9px;
+	border:1px solid #494966; 
+	margin-bottom: 30px;
+	border-radius: 3px;
+}
+.form-style-7 li:last-child{
+	border:none;
+	margin-bottom: 0px;
+	text-align: center;
+}
+.form-style-7 li > label{
+	display: block;
+	float: left;
+	margin-top: -19px;
+   background:#161621;  
+	height: 14px;
+	padding: 2px 5px 2px 5px;
+	color: white;
+	font-size: 14px;
+	overflow: hidden;
+}
+.form-style-7 input[type="text"],
+.form-style-7 input[type="date"],
+.form-style-7 input[type="datetime"],
+.form-style-7 input[type="email"],
+.form-style-7 input[type="number"],
+.form-style-7 input[type="search"],
+.form-style-7 input[type="time"],
+.form-style-7 input[type="url"],
+.form-style-7 input[type="password"],
+.form-style-7 textarea,
+.form-style-7 select 
+{
+	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	width: 100%;
+	display: block;
+	outline: none;
+   background:#2b2b43; 
+	border: none;
+	height: 30px;
+   font-family:'Raleway',sans-serif;
+	line-height: 25px;
+	font-size: 16px;
+   margin-top: .5em;
+   color:rgb(212, 212, 212);
+   text-indent: 0.40em;
+	padding: 0;
+}
+.form-style-7 input[type="text"]:focus,
+.form-style-7 input[type="date"]:focus,
+.form-style-7 input[type="datetime"]:focus,
+.form-style-7 input[type="email"]:focus,
+.form-style-7 input[type="number"]:focus,
+.form-style-7 input[type="search"]:focus,
+.form-style-7 input[type="time"]:focus,
+.form-style-7 input[type="url"]:focus,
+.form-style-7 input[type="password"]:focus,
+.form-style-7 textarea:focus,
+.form-style-7 select:focus 
+{
+}
+.form-style-7 li > span{
+	
+	display: block;
+	padding: 3px;
+	margin: 0 -9px -9px -9px;
+	text-align: center;
+	color: #C0C0C0;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 11px;
+}
+.form-style-7 textarea{
+	resize:none;
+}
+.form-style-7 input[type="submit"],
+.form-style-7 input[type="button"]{
+	background: #2471FF;
+	border: none;
+	padding: 10px 20px 10px 20px;
+	border-bottom: 3px solid #5994FF;
+	border-radius: 3px;
+	color: #D2E2FF;
+}
+.form-style-7 input[type="submit"]:hover,
+.form-style-7 input[type="button"]:hover{
+	background: #6B9FFF;
+	color:#fff;
+}
+SELECT {
+   background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNSIgaGVpZ2h0PSIyNSIgZmlsbD0ibm9uZSIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2U9IiNiYmIiPjxwYXRoIGQ9Ik02IDlsNiA2IDYtNiIvPjwvc3ZnPg==) !important;
+    background-repeat: no-repeat !important;
+    background-position-x: 100% !important;
+    background-position-y: 50% !important;
+    -webkit-appearance: none !important;
+    -moz-appearance: none !important;
+    -ms-appearance: none !important;
+    -o-appearance: none !important;
+    appearance: none !important;
+}
+
+
+
+.top25px{
+   margin-top: 25px;
+}
+
+
+
+        </style>
+    </head>
+    <body>
+      <div class="angry-grid">
+         <div id="logo_container"><img class="logo-img" src="logo-small.png"/></div>
+         <div id="header_container">
+            <div class="title-right">
+               <span class="button1 top25px">Generate Project</span>
+            </div>
+         </div>
+         <div id="nav-container">
+            <div class="menu_simple">
+               <ul id="nav-item-container">
+               </ul>
+               </div>
+         </div>
+         <div id="page-container">
+
+              <!----------------Home----------------->  
+
+            <div id="home_container" class="show">
+               <div class="title-grid">
+                  <div class="title-left">
+                  Home
+                  </div>
+               </div>
+               <div>
+                  <img src="setup-process.png"/>
+               </div>
+            </div>
+
+
+             <!----------------general-setting----------------->  
+
+               <div id="general-setting" class="hide">
+                  <div class="title-grid">
+                     <div class="title-left">
+                     General Setting
+                     </div>
+                     <div class="title-right">
+                        <span class="button1">Save</span>
+                        <span class="button1">Reset</span>
+                     </div>
+                  </div>
+
+                  <div>
+                     <form class="form-style-7">
+                        <ul>
+                        <li>
+                           <label for="name">Name</label>
+                           <input type="text" name="name" maxlength="100">
+                           <span>Enter your full name here</span>
+                        </li>
+                        <li>
+                           <label for="email">Email</label>
+                           <input type="email" name="email" maxlength="100">
+                           <span>Enter a valid email address</span>
+                        </li>
+                        <li>
+                           <label for="url">Website</label>
+                           <input type="url" name="url" maxlength="100">
+                           <span>Your website address (eg: http://www.google.com)</span>
+                        </li>
+                        <li>
+                           <label for="bio">About You</label>
+                           <select name="cars" id="cars">
+                              <option value="volvo">Volvo</option>
+                              <option value="saab">Saab</option>
+                              <option value="mercedes">Mercedes</option>
+                              <option value="audi">Audi</option>
+                           </select>
+                           <span>Say something about yourself</span>
+                        </li>
+                        <li>
+
+                        </li>
+                        </ul>
+                        </form>
+                  </div>      
+            </div>
+             <!----------------general-setting----------------->  
+         </div>
+         <div id="footer_container">footer</div>
+         <div id="summary_container">
+               <div class="title-grid">
+                  <div class="title-left">
+                     JSON Data
+                 </div>
+               </div>  
+         </div>
+      </div>
+
+    </body>
+</html>
