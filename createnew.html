@@ -8,61 +8,209 @@
         <link rel="stylesheet" href="">
         <link href="https://fonts.googleapis.com/css?family=Lato|Montserrat|Raleway|Roboto&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+ 
         <script>
+
+
          var data;
-         $.getJSON("https://raw.githubusercontent.com/vsaji/saji-practices/master/project.json", function(json) {
+         $.getJSON("https://raw.githubusercontent.com/vsaji/saji-practices/master/project2.json", function(json) {
                data=json; // this will show the info it in firebug console
             });
-        $(document).ready(function(){
-              buildNavigation();
-              buildPage();
+
+         $(document).ready(function(){
+            loadAll()
          });
 
+         let dataMap = new Map();
+         let templateMap = new Map();
+
+         function loadAll(){
+            loadDataToMap();
+            buildNavigation();
+            buildPage();
+            buildFormForEachContainer()
+         }
+
+         function loadDataToMap(){
+            $.each(data, function (i, v) {
+               if(i!="template"){
+                  dataMap.set(i,v);
+               }else{
+                  $.each(v, function (j, x) { 
+                     templateMap.set(j,x);
+                  });
+               }
+            });
+         }
 
          function buildNavigation(){
             var navItemHtml="";
             $.each(data, function (i, v) {
                if(v.menuInfo !== undefined){
-                  navItemHtml+="<li><a href=\"javascript:void(0);\" onclick=\"showPage('"+i+"');\"><i class=\"fa icon "+ v.menuInfo.faIcon+"\"></i>"+v.menuInfo.displayName+"</a></li>";
+                  navItemHtml="<li><a href=\"javascript:showPage('"+i+"');\"><i class=\"fa icon "+ v.menuInfo.faIcon+"\"></i>"+v.menuInfo.displayName+"</a></li>";
+                  $("#nav-item-container").append(navItemHtml);                  
                }
             });
-            $("#nav-item-container").append(navItemHtml);
-            console.log("Navigation written")
+            
          }
 
          function buildPage(){
             var html="";
             $.each(data, function (i, v) {
-               if(document.getElementById(i)==null && v.menuInfo !== undefined){
-                  html+="<div id=\""+i+"_container\" class=\"hide\">"
+               if(document.getElementById(i+"_container")==null && v.menuInfo !== undefined){
+                  html="<div id=\""+i+"_container\">"
                   html+="<div class=\"title-grid\">";
                   html+="<div class=\"title-left\">";
                   html+=v.menuInfo.pageTitle+"</div>"
                   html+="<div class=\"title-right\">"
                   html+="      <span class=\"button1\">Save</span>"
                   html+="     <span class=\"button1\">Reset</span>"
-                  html+="</div></div>"
+                  html+="</div></div></div>"
+                  $("#page-container").append(html);
+                  $("#"+i+"_container").hide();
                }
             });
-            $("#page-container").append(html);
          }
 
-         var previousVisit=$("#home_container");
+         function buildFormForEachContainer(){
 
+            $.each(data, function (i, v) {
+
+               if(v.menuInfo !== undefined && v.fields !== undefined){
+
+                  html="<div><form class=\"form-style-7\"><ul>";
+                     $.each(v.fields,function(j,c){
+                       html+=renderForm(j,c);
+                     });
+                  html+="<li></li></ul></form></div>";  
+                  $("#"+i+"_container").append(html);
+              }
+
+            });
+         }
+
+         function renderForm(j,c){
+            tempHtml="";
+            switch(c.type){
+               case "template-single":
+               tempHtml+=singleFromTemplate(j,c);
+                  break;
+               case "template-repeat":
+                  tempHtml+=repeatFromTemplate(j,c);
+                  break;
+               default:
+                  tempHtml+="<li><label for=\"name\">"+c.label+"</label>";
+                  tempHtml+=resolveInput(j,c);
+                  if(c.note!==undefined){
+                     tempHtml+="<span>"+c.note+"</span>";                           
+                  }
+                  tempHtml+="</li>";
+               break;    
+         }
+         return tempHtml
+      }
+
+
+         function repeatFromTemplate(name,control){
+            if(control.valueOptions!=null){
+               control.type="select";
+               return renderForm(name,control)+"<li></li>";
+            }
+            html="<span class=\"button1\" onClick=\"addConfig('"+name+"','"+control.template+"')\">+</span> Add "+control.label;
+            html+="<div id=\"_"+name+"\"></div>";
+            return html;
+         }
+
+
+         function addConfig(name,template){
+            console.log(template);
+            html="<div id=\""+name+"_sub\" class=\"subConfigBox\">";
+            html+="<span class=\"button1\" onClick=\"this.parentNode.remove()\">-</span>";
+            refObj = eval("data."+template);
+            html+=singleFromTemplate(name,refObj)
+            html+="</div>";
+            $("#_"+name).append(html);
+         }
+
+         function singleFromTemplate(name,control){
+            if(control.templateRef!==undefined){
+               if(control.templateRef.startsWith("this.value")){
+                  refSub = control.value;
+               }else{
+                  refSub = eval("data."+control.templateRef);
+               }
+               refObj = eval("data."+control.template+"."+refSub);
+            }else if(control.template!==undefined){
+               refObj = eval("data."+control.template);
+            }else{
+               refObj = control;
+            }
+
+            html="";
+               $.each(refObj,function(j,c){
+                  html+=renderForm(j,c);
+               });
+               console.log(html);
+           return html;
+         }
+
+         /**
+          * 
+          * 
+          * */
+         function resolveInput(name,control){
+            pref="";
+            
+            switch(control.type){
+               case "text":
+                  value=control.value===undefined ? "" : control.value;
+                  if(control.readOnly){
+                     pref="readonly";
+                  }
+                  return "<input type=\"text\" name=\""+name+"\" maxlength=\"100\" value=\""+value+"\" "+pref+">";
+               break;
+               case "secure":
+                  return "<input type=\"password\" name=\""+name+"\" maxlength=\"100\">";
+               break;               
+               case "checkbox":
+                  checked=control.value=="checked" ? control.value : "";
+                  return "<input type=\"checkbox\" name=\""+name+"\" "+checked+">";
+               break;
+               case "multi":
+               case "select":
+                  if(control.type=="multi"){
+                     pref="multiple";
+                  }else{
+                     pref="style='height:30px'";
+                  }
+                    
+                  selectHtml="<select data-placeholder=\"Begin typing a name to filter...\" "+pref+" name=\"test\">";
+                  $.each(control.valueOptions,function(idx,item){
+                     selectHtml+="<option value=\""+item+"\">"+item+"</option>";
+                 });
+                 selectHtml+="</select>";
+                 return selectHtml;
+                 break;
+            default:
+               return control.type;
+            }
+         }
+
+
+         previousVisit="#home_container";
          function showPage(name){
             pageName="#"+name+"_container";
             if(previousVisit==null){
-               previousVisit=$(pageName);
+               previousVisit=pageName;
             }else{
-               alert(previousVisit.style.display);
-               previousVisit.removeClass("show");
-               previousVisit.addClass("hide");
+               $(previousVisit).hide();
+               previousVisit=pageName;
             }
-            previousVisit=$(pageName);
-            previousVisit.addClass("show");
-            
+            $(previousVisit).show();
          }
+
+         
 
 
 //auto expand textarea
@@ -94,11 +242,31 @@ function adjust_textarea(h) {
             background: #2b2b43;  
             font-family:'Montserrat',sans-serif;
         }
+
+        * {
+         scrollbar-width: thin;
+         scrollbar-color: #ffbe00 161621;
+         }
+
+         /* Works on Chrome, Edge, and Safari */
+         *::-webkit-scrollbar {
+         width: 12px;
+         }
+
+         *::-webkit-scrollbar-track {
+         background: #161621;
+         }
+
+         *::-webkit-scrollbar-thumb {
+         background-color: #ffbe00;
+         border-radius: 20px;
+         border: 3px solid #161621;  
+         }
        
 
         .angry-grid {
             display: grid;
-            grid-template-rows: 110px auto 45px;
+            grid-template-rows: 110px 85% auto;
             grid-template-columns: 210px auto 25%;
             height: 100%;
         }
@@ -133,13 +301,14 @@ function adjust_textarea(h) {
    
 }
 #page-container {
-
+   color:white;
    background: #161621;  
    grid-row-start: 2;
    grid-column-start: 2;
 
    grid-row-end: 3;
    grid-column-end: 3;
+   overflow-y: scroll;
    
 }
 #footer_container{
@@ -237,6 +406,10 @@ function adjust_textarea(h) {
    gap: 0px;
    height: 60px;
    border-bottom: 1px solid #494966;   
+   position: sticky;
+   top: 0;
+   z-index: 1;
+   background: #161621;
 }
 
 .title-left{
@@ -261,8 +434,17 @@ function adjust_textarea(h) {
 }
 
 
+.subConfigBox{
+	display: block;
+	padding: 4px;
+	border:1px solid white; 
+	border-radius: 3px;
+   width:65%;
+   margin-top: 15px;
+}
+
 .form-style-7{
-	max-width:50%;
+	max-width:70%;
 	margin:30px 20px;
 	border-radius:2px;
 	padding:20px;
@@ -325,11 +507,14 @@ function adjust_textarea(h) {
 	height: 30px;
    font-family:'Raleway',sans-serif;
 	line-height: 25px;
-	font-size: 16px;
+	font-size: 14px;
    margin-top: .5em;
    color:rgb(212, 212, 212);
    text-indent: 0.40em;
 	padding: 0;
+}
+.form-style-7 select {
+   height: 100px;
 }
 .form-style-7 input[type="text"]:focus,
 .form-style-7 input[type="date"]:focus,
@@ -348,10 +533,12 @@ function adjust_textarea(h) {
 	
 	display: block;
 	padding: 3px;
-	margin: 0 -9px -9px -9px;
-	text-align: center;
-	color: #C0C0C0;
-	font-family: Arial, Helvetica, sans-serif;
+	margin-left: 3px;
+   margin-top: 2px;
+   margin-bottom: -3px;
+	text-align: left;
+	color: #dbaf6d;
+	font-family: Raleway;
 	font-size: 11px;
 }
 .form-style-7 textarea{
@@ -371,18 +558,6 @@ function adjust_textarea(h) {
 	background: #6B9FFF;
 	color:#fff;
 }
-SELECT {
-   background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNSIgaGVpZ2h0PSIyNSIgZmlsbD0ibm9uZSIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2U9IiNiYmIiPjxwYXRoIGQ9Ik02IDlsNiA2IDYtNiIvPjwvc3ZnPg==) !important;
-    background-repeat: no-repeat !important;
-    background-position-x: 100% !important;
-    background-position-y: 50% !important;
-    -webkit-appearance: none !important;
-    -moz-appearance: none !important;
-    -ms-appearance: none !important;
-    -o-appearance: none !important;
-    appearance: none !important;
-}
-
 
 
 .top25px{
@@ -411,7 +586,7 @@ SELECT {
 
               <!----------------Home----------------->  
 
-            <div id="home_container" class="show">
+            <div id="home_container">
                <div class="title-grid">
                   <div class="title-left">
                   Home
@@ -483,5 +658,8 @@ SELECT {
          </div>
       </div>
 
+      <script>
+         loadAll();
+      </script>
     </body>
 </html>
