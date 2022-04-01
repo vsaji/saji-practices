@@ -4,21 +4,14 @@
             "displayName":"Home",
             "pageTitle":"Home",
             "faIcon":"fa-home",
-            "subMenuItems": null,
-            "subMenuItemsFromReference": false,
-            "subMenuItemsRefPath": "",
-            "subMenuExist": false
+            "link":""
         }
     },
     "instanceSetup" : {
         "menuInfo" : {
             "displayName":"General Setting",
             "pageTitle":"General Setting",
-            "faIcon":"fa-sliders",
-            "subMenuItems": null,
-            "subMenuItemsFromReference": false,
-            "subMenuItemsRefPath": "",
-            "subMenuExist": false
+            "faIcon":"fa-sliders"
         },
         "fields" :{
             "projectName" : {
@@ -239,7 +232,7 @@
                 "valueObject" : null,
                 "type" : "template-single",
                 "template" : "template.providerConfig",
-                "templateRef" : "configuration.provider"
+                "templateRef" : "configuration.fields.provider"
             }
         }
     },
