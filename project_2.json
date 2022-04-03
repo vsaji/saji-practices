@@ -361,7 +361,7 @@
                 "value" : "---select--",
                 "valueOptions" : ["GRPC","JMS","UMB","EMAIL","WEBSOCKET","TCP","REST","AMBROSIA"],
                 "type" : "select",
-                "event":"onChange=showTemplate('data.template.serviceTypeConfig',this.value)"
+                "event":"onChange=showTemplate('data.template.serviceTypeConfig',this)"
             }
         },
         "serviceTypeConfig":{
