@@ -274,7 +274,7 @@
             "faIcon":"fa-sign-out"
         },
         "fields":{        
-            "jmsConsumerConfig":{
+            "jmsPublisherConfig":{
                 "label" : "Add Publisher",
                 "required" : "yes",
                 "valueCollection" : [],
@@ -358,11 +358,11 @@
             "type" : {
                 "label" : "Service Type",
                 "required" : "yes",
-                "value" : "GRPC",
+                "value" : "---select--",
                 "valueOptions" : ["GRPC","JMS","UMB","EMAIL","WEBSOCKET","TCP","REST","AMBROSIA"],
                 "type" : "template-repeat",
                 "template" : "template.serviceTypeConfig",
-                "templateRef" : "this.value"                
+                "event":"onChange=showTemplate(this.value)"
             }
         },
         "serviceTypeConfig":{
@@ -440,8 +440,8 @@
                 "consumerConfig" : {
                     "label" : "Consumers",
                     "required" : "yes",
-                    "type" : "select",
-                    "valueOptionsRef" : "jmsConsumerSetup.fields.jmsConsumer.id" 
+                    "type" : "multi",
+                    "valueOptionsRef" : "$.jmsConsumer[*].name"
                 }
            },
            "REST":{
@@ -838,7 +838,7 @@
                 "label" : "Jms Connection Name",
                 "required" : "yes",
                 "type" : "select",
-                "valueOptionsRef" : "jmsConnectionSetup.fields.jmsConfig.id"
+                "valueOptionsRef" : "$.jmsConnections[*].name"
             },
             "destinationType":{
                 "label" : "Destination Type",
@@ -900,7 +900,7 @@
                 "label" : "Jms Connection Name",
                 "required" : "yes",
                 "type" : "select",
-                "valueOptionsRef" : "jmsConnectionSetup.fields.jmsConfig.id"
+                "valueOptionsRef" : "$.jmsConnections[*].name"
             },
             "destinationType":{
                 "label" : "Destination Type",
