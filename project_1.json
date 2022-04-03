@@ -274,7 +274,7 @@
             "faIcon":"fa-sign-out"
         },
         "fields":{        
-            "jmsConsumerConfig":{
+            "jmsPublisherConfig":{
                 "label" : "Add Publisher",
                 "required" : "yes",
                 "valueCollection" : [],
@@ -360,9 +360,8 @@
                 "required" : "yes",
                 "value" : "---select--",
                 "valueOptions" : ["GRPC","JMS","UMB","EMAIL","WEBSOCKET","TCP","REST","AMBROSIA"],
-                "type" : "template-repeat",
-                "template" : "template.serviceTypeConfig",
-                "event":"onChange=showTemplate(this.value)"
+                "type" : "select",
+                "event":"onChange=showTemplate('data.template.serviceTypeConfig',this.value)"
             }
         },
         "serviceTypeConfig":{
@@ -441,7 +440,7 @@
                     "label" : "Consumers",
                     "required" : "yes",
                     "type" : "multi",
-                    "valueOptionsRef" : "$.jmsConsumers[*].name"
+                    "valueOptionsRef" : "$.jmsConsumer[*].name"
                 }
            },
            "REST":{
