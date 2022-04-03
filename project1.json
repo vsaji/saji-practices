@@ -279,7 +279,7 @@
                 "required" : "yes",
                 "valueCollection" : [],
                 "type" : "template-repeat",
-                "template" : "template.jmsPublisherSetup"
+                "template" : "template.jmsPublisherConfig"
             }
         }
     },    
