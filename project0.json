@@ -360,9 +360,8 @@
                 "required" : "yes",
                 "value" : "---select--",
                 "valueOptions" : ["GRPC","JMS","UMB","EMAIL","WEBSOCKET","TCP","REST","AMBROSIA"],
-                "type" : "template-repeat",
-                "template" : "template.serviceTypeConfig",
-                "event":"onChange=showTemplate(this.value)"
+                "type" : "select",
+                "event":"onChange=showTemplate(data.template.serviceTypeConfig,this.value)"
             }
         },
         "serviceTypeConfig":{
