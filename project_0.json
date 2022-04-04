@@ -817,8 +817,17 @@
             }
         },       
         "commonParameter":{
-            "key":{},
-            "value":{}
+            "key":{
+                "label" : "Key",
+                "required" : "yes",
+                "type" : "text",
+                "validation":"regexp:(\\s)"
+            },
+            "value":{
+                "label" : "Value",
+                "required" : "yes",
+                "type" : "text"
+            }
         },
         "jmsConsumerConfig":{
             "id":{
