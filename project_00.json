@@ -435,7 +435,7 @@
                     "label" : "Consumers",
                     "required" : "yes",
                     "type" : "multi",
-                    "valueOptionsRef" : "$.jmsConsumer[*].name"
+                    "valueOptionsRef" : "$.jmsConsumerSetup[*].name"
                 }
            },
            "REST":{
@@ -842,7 +842,7 @@
                 "label" : "Jms Connection Name",
                 "required" : "yes",
                 "type" : "select",
-                "valueOptionsRef" : "$.jmsConnections[*].name"
+                "valueOptionsRef" : "$.jmsConnectionSetup[*].name"
             },
             "destinationType":{
                 "label" : "Destination Type",
@@ -904,7 +904,7 @@
                 "label" : "Jms Connection Name",
                 "required" : "yes",
                 "type" : "select",
-                "valueOptionsRef" : "$.jmsConnections[*].name"
+                "valueOptionsRef" : "$.jmsConnectionSetup[*].name"
             },
             "destinationType":{
                 "label" : "Destination Type",
