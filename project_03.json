@@ -656,6 +656,7 @@
                 "required" : "yes",
                 "type" : "template-repeat",
                 "template" : "template.commonParameter",
+                "nestedNode":true,
                 "note" : "These parameters will be added to the param files"
             }
         },
