@@ -291,12 +291,6 @@
             "faIcon":"fa-cloud-download"
         },
         "fields":{               
-            "noOfTargets" : {
-                "label" : "No of Targets",
-                "required" : "yes",
-                "type" : "text",
-                "validation" : "regexp:(^[0-9]*$)"
-            },
             "targetConfig":{
                 "label" : "Targets",
                 "required" : "yes",
