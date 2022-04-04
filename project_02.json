@@ -288,7 +288,8 @@
         "menuInfo" : {
             "displayName":"Deployment",
             "pageTitle":"Deployment",
-            "faIcon":"fa-cloud-download"
+            "faIcon":"fa-cloud-download",
+            "skipAutoRendering" : true
         },
         "fields":{               
             "targetConfig":{
