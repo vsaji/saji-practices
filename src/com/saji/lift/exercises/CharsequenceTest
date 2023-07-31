@@ -1,0 +1,110 @@
+package saji.test.charsequence;
+
+import java.util.HashMap;
+import java.util.Map;
+
+public class CharsequenceTest {
+
+    public static void main(String[] args) {
+
+        String a= "A test String for Testing";
+        String b= "A test String for Testing";
+
+        CharSequence ca = new CharSequenceExtn(a);
+
+        CharSequence cb = new CharSequenceExtn(b);
+
+        System.out.println("====>"+a);
+        System.out.println("====>"+b);
+
+        Map<CharSequence,Long> test = new HashMap<>();
+
+        test.put(a,System.currentTimeMillis());
+        test.put(b,System.currentTimeMillis());
+        test.put(ca,System.currentTimeMillis());
+        test.put(cb,System.currentTimeMillis());
+
+//        ((CharSequenceExtn)ca).setEmpty();
+//        ((CharSequenceExtn)ca).append("Some other String");
+
+        System.out.println(test.get(ca));
+
+    }
+
+
+    static class CharSequenceExtn implements CharSequence{
+        int hashCode;
+        int length;
+        final char[] chars;
+
+        public CharSequenceExtn(int capacity) {
+            setEmpty();
+            this.chars=new char[capacity];
+        }
+
+        public CharSequenceExtn(String initialValue) {
+            this(initialValue.length());
+            append(initialValue);
+        }
+
+        public CharSequenceExtn() {
+            this.chars=new char[16];
+        }
+
+        public void setEmpty() {
+            hashCode = 0;
+            length = 0;
+        }
+
+        public void append(String s) {
+            for (int i=0;i<s.length();i++) {
+                chars[length++] = s.charAt(i);
+            }
+            hashCode = s.hashCode();
+        }
+
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) {
+                return true;
+            }
+            CharSequence di = (CharSequence)o;
+            if (di.length() == length) {
+                int i = length-1;
+                while (i >= 0) {
+                    if (di.charAt(i) != chars[i]) {
+                        return false;
+                    }
+                    i--;
+                }
+                return true;
+            }
+           return false;
+        }
+
+        @Override
+        public int hashCode() {
+            return hashCode;
+        }
+
+        @Override
+        public int length() {
+            return length;
+        }
+
+        @Override
+        public char charAt(int index) {
+            return 0;
+        }
+
+        @Override
+        public CharSequence subSequence(int start, int end) {
+            return null;
+        }
+
+        @Override
+        public String toString() {
+            return new String(chars, 0, length);
+        }
+    }
+}
