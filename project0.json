@@ -1,3 +1,16 @@
+
+DFR acts as an OpenTelemetry translator positioned between the FXC microservices and TEMPO. This service aims to shield the client microservice from the overhead of the OpenTelemetry dependency and to reduce the volume of data exported from the source.
+
+
+The XDC Trace Collector is an interface for Grafana Tempo that provides HTTP/GRPC endpoints to receive OpenTelemetry trace data. It stores this data in an S3 bucket with a retention period of seven days. Application teams can use this centralized platform to publish their telemetry data and visualize it using TRON-GRAFANA.
+
+A new self-service configuration screen has been added to the FDC Dashboard, allowing application teams to manage their notification settings, such as email distribution lists and enabling or disabling notifications.
+
+he DJH Grafana Dashboard has been expanded to onboard new departments and application teams by adding a new organization within the Grafana setup. This addition provides teams with a dedicated space and allows them to manage their entitlements independently. The JHD team is also working on integrating LDPA authentication into the dashboard to enhance access management.
+
+
+
+
 I hope this message finds you well. I am writing to request your assistance in raising a job requisition to backfill Ken's position, as he has resigned and will be leaving the firm by the end of August 2024.
 
 From the Engineering and Architecture Team's perspective, it is crucial to fill this position promptly. The team is expanding our telemetry and visualization platform to support multiple applications across the FFD Cash organization. Ken was the sole resource managing the UX development for the GFF platform, and his departure will significantly impact our ability to deliver on multiple critical tasks related to telemetry and FFG.
