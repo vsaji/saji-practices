@@ -32,22 +32,4 @@ TRON is equipped with features that allow developers to concentrate on building 
 
 
 
-Led Cross-Functional Teams:
-
-    Delivered a key project ahead of schedule by implementing agile methodologies, boosting productivity by 20%.
-
-Mentored Team Members:
-
-    Provided coaching and organized knowledge-sharing sessions, resulting in improved team skills and two promotions.
-
-Adopted New Technologies:
-
-    Implemented a new CI/CD pipeline and best practices, reducing deployment times by 50% and post-release bugs by 30%.
-
-Facilitated Stakeholder Communication:
-
-    Served as the primary liaison with stakeholders, ensuring clear requirements, timely updates, and improved satisfaction.
-
-Drove Continuous Improvement:
-
-    Encouraged innovation and identified process improvements, reducing routine task time by 15% and enhancing project outcomes.
+Successfully built a robust telemetry platform from scratch, utilizing Grafana Tempo and hosted on the cloud with S3 storage. The platform features a self-cleaning mechanism, ensuring minimal maintenance requirements
