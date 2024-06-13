@@ -24,3 +24,8 @@ This is Jan from EQ CASH MO Organization, reporting to UU Brady and leading the 
 
 
 I was tasked with building a telemetry visualization platform for the EQ Cash organization, which provides a centralized data injection interface for OpenTelemetry metrics and traces generated from Ambrosia, TRON, and SPRING boot applications. The platform uses Cortex and Tempo for data capture and S3 for storage. It offers endpoints for clients to export Prometheus metrics and trace data from their services. The platform also includes a Grafana component pre-configured with all necessary data sources for the applications. Additionally, I created a telemetry API for non-Ambrosia applications to export trace data without relying on the OpenTelemetry SDK. This API efficiently collects trace data from the client's service, exports it to the platform, converts it to the OpenTelemetry format, and publishes it to Grafana Temp.
+
+
+Boosting TRON Framework Adoption in ICG to Reduce Time-to-Market
+
+TRON is equipped with features that allow developers to concentrate on building services from a business perspective, leaving technical integrations, monitoring, and other non-functional requirements to TRON. This significantly reduces the time the team spends on solution development, as most common and critical functionalities are already pre-built and pre-configured in TRON.
