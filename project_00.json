@@ -47,4 +47,31 @@ Served as a technology advocate for Ambrosia and other XYZ-driven tools.
 Notified clients with release notes, samples, and documentation for changes.
 
 
+public static String appendTimestampToFilename(String filePath) {
+        // Regular expression to split the path, filename, and extension
+        String regex = "^(.*[\\\\/])?([^\\\\/]+?)(\\.[^\\\\/]*?)?$";
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(filePath);
+
+        String directory = "";
+        String name = "";
+        String extension = "";
+
+        if (matcher.matches()) {
+            directory = matcher.group(1) != null ? matcher.group(1) : "";
+            name = matcher.group(2) != null ? matcher.group(2) : "";
+            extension = matcher.group(3) != null ? matcher.group(3) : "";
+        }
+
+        // Get the current timestamp
+        SimpleDateFormat sdf = new SimpleDateFormat("ddMMyyyy_HHmmss");
+        String timestamp = sdf.format(new Date());
+
+        // Construct the new filename
+        String newFilename = directory + name + "_" + timestamp + extension;
+
+        return newFilename;
+    }
+
+
 The XYZ framework gained clients' confidence due to its zero production issues and user-friendly model, making it easily adoptable for anyone with experience in the Spring framework
