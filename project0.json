@@ -1,39 +1,11 @@
-Technical Leadership and Strategy
-
-    Architectural Oversight: Develop and maintain the architecture for technology solutions, ensuring they align with the firm’s strategic objectives and regulatory requirements.
-    Technology Roadmap: Create and manage a technology roadmap that guides the development and integration of new technologies, ensuring the firm stays ahead of industry trends and maintains competitive advantages.
-    Innovation: Drive innovation by identifying and implementing new technologies and practices that can improve efficiency, reduce costs, or provide new capabilities.
-
-2. Team Management and Development
-
-    Leadership: Lead and mentor engineering teams, fostering a culture of continuous improvement, collaboration, and technical excellence.
-    Talent Development: Attract, retain, and develop engineering talent, ensuring the team has the skills and knowledge needed to meet the firm’s objectives.
-    Performance Management: Set goals, conduct performance reviews, and provide feedback to ensure team members are aligned with the firm’s goals and are growing in their roles.
-
-3. Project and Product Delivery
-
-    End-to-End Delivery: Oversee the delivery of technology solutions from concept to deployment, ensuring projects are completed on time, within budget, and to the required quality standards.
-    Collaboration: Work closely with other departments, such as product management, operations, and compliance, to ensure that technology solutions meet business needs and regulatory requirements.
-    Risk Management: Identify and manage risks associated with technology projects, including technical, operational, and regulatory risks.
-
-4. Operational Excellence
-
-    Systems Reliability: Ensure the reliability, scalability, and security of the firm’s technology platforms, with a focus on minimizing downtime and preventing security breaches.
-    Process Improvement: Continuously improve development processes, tools, and methodologies to enhance the efficiency and effectiveness of the engineering team.
-    Cost Management: Optimize technology costs by making strategic decisions about in-house development versus third-party solutions, cloud versus on-premises infrastructure, and other cost-related factors.
-
-5. Compliance and Governance
-
-    Regulatory Compliance: Ensure that all technology solutions comply with relevant financial regulations and standards, such as those related to data privacy, cybersecurity, and financial reporting.
-    Governance: Implement and maintain governance frameworks that ensure technology initiatives align with the firm’s strategic objectives and risk management practices.
-
-6. Stakeholder Management
-
-    Communication: Act as a bridge between the engineering team and other stakeholders, including senior management, ensuring that technical issues and solutions are clearly communicated and understood.
-    Expectation Management: Set and manage expectations with stakeholders regarding project timelines, deliverables, and potential challenges.
-    Feedback Loop: Gather and act on feedback from stakeholders to continuously improve technology solutions and processes.
-
-7. Technical Debt and Legacy Systems Management
-
-    Technical Debt: Identify and manage technical debt, ensuring that the engineering team is able to balance the need for new features with the need for maintaining and improving existing systems.
-    Legacy Systems: Develop strategies for dealing with legacy systems, including modernization, integration, or replacement, to ensure they do not become a bottleneck for the firm’s operations or innovation.
+Identify common engineering needs across multiple streams within MO and develop a unified solution.
+Monitor the firm's Cloud, GenAI, DevOps, and SecOps strategies and define an adoption plan for MO applications.
+Generate monthly reports outlining the progress of various adoptions and the effectiveness of the practices.
+Create and manage a technology roadmap to guide the development and integration of new technologies, ensuring the firm stays ahead of industry trends and maintains a competitive edge.
+Drive innovation by identifying and implementing new technologies and practices that enhance efficiency, reduce costs, or provide new capabilities.
+Lead and mentor engineering teams, promoting a culture of continuous improvement, collaboration, and technical excellence.
+Contribute to and participate in global FDD technology forums.
+Serve as a liaison between the engineering team and other stakeholders, including senior management, to ensure technical issues and solutions are clearly communicated and understood.
+Collect and act on stakeholder feedback to continuously improve technology solutions and processes.
+Identify and manage technical debt, ensuring the engineering team balances the need for new features with maintaining and improving existing systems.
+Develop strategies for managing legacy systems, including modernization, integration, or replacement, to prevent them from hindering the firm's operations or innovation.
