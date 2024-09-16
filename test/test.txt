@@ -1,17 +1,15 @@
-Here’s a summary of the points we discussed during our call. Please ensure that we follow the agreed plan:
+Hi Raj,
 
-    Daily EOD Written Status – To be sent via email. a) Summary of work completed for the day
-    b) Any issues or areas requiring clarification
-    c) Plan for the following day
+Good morning. I came across a role under your leadership and wanted to check if it’s still open for applications. If the position is still accepting profiles, I would be very interested in exploring this opportunity. Currently, I lead the Engineering & Architecture space in the EQ MO CASH area and report to Scot Brady, who reports to KK.
 
-    Daily Scrum Participation – Attend daily scrum calls and provide an update on your current task status.
+Here’s a brief elevator pitch about me:
 
-    JIRA Task Understanding – Submit a written summary after being assigned a new JIRA task.
+    Singapore PR – No sponsorship required
+    Total Experience: 21 years, with 18 years in banking and 13 years at Citi
+    Extensive experience across technology and infrastructure stacks
+    Author/Product Owner of the TRON Stack Platform
+    Representing E&A MBR for Peter J since June 2024
+    Hands-on technologist, low-latency developer, and engineering lead
+    Current reporting structure: Scot -> KK -> Peter J
 
-    Proactive Communication – Reach out promptly for any questions or clarifications.
-
-    Code Commitments – Consistently push code to Bitbucket, with a minimum of 5+ commits per week. This is mandatory.
-
-    JIRA Deliverables – Ensure all deliverables are completed before the deadlines.
-
-Let’s stay on track with these expectations moving forward.
+Looking forward to hearing from you.
