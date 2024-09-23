@@ -1,0 +1,20 @@
+Scene 1
+Manager (Hermione): Hi everyone, I'm Hermione, and I manage a team of five at Citi, focusing on app stability. This morning, production support reached out about an issue.
+
+Scene 2
+Hermione: Hey team, what's happening? Why is there a spike in Android app crashes?
+
+Scene 3
+Ron: Hey Hermione! I was just discussing this with Dumbledore. There's an incident logged, and he has some insights.
+
+Dumbledore: Yes, Hermione. It looks like a missing null check caused the issue.
+
+Hermione: What?! That's concerning. How did we miss such a basic check? We need to be more careful. This is worrying.
+
+Ron: I get it, Hermione. I was investigating what went wrong and found that the code was merged on February 20th by Harry.
+
+Scene 4
+Harry: Oh right, I remember now. That code was part of a large pull request with changes in 63 files from one of our side branches. I reviewed and merged it into the Master branch. I'm sorry, I should have been more thorough, but with so many changes at once, I missed that line of code.
+
+Scene 5
+Hermione, Harry, Ron, Dumbledore: We need to figure out a long-term solution for this problem.
