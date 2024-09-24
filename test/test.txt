@@ -47,5 +47,13 @@ This role drives technology advancements in the EQ MO space by aligning with the
 
 Additionally, it addresses technical debt, develops scalable low-latency platforms for operational efficiency, and integrates emerging technologies. Close collaboration with QA teams ensures streamlined testing and task automation.
 
+
+Hi Leads,
+
+I recently completed the FDHG assessment and found it extremely valuable. I highly recommend that every developer on your team attend this training. Lois from the DJHF team is looking to track the developers in our space who need to take this training. Please share the list of individuals from your area.
+
+Thank you!
+
+
 Key aspects include mentoring teams, fostering continuous learning, and ensuring design consistency to enhance reliability and accelerate digital transformation for faster time-to-market.
 
