@@ -41,3 +41,11 @@ In the past two years as Engineering Lead, I’ve made significant strides by tr
 Additionally, as the lead developer of the CDSD application—a prestigious platform built using Ambrosia—I delivered the shortsell locates module, working closely with the business to meet functionality requirements. I successfully eliminated the legacy application and migrated all clients to the new platform, improving efficiency.
 
 I’m a hands-on technical leader with over 1,000 Bitbucket commits in 2023 and 700+ in 2024. I collaborate with teams like Ambrosia, TenantOps, DevOps, and ITRS, offering feedback to enhance product quality and performance. I authored and maintain the TRON Stack Solution, an innovative framework streamlining cloud development, observability, and monitoring through a no-code approach. This solution includes centralized dashboards for microservice management on OpenShift clusters and integrates OpenTelemetry for performance and trace metrics into a unified Grafana platform.
+
+---------------------------------------------------------------------------------------------------
+This role drives technology advancements in the EQ MO space by aligning with the firm's tech strategy. Responsibilities include overseeing the design, development, and deployment of projects with a focus on AI/ML adoption. The role also creates a roadmap for automation, observability, and hybrid cloud adoption.
+
+Additionally, it addresses technical debt, develops scalable low-latency platforms for operational efficiency, and integrates emerging technologies. Close collaboration with QA teams ensures streamlined testing and task automation.
+
+Key aspects include mentoring teams, fostering continuous learning, and ensuring design consistency to enhance reliability and accelerate digital transformation for faster time-to-market.
+
