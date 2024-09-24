@@ -84,7 +84,7 @@ This role drives technology advancements in the EQ MO space by aligning with the
 
 In addition, the role focuses on addressing technical debt, building scalable low-latency platforms to boost operational efficiency, and integrating emerging technologies. Close collaboration with QA teams ensures efficient testing and task automation.
 
-Key responsibilities also include mentoring teams, promoting continuous learning, and ensuring design consistency to enhance system reliability and accelerate digital transformation. AI/ML adoption opportunities will be explored where applicable, but with a lower priority.
+Key aspects include mentoring teams, fostering continuous learning, and ensuring design consistency to enhance reliability and accelerate digital transformation. Opportunities to explore AI/ML adoption will also be pursued where applicable, though at a lower priority.
 
 Hi Leads,
 
