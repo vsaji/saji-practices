@@ -35,6 +35,14 @@ Recently, Saji delivered a self-service endpoint that automates OpenShift Deploy
 **************************************************************************
 
 Saji works as a partner by fostering strong collaborations with teams such as Ambrosia, TenantOps, DevOps, and ITRS, providing essential feedback to enhance product quality and service delivery. His leadership in developing the TRON Stack Solution aligns technical capabilities with business goals, ensuring effective solutions that meet client needs. By mentoring and coaching engineers, Saji cultivates a supportive environment that encourages teamwork and shared success. His proactive approach and commitment to open communication empower teams to navigate challenges together, reinforcing a partnership-oriented culture that drives collective achievement across the organization.
+*********************************
+
+Saji partnered with the Ambrosia team to enhance the OTEL publisher process by addressing missing features and resolving defects. His collaboration helped improve the efficiency and functionality of the system, ensuring better performance for the team. Through this partnership, Saji contributed key technical solutions that strengthened the overall delivery process.
+
+In addition, Saji worked closely with Citi’s ITRS team and the vendor to resolve a long-standing ITRS gateway connectivity issue. His proactive investigation and collaboration led to identifying and implementing a solution. He also partnered with Middle Office (MO) application leads and developers to understand their architectural challenges. By addressing these issues through common, reusable solutions, he made these enhancements easily accessible via the Artifactory common repository or UDeploy platform
+
+
+****************************************************************************************
 
 Saji develops people by actively mentoring and coaching engineering teams, transforming developers into skilled engineers through continuous guidance and support. He fosters a culture of learning and technical excellence, encouraging team members to take ownership of their projects and innovate. By leading high-impact initiatives like the TRON Stack and RTCS FX library, Saji provides opportunities for skill enhancement and professional growth. His collaborative approach ensures that team members feel empowered to contribute ideas, ultimately building a strong, capable workforce that drives success for both the organization and its clients.
 
