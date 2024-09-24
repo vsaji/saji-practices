@@ -74,6 +74,8 @@ I’m a hands-on technical leader with over 1,000 Bitbucket commits in 2023 and 
 
 ---------------------------------------------------------------------------------------------------
 This role drives technology advancements in the EQ MO space by aligning with the firm's tech strategy. Responsibilities include overseeing the design, development, and deployment of projects with a focus on AI/ML adoption. The role also creates a roadmap for automation, observability, and hybrid cloud adoption.
+--------------------------------------------------
+This role drives technology advancements in the EQ MO space by aligning with the firm's tech strategy. Responsibilities include overseeing the design, development, and deployment of projects, with potential opportunities to explore AI/ML adoption where applicable. The role also creates a roadmap for automation, observability, and hybrid cloud adoption.
 
 Additionally, it addresses technical debt, develops scalable low-latency platforms for operational efficiency, and integrates emerging technologies. Close collaboration with QA teams ensures streamlined testing and task automation.
 
