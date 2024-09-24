@@ -78,7 +78,13 @@ This role drives technology advancements in the EQ MO space by aligning with the
 This role drives technology advancements in the EQ MO space by aligning with the firm's tech strategy. Responsibilities include overseeing the design, development, and deployment of projects, with potential opportunities to explore AI/ML adoption where applicable. The role also creates a roadmap for automation, observability, and hybrid cloud adoption.
 
 Additionally, it addresses technical debt, develops scalable low-latency platforms for operational efficiency, and integrates emerging technologies. Close collaboration with QA teams ensures streamlined testing and task automation.
+Key aspects include mentoring teams, fostering continuous learning, and ensuring design consistency to enhance reliability and accelerate digital transformation for faster time-to-market.
+*******************************************************************
+This role drives technology advancements in the EQ MO space by aligning with the firm’s tech strategy. Core responsibilities include overseeing the design, development, and deployment of projects, establishing roadmaps for automation, observability, and hybrid cloud adoption, and serving as a developer advocate for new technologies introduced by the firm, ensuring their integration into both new and existing developments.
 
+In addition, the role focuses on addressing technical debt, building scalable low-latency platforms to boost operational efficiency, and integrating emerging technologies. Close collaboration with QA teams ensures efficient testing and task automation.
+
+Key responsibilities also include mentoring teams, promoting continuous learning, and ensuring design consistency to enhance system reliability and accelerate digital transformation. AI/ML adoption opportunities will be explored where applicable, but with a lower priority.
 
 Hi Leads,
 
@@ -86,6 +92,4 @@ I recently completed the FDHG assessment and found it extremely valuable. I high
 
 Thank you!
 
-
-Key aspects include mentoring teams, fostering continuous learning, and ensuring design consistency to enhance reliability and accelerate digital transformation for faster time-to-market.
 
