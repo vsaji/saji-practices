@@ -17,7 +17,7 @@ Saji champions progress by driving technological innovation and fostering a cult
 
 **************************************************************************
 Saji drives results through his hands-on approach and strategic leadership across engineering teams. By developing impactful solutions like the TRON Stack, he accelerates cloud service delivery and improves observability with no-code capabilities. His work on the RTCS FX low-latency library, achieving sub-millisecond performance, exemplifies his commitment to high-quality outcomes. Additionally, he ensures timely and efficient project delivery in initiatives like OneConfirms and PRIMO, aligning technical innovations with business objectives. Through collaboration and mentoring, Saji fosters an environment that consistently produces results, driving success for both the organization and its clients.
-
+************************************
 
 Saji consistently delivers results by designing solutions that eliminate redundancies and improve productivity across teams. Through ongoing collaboration, he ensures that his innovations are widely adopted, driving tangible outcomes for the business. His approach focuses on creating scalable, reusable solutions that streamline processes, helping teams achieve faster delivery while maintaining high-quality standards.
 
@@ -26,6 +26,13 @@ Key features developed by Saji have been successfully integrated into the Middle
 
 
 Saji drives value for clients by developing robust, scalable solutions like the RTCS FX low-latency library, delivering sub-millisecond performance for critical applications. His TRON Stack Solution enhances cloud service development and observability, allowing clients to efficiently monitor and manage their services. By collaborating closely with business teams, Saji tailors solutions to meet evolving client needs, ensuring timely delivery of high-quality results. His focus on innovation and operational excellence not only improves client satisfaction but also positions the firm as a trusted partner in achieving their business objectives.
+******************
+Saji is instrumental not only in building innovative solutions but also in identifying areas where they can be effectively implemented. He actively communicates new developments by sending announcements and newsletters to a wider technology audience at Citi, ensuring the visibility of his team's work. Additionally, he tracks the reach and impact of these solutions through a dashboard, providing senior management with measurable insights.
+
+One of his key contributions is the TRON Stack Solution, which enhances cloud service development and observability. This framework has been widely adopted in the Middle Office, supporting the development and deployment of over 100 microservices in production, with more than 50 in progress. Saji also created a self-service project builder tool that generates TRON/Spring Boot projects in just five minutes, complete with CI/CD scripts and an OpenShift deployment descriptor.
+
+Recently, Saji delivered a self-service endpoint that automates OpenShift DeploymentConfig migration. This solution reduces migration time from 30 minutes to less than two seconds per migration. With over 200 migrations needed in the Middle Office, this innovation saves more than five days of effort. The solution has been shared with TenantOps for further expansion.
+**************************************************************************
 
 Saji works as a partner by fostering strong collaborations with teams such as Ambrosia, TenantOps, DevOps, and ITRS, providing essential feedback to enhance product quality and service delivery. His leadership in developing the TRON Stack Solution aligns technical capabilities with business goals, ensuring effective solutions that meet client needs. By mentoring and coaching engineers, Saji cultivates a supportive environment that encourages teamwork and shared success. His proactive approach and commitment to open communication empower teams to navigate challenges together, reinforcing a partnership-oriented culture that drives collective achievement across the organization.
 
