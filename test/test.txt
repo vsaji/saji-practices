@@ -41,10 +41,17 @@ Saji partnered with the Ambrosia team to enhance the OTEL publisher process by a
 
 In addition, Saji worked closely with Citi’s ITRS team and the vendor to resolve a long-standing ITRS gateway connectivity issue. His proactive investigation and collaboration led to identifying and implementing a solution. He also partnered with Middle Office (MO) application leads and developers to understand their architectural challenges. By addressing these issues through common, reusable solutions, he made these enhancements easily accessible via the Artifactory common repository or UDeploy platform
 
-
 ****************************************************************************************
 
 Saji develops people by actively mentoring and coaching engineering teams, transforming developers into skilled engineers through continuous guidance and support. He fosters a culture of learning and technical excellence, encouraging team members to take ownership of their projects and innovate. By leading high-impact initiatives like the TRON Stack and RTCS FX library, Saji provides opportunities for skill enhancement and professional growth. His collaborative approach ensures that team members feel empowered to contribute ideas, ultimately building a strong, capable workforce that drives success for both the organization and its clients.
+*************************************
+Saji develops people by actively mentoring and coaching engineering teams, transforming developers into skilled engineers through continuous support. Despite having a small team of just two members, he has made a significant impact by driving a series of transformations. Over the past two years, he introduced various frameworks, tools, automation processes, and DevOps practices that have greatly benefited the developer community.
+
+He fosters a culture of learning and technical excellence, encouraging team members to take ownership of their projects. His continuous engagement with developers resulted in contributions from outside his team, such as the GAS application team contributing File Watcher and Email Watcher services to the common repository. The RTCS team also enhanced the Refdata service, supporting Couchbase real-time updates and creating a metrics broker to route application metrics to Prometheus.
+
+Saji also trained developers in using Chronicle JLBH for latency testing and Java Mission Control for troubleshooting memory or CPU-intensive applications. This initiative was well received, enabling the RTCS team to enhance their applications and fix issues through advanced diagnostics techniques.
+***********************************************************************************
+
 
 Saji has been with the firm for 13 years and has over 20 years of experience in banking and software development. Throughout his tenure at Citi, he has successfully leveraged mobility options, proving his ability to manage business, technology, and infrastructure deliveries in both Front Office and Middle Office environments. He has held diverse roles, including Application Developer, Manager, Individual Contributor, and now serves as an Engineering & Architecture Lead.
 
