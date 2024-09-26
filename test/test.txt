@@ -96,3 +96,5 @@ Thank you!
 My vision is to drive innovation and operational excellence by creating scalable, low-latency solutions and reusable cloud components that streamline development, reduce duplication, and foster collaboration. Through technology leadership and a focus on empowering teams, I aim to enhance productivity, improve observability, and shape a future where developers can focus on delivering high-quality, functional outcomes while leveraging automated and efficient platforms.
 
 
+Hi everyone,
+As many of you know, I’ve been a part of Citi's prestigious E3 training for the past 7 months. It has been an incredible journey filled with learning, collaboration, and team activities. This is truly an opportunity that no one should miss, as it provides unique insights and experiences. Though it was intensive, with over 60 hours of engagement, the effort is well worth it for the growth and knowledge you gain.
