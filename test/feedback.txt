@@ -10,3 +10,5 @@ Rohit was an integral part of the E3 team, significantly contributing to the com
 
 
 Sukhbir is a seasoned QA professional and lead, known for devising effective strategies to automate QA tasks. His expertise in program execution is evident through his successful "Shift Left" initiatives, fostering collaboration between DEV and QA teams. Additionally, Sukhbir excels at centrally tracking projects and programs, consistently conducting stakeholder touchpoints to ensure deadlines are met.
+
+In the technology space, I would encourage Sukhbir to further develop technical skills in areas like scripting, functional programming, and integration frameworks. This would enable him to create more robust QA solutions and facilitate dynamic, remote testing phases before deployment.
