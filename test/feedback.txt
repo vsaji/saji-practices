@@ -7,3 +7,6 @@ Henry was instrumental in the success of the E3 Program, ensuring consistent tea
 Arun was a key contributor to the E3 Program, actively participating in team discussions and offering valuable insights that helped shape the development of tasks. He demonstrated an open-minded approach, readily accepting suggestions and consistently supporting the team’s decisions, making him a collaborative and dependable team member.
 
 Rohit was an integral part of the E3 team, significantly contributing to the completion of key project deliverables. He actively participated in discussions, providing valuable insights that shaped task development. Rohit displayed an open-minded attitude, readily accepting suggestions and consistently supporting team decisions, making him a collaborative and dependable member throughout the project.
+
+
+Sukhbir is a seasoned QA professional and lead, known for devising effective strategies to automate QA tasks. His expertise in program execution is evident through his successful "Shift Left" initiatives, fostering collaboration between DEV and QA teams. Additionally, Sukhbir excels at centrally tracking projects and programs, consistently conducting stakeholder touchpoints to ensure deadlines are met.
