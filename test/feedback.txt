@@ -16,3 +16,7 @@ In the technology space, I would encourage Sukhbir to further develop technical 
 Kartik is a strategic thinker who excels in simplifying processes by introducing the right tools, such as AMPS and OneTouch in the RTCS space. His approachable and easy-to-work-with nature fosters open discussions and smooth decision-making. Kartik's focus on execution, along with his ability to motivate and create a comfortable, progressive work environment, makes him an invaluable asset to the team.
 
 While Kartik is a technology enthusiast brimming with ideas, I encourage him to broaden his knowledge of the various technology offerings available in the market, including their pros and cons. This understanding will enable him to select the most suitable solutions and facilitate smoother negotiations.
+
+Thenu is highly detail-oriented, whether implementing solutions or investigating issues. She demonstrates strong determination in challenging situations, thoroughly exploring problems to identify and address root causes. This was evident during the integration of Ambrosia telemetry with RTCS, where her in-depth testing approach uncovered several product issues, showcasing her dedication and problem-solving skills
+
+As a technology/application lead, I encourage Thenu to deepen her knowledge of the latest advancements in observability and cloud development. This will not only help her make quicker decisions and drive negotiations more effectively but also enable her to ask the right questions when working with counterparts.
