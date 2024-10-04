@@ -35,9 +35,7 @@ DGG is an experienced leader with extensive knowledge of DDF's trading business 
 
 DGG is a highly experienced leader with deep knowledge of DDF's trading business and technology roadmap. His strong people management skills foster a collaborative culture, and he effectively cascades senior management decisions, consistently being punctual and responsive. His attention to detail and excellent review skills, both technical and non-technical, are evident in discussions on TRON, Ambrosia, and other engineering topics. DGG's approachable nature encourages open dialogue and smooth decision-making. A fast learner, he quickly identifies opportunities for process and technology adoption, He has consistently mentored me in my career development and helped create strategic solutions.
 
-As XYZ continues to undergo changes and restructuring, which has impacted headcounts across all areas, I’ve noticed that DGG’s organization has significantly reduced in size, with some teams operating quite lean and with limited resources. I kindly request you evaluate this situation and consider increasing capacity to better support the team's efforts.
-
-As XYZ continues to experience changes and restructuring, which has affected headcounts across various areas, I’ve observed that DGG’s organization has notably reduced in size, with some teams operating with limited resources. It may be helpful to evaluate this situation and consider increasing capacity to further support the team's efforts.
+As the Global Head of MO with teams across three regions, it would be great if Ryan could visit his teams globally at least once every two years.
 
 As XDD continues to restructure, leading to headcount reductions, I’ve noticed that DGG’s organization has significantly reduced in size over the past year, with some teams operating quite lean and with limited resources. I kindly ask you to review this situation and consider increasing capacity to better support the team.
 
@@ -48,3 +46,4 @@ I have noticed several times that HGG reanalyzes the solutions to be delivered a
 Jen’s approachable nature fosters open discussions and smooth decision-making. He is diligent in documenting key project information, ensuring it is always up to date with the latest changes. Jen consistently demonstrates an open-minded approach, accepting suggestions and supporting the team’s decisions, making him a collaborative and dependable team member. Despite his ongoing BAU work and business stakeholder management role, he successfully led the migration of multiple services from the legacy CGMI Billing application to TRON microservices, all while managing a single developer team
 
 As the new re-architecture project is being developed using a combination of Java and cloud technologies, I would encourage Jen to enhance his skills in areas like microservice development with Java and Spring Boot, as well as gaining a deeper understanding of Linux and cloud platforms. This will enable him to work more independently, contribute more directly to the tech roadmap in line with the firm’s strategy, and potentially accelerate the delivery of ongoing tasks by being able to contribute hands-on.
+
