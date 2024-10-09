@@ -1,3 +1,6 @@
+It has been over three weeks since our discussion regarding finding candidates to backfill the position, and I have yet to receive any profiles or communication from you on this matter. You had suggested a candidate already within Citi's account, but after evaluation, we confirmed that we could not proceed with that resource. If we do not finalize a backfill within the next week, we will explore other Citi vendors to find a suitable candidate.
+
+
 const webpack = require('webpack');
 
 module.exports = function override(config, env) {
