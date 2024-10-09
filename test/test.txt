@@ -1,3 +1,23 @@
+const webpack = require('webpack');
+
+module.exports = function override(config, env) {
+  // Check if resolve exists, and if not, create it
+  if (!config.resolve) {
+    config.resolve = {};
+  }
+
+  // Check if resolve.fallback exists, and if not, create it
+  if (!config.resolve.fallback) {
+    config.resolve.fallback = {};
+  }
+
+  // Add "https" fallback to https-browserify
+  config.resolve.fallback['https'] = require.resolve('https-browserify');
+
+  return config;
+};
+
+
 This role drives technology advancements in the EQ MO space by aligning with the firm's tech strategy. Responsibilities include ensuring platform stability, addressing technical deficiencies, and creating a technology roadmap for automation, observability, and hybrid cloud adoption. The role also focuses on removing technical debt, developing scalable low-latency platforms for operational efficiency, and integrating emerging technologies for future readiness. Mentoring teams, fostering continuous learning, and ensuring design consistency to enhance system reliability and eliminate duplication are key aspects, all while accelerating digital transformation to improve time-to-market.
 
 This role involves engaging with every developer in the MO organization to drive TRON platform adoption, providing support and troubleshooting for products, while also guiding developers toward becoming engineers through coaching and mentoring
