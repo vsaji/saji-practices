@@ -124,3 +124,7 @@ As many of you know, I’ve been a part of Citi's prestigious E3 training for th
 
 
 For the final presentation, the teams were divided into two groups, each consisting of six teams. We were part of Group 2 and secured 2nd place for our project presentation.
+
+
+
+^(?!.*tron).*level:error.*$
