@@ -127,4 +127,4 @@ For the final presentation, the teams were divided into two groups, each consist
 
 
 
-^(?!.*tron).*(level:?["']?error["']?).*$
+/^(?!.*tron).*(["']?level["']?\s*:\s*["']?error["']?).*$/i
