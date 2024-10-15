@@ -20,6 +20,11 @@ module.exports = function override(config, env) {
   return config;
 };
 
+Guide the team in understanding the fundamentals of the XCC framework.
+Assist the team in bootstrapping the project and getting it to a functional state.
+Introduce the key features of the XCC framework, including PropertyCentral, Cyberark, and DB Connector.
+Support in setting up the CI/CD pipeline and completing the initial deployment.
+
 
 Centralized communication hub for quick troubleshooting and sharing solutions.
 Facilitates knowledge sharing and collaboration among team members.
