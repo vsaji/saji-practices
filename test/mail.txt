@@ -14,6 +14,9 @@ Adrien has been working on a few JIRAs since July 2024 and required some intensi
 
 His level of engagement has been noticeably lower compared to other second-year graduates. We've observed on multiple occasions that he remains online on Teams but often doesn't respond. He also shows a lack of initiative in fully understanding tasks, and during status calls, we frequently have to ask questions to uncover that he is unclear about certain concepts or requirements.
 
+Additionally, he seems to need more encouragement to fully understand tasks. During status calls, we often find ourselves asking questions to clarify certain concepts or requirements he may not be entirely comfortable with.
+
+
 Adrien is capable of delivering Java-based projects with some assistance. As a beginner, he lacks exposure to many of the technologies currently in use but is working to catch up. Given the team's extensive stack of tools and frameworks, he will need to put in extra effort to fully understand and familiarize himself with them.
 
 He communicates effectively.
