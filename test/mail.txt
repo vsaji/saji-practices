@@ -6,3 +6,20 @@ I'm quite disappointed that, despite having an approved position, we have been u
 It’s also concerning that your team has not been involved in addressing or resolving this issue. Since no assistance has been offered, we are left with no choice but to cancel and recreate the position, which will unfortunately cause further delays in hiring.
 
 I urge you to please look into this matter and offer the necessary support to prevent further setbacks.
+
+
+Adrien joined our team in July 2024. He was provided with sessions on team roles and responsibilities, but we noticed a lack of punctuality and attendance in some of these sessions. He has also shown difficulty in understanding the project requirements, which has resulted in missed deadlines. Additionally, he has not been proactive in seeking clarification when needed.
+
+Adrien has been working on a few JIRAs since July 2024 and required some intensive support to keep the delivery process moving. It was also noted that an additional two-week buffer should be added to future delivery timelines, beyond the initial deadline.
+
+His level of engagement has been noticeably lower compared to other second-year graduates. We've observed on multiple occasions that he remains online on Teams but often doesn't respond. He also shows a lack of initiative in fully understanding tasks, and during status calls, we frequently have to ask questions to uncover that he is unclear about certain concepts or requirements.
+
+Adrien is capable of delivering Java-based projects with some assistance. As a beginner, he lacks exposure to many of the technologies currently in use but is working to catch up. Given the team's extensive stack of tools and frameworks, he will need to put in extra effort to fully understand and familiarize himself with them.
+
+He communicates effectively.
+He acknowledges his areas for improvement.
+He is willing to work on enhancing the skills where he falls short.
+
+Requires detailed guidance to understand tasks.
+Shows limited initiative in researching more efficient solutions.
+Hesitant to engage in proactive conversations or suggest ideas.
