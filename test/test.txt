@@ -20,6 +20,21 @@ module.exports = function override(config, env) {
   return config;
 };
 
+Strengths:
+
+The candidate effectively communicates ideas and concepts.
+Strong knowledge of cloud technologies, particularly in public cloud environments.
+Over 15 years of solid industry experience.
+Skilled in designing and developing cloud orchestration and architecture.
+Displays a polite and humble demeanor, making them a strong team player.
+Areas for Improvement:
+
+Not actively engaged in continuous learning.
+Limited hands-on experience with critical application development.
+Gaps in knowledge of advanced Java features.
+Lacks experience in building finance-related applications.
+
+
 Guide the team in understanding the fundamentals of the XCC framework.
 Assist the team in bootstrapping the project and getting it to a functional state.
 Introduce the key features of the XCC framework, including PropertyCentral, Cyberark, and DB Connector.
