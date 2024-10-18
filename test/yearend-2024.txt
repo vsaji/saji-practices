@@ -11,3 +11,15 @@ It includes a dashboard that allows TRON clients to visualize infrastructure met
 Tenants from EQ MO and Principal Internalizer teams are currently using the platform.
 Besides metrics visualization, RTCS and PI teams benefit from the platform's distributed tracing capabilities.
 Implemented LDAP-based access control to standardize user entitlements across the platform.
+
+CGMI Billing Re-engineering
+Provided comprehensive guidance in rearchitecting the CGMI Billing services.
+Accelerated design and development by leveraging the Tron Stack solutions.
+Assisted with ECS procurement and building job services using Tron-Job Agent and Tron-Job Server.
+The team successfully built and deployed their services within two months of project initiation.
+TRON Key Highlights
+Created vanity URLs for all client-facing services, including Cortex, Tempo, REST API, Grafana, and TronSB.
+Introduced a new TRON-ITRS centralized/deployable component to replace existing application-owned ITRS components.
+The Thailand-Split project is being redesigned to use the TRON framework for further development of microservices.
+Successfully tested Ambrosia REST service integration with the TRON dashboard without requiring changes to the existing service.
+Developed a self-service endpoint to facilitate the migration from OpenShift DeploymentConfig to Deployment.
