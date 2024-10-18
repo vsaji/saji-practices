@@ -1,0 +1,12 @@
+Ambrosia Telemetry Integration
+Led the integration of Ambrosia's telemetry tracing component into RTCS 2.0 services, becoming the first application to leverage this offering.
+Spearheaded the end-to-end integration, customizing the OTEL publisher to capture and report RTCS IDs.
+Collaborated closely with the Ambrosia team to ensure timely delivery of defect fixes and enhancements.
+Supported the RTCS team in extending the solution across additional service instances.
+The solution went live on October 11, enabling the team to visualize request flow and latency through the Tron Grafana dashboard.
+TRON Telemetry Platform
+Established a fully managed telemetry platform to support multi-tenant environments.
+The platform is backed by S3 object storage, featuring self-managing data retention policies activated in Cortex and Tempo DB.
+It includes a dashboard that allows TRON clients to visualize infrastructure metrics without the need for setup.
+Tenants from EQ MO and Principal Internalizer teams are currently using the platform.
+Besides metrics visualization, RTCS and PI teams benefit from the platform's distributed tracing capabilities.
