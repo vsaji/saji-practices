@@ -10,3 +10,4 @@ The platform is backed by S3 object storage, featuring self-managing data retent
 It includes a dashboard that allows TRON clients to visualize infrastructure metrics without the need for setup.
 Tenants from EQ MO and Principal Internalizer teams are currently using the platform.
 Besides metrics visualization, RTCS and PI teams benefit from the platform's distributed tracing capabilities.
+Implemented LDAP-based access control to standardize user entitlements across the platform.
