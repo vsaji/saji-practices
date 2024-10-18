@@ -23,3 +23,12 @@ Introduced a new TRON-ITRS centralized/deployable component to replace existing 
 The Thailand-Split project is being redesigned to use the TRON framework for further development of microservices.
 Successfully tested Ambrosia REST service integration with the TRON dashboard without requiring changes to the existing service.
 Developed a self-service endpoint to facilitate the migration from OpenShift DeploymentConfig to Deployment.
+
+E3 Training
+
+I had the privilege of participating in E3 2024, a prestigious and highly selective annual training program organized by XS, with only a limited number of seats available each year.
+My group secured 2nd place for our compelling project presentation, where I played a key role in its success.
+The project focused on implementing DORA metrics, and we were tasked with delivering a trunk-based development tracker.
+The solution will be integrated into the EE capability dashboard to monitor the level of trunk-based development adopted by a CSI.
+We utilized the Helix Platform for testing and employed technologies such as Python, GraphQL, and OpenShift to develop the solution.
+This training not only enhanced my technical expertise but also provided valuable insights into managerial and soft skills that are crucial in the workplace.
