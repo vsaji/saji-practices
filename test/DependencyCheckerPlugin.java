@@ -73,3 +73,90 @@ public class DependencyCheckerPlugin implements Plugin<Project> {
         resolutionStrategy.force(dependency + ":" + version);
     }
 }
+
+
+
+
+package com.example;
+
+import org.gradle.api.Plugin;
+import org.gradle.api.Project;
+import org.gradle.api.artifacts.Configuration;
+import org.gradle.api.artifacts.ResolutionStrategy;
+import org.gradle.api.artifacts.component.ModuleComponentIdentifier;
+import org.gradle.api.artifacts.result.ResolvedDependencyResult;
+import org.gradle.api.logging.Logger;
+
+import java.util.Map;
+import java.util.Set;
+import java.util.stream.Collectors;
+
+public class DependencyCheckerPlugin implements Plugin<Project> {
+
+    @Override
+    public void apply(Project project) {
+        // This plugin will be configured to accept a map directly from build.gradle
+        project.afterEvaluate(evaluatedProject -> {
+            // Ensure that the map of dependencies and versions is passed from the configuration
+            Map<String, String> enforcedVersions = getEnforcedDependencies(evaluatedProject);
+            if (enforcedVersions != null && !enforcedVersions.isEmpty()) {
+                // Apply the version-checking logic to all resolvable configurations
+                evaluatedProject.getConfigurations().all(configuration -> {
+                    if (configuration.isCanBeResolved()) {
+                        configuration.resolutionStrategy(resolutionStrategy -> {
+                            enforceVersions(evaluatedProject, configuration, enforcedVersions);
+                        });
+                    }
+                });
+            }
+        });
+    }
+
+    // Mock method to simulate the input from build.gradle (will be replaced in usage)
+    private Map<String, String> getEnforcedDependencies(Project project) {
+        // You can pass this map from build.gradle using a custom task or configuration
+        return Map.of(
+                "org.springframework:spring-core", "5.3.8",
+                "com.google.guava:guava", "30.1.1-jre"
+        );
+    }
+
+    // Method to enforce dependency versions if they are lower
+    private void enforceVersions(Project project, Configuration configuration, Map<String, String> enforcedVersions) {
+        Set<ResolvedDependencyResult> resolvedDependencies = configuration
+                .getIncoming()
+                .getResolutionResult()
+                .getAllDependencies()
+                .stream()
+                .filter(dependencyResult -> dependencyResult instanceof ResolvedDependencyResult)
+                .map(dependencyResult -> (ResolvedDependencyResult) dependencyResult)
+                .collect(Collectors.toSet());
+
+        Logger logger = project.getLogger();
+
+        for (ResolvedDependencyResult dependency : resolvedDependencies) {
+            ModuleComponentIdentifier id = (ModuleComponentIdentifier) dependency.getSelected().getId();
+            String dependencyNotation = id.getGroup() + ":" + id.getModule();
+            String resolvedVersion = id.getVersion();
+
+            if (enforcedVersions.containsKey(dependencyNotation)) {
+                String targetVersion = enforcedVersions.get(dependencyNotation);
+                if (isVersionLower(resolvedVersion, targetVersion)) {
+                    logger.lifecycle("Forcing dependency {}:{} to version {}", id.getGroup(), id.getModule(), targetVersion);
+                    forceVersion(configuration.getResolutionStrategy(), dependencyNotation, targetVersion);
+                }
+            }
+        }
+    }
+
+    // Helper method to compare versions
+    private boolean isVersionLower(String currentVersion, String targetVersion) {
+        return new ComparableVersion(currentVersion).compareTo(new ComparableVersion(targetVersion)) < 0;
+    }
+
+    // Helper method to force dependency version
+    private void forceVersion(ResolutionStrategy resolutionStrategy, String dependency, String version) {
+        resolutionStrategy.force(dependency + ":" + version);
+    }
+}
+
