@@ -89,3 +89,65 @@ public class ReplaceDependencyPlugin implements Plugin<Project> {
         });
     }
 }
+
+
+
+
+import org.gradle.api.Plugin;
+import org.gradle.api.Project;
+import org.gradle.api.artifacts.Configuration;
+import org.gradle.api.artifacts.component.ModuleComponentIdentifier;
+import org.gradle.api.artifacts.result.ResolvedDependencyResult;
+
+import java.util.Set;
+import java.util.stream.Collectors;
+
+public class ModifyDependencyPlugin implements Plugin<Project> {
+
+    @Override
+    public void apply(Project project) {
+        // Access the compileClasspath configuration
+        Configuration compileClasspathConfig = project.getConfigurations().getByName("compileClasspath");
+
+        // Apply resolution strategy before resolution happens
+        compileClasspathConfig.getResolutionStrategy().eachDependency(details -> {
+            // Custom logic to force versions before resolution
+            if ("org.springframework".equals(details.getRequested().getGroup()) &&
+                "spring-core".equals(details.getRequested().getName())) {
+                details.useVersion("5.3.8"); // Force a newer version of spring-core
+            }
+
+            if ("com.google.guava".equals(details.getRequested().getGroup()) &&
+                "guava".equals(details.getRequested().getName())) {
+                details.useVersion("30.1.1-jre"); // Change to a higher version of guava
+            }
+        });
+
+        // Optional: Add a task to print resolved dependencies after the configuration is resolved
+        project.getTasks().create("printResolvedDependencies", task -> {
+            task.doLast(action -> {
+                Set<ResolvedDependencyResult> resolvedDependencies = getResolvedDependencies(compileClasspathConfig);
+                resolvedDependencies.forEach(dependency -> {
+                    ModuleComponentIdentifier id = (ModuleComponentIdentifier) dependency.getSelected().getId();
+                    String group = id.getGroup();
+                    String name = id.getModule();
+                    String version = id.getVersion();
+                    project.getLogger().lifecycle("Resolved Dependency: {}:{}:{}", group, name, version);
+                });
+            });
+        });
+    }
+
+    // Helper method to get resolved dependencies from a configuration
+    private Set<ResolvedDependencyResult> getResolvedDependencies(Configuration configuration) {
+        return configuration.getIncoming()
+                .getResolutionResult()
+                .getAllDependencies()
+                .stream()
+                .filter(dependencyResult -> dependencyResult instanceof ResolvedDependencyResult)
+                .map(dependencyResult -> (ResolvedDependencyResult) dependencyResult)
+                .collect(Collectors.toSet());
+    }
+}
+
+
