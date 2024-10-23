@@ -160,3 +160,39 @@ public class DependencyCheckerPlugin implements Plugin<Project> {
     }
 }
 
+
+
+public class DependencyResetPlugin implements Plugin<Project> {
+
+    @Override
+    public void apply(Project project) {
+        // Define your map of dependencies and their enforced versions
+        Map<String, String> enforcedVersions = Map.of(
+                "org.springframework:spring-core", "5.3.8",
+                "com.google.guava:guava", "30.1.1-jre"
+        );
+
+        // Create a new configuration that extends compileClasspath (or any configuration)
+        project.getConfigurations().create("resetCompileClasspath", configuration -> {
+            configuration.extendsFrom(project.getConfigurations().getByName("compileClasspath"));
+            configuration.setCanBeResolved(true); // Ensure it is resolvable
+
+            // Apply beforeResolve hook to enforce dependency versions
+            configuration.getIncoming().beforeResolve(dependencies -> {
+                enforceVersions(configuration.getResolutionStrategy(), enforcedVersions);
+            });
+        });
+
+         project.afterEvaluate(evaluatedProject -> {
+        resetCompileClasspath.resolve();
+    });
+    }
+
+    // Enforce the versions of dependencies before the new configuration is resolved
+    private void enforceVersions(ResolutionStrategy resolutionStrategy, Map<String, String> enforcedVersions) {
+        enforcedVersions.forEach((dependency, version) -> {
+            resolutionStrategy.force(dependency + ":" + version);
+        });
+    }
+}
+
