@@ -28,3 +28,13 @@ He is willing to work on enhancing the skills where he falls short.
 Requires detailed guidance to understand tasks.
 Shows limited initiative in researching more efficient solutions.
 Hesitant to engage in proactive conversations or suggest ideas.
+
+
+
+Hi James,
+
+The TRON Architecture has standardized our development and deployment model to centralize nearly all common configurations and implementations, including the startup script within a base Docker image. Since TRON services are designed to run on the cloud, we opted for Boot JAR packaging to simplify service deployment.
+
+For this specific case, I aimed to find the simplest approach to achieve our objectives. We ultimately decided to use the export/options solution, which confines changes to the Docker image level, requiring no additional work from our clients.
+
+Best regards,
