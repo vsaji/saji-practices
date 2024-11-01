@@ -1,157 +1,29 @@
-It has been over three weeks since our discussion regarding finding candidates to backfill the position, and I have yet to receive any profiles or communication from you on this matter. You had suggested a candidate already within Citi's account, but after evaluation, we confirmed that we could not proceed with that resource. If we do not finalize a backfill within the next week, we will explore other Citi vendors to find a suitable candidate.
-
-
-const webpack = require('webpack');
-
-module.exports = function override(config, env) {
-  // Check if resolve exists, and if not, create it
-  if (!config.resolve) {
-    config.resolve = {};
-  }
-
-  // Check if resolve.fallback exists, and if not, create it
-  if (!config.resolve.fallback) {
-    config.resolve.fallback = {};
-  }
-
-  // Add "https" fallback to https-browserify
-  config.resolve.fallback['https'] = require.resolve('https-browserify');
-
-  return config;
-};
-
-Strengths:
-
-The candidate effectively communicates ideas and concepts.
-Strong knowledge of cloud technologies, particularly in public cloud environments.
-Over 15 years of solid industry experience.
-Skilled in designing and developing cloud orchestration and architecture.
-Displays a polite and humble demeanor, making them a strong team player.
-Areas for Improvement:
-
-Not actively engaged in continuous learning.
-Limited hands-on experience with critical application development.
-Gaps in knowledge of advanced Java features.
-Lacks experience in building finance-related applications.
-
-
-Guide the team in understanding the fundamentals of the XCC framework.
-Assist the team in bootstrapping the project and getting it to a functional state.
-Introduce the key features of the XCC framework, including PropertyCentral, Cyberark, and DB Connector.
-Support in setting up the CI/CD pipeline and completing the initial deployment.
-
-
-Centralized communication hub for quick troubleshooting and sharing solutions.
-Facilitates knowledge sharing and collaboration among team members.
-Streamlines documentation and access to resources for easier reference.
-Enables faster resolution of issues through real-time interactions and feedback.
-
-This role drives technology advancements in the EQ MO space by aligning with the firm's tech strategy. Responsibilities include ensuring platform stability, addressing technical deficiencies, and creating a technology roadmap for automation, observability, and hybrid cloud adoption. The role also focuses on removing technical debt, developing scalable low-latency platforms for operational efficiency, and integrating emerging technologies for future readiness. Mentoring teams, fostering continuous learning, and ensuring design consistency to enhance system reliability and eliminate duplication are key aspects, all while accelerating digital transformation to improve time-to-market.
-
-This role involves engaging with every developer in the MO organization to drive TRON platform adoption, providing support and troubleshooting for products, while also guiding developers toward becoming engineers through coaching and mentoring
-
-In the past two years, Saji has made remarkable strides in his role as Engineering Lead. He transformed the microservices landscape by implementing a no/low-code framework, accelerating development processes. Saji introduced reusable cloud components, such as job agents, ITRS, and Tron hub, significantly reducing the need for application teams to manage these components. He also pioneered the creation of comprehensive dashboards for microservices monitoring and administration across clusters. As the architect of the RTCS FX low-latency library, Saji delivered sub-millisecond performance, a foundational solution for RTCS. His leadership extended to projects like OneConfirms, PRIMO, and RTCS applications, while also addressing end-of-life technology risks through the TRON solution. Additionally, he championed Ambrosia in the MO space and contributed valuable insights on telemetry development, cementing his role as a technology leader
-
-During his tenure at Citi, he managed several critical Middle Office business applications interfacing with Front Office systems that handle EQ Cash and Derivative products. He has extensive knowledge of the trade life cycle and middle office functions, including trade netting, allocation matching, confirmation generation, trade creation, client profiling, and charge calculations. He served as the application manager for CPACS, a global configuration service crucial to Front Office systems, where he handled charge calculations for EQ products. His strong support and timely, high-quality delivery earned him recognition from Middle Office operations and senior management.
-
-Additionally, he was the lead developer for the CDSD application, a prestigious platform built using Ambrosia. He single-handedly delivered the shortsell locates module, working not only as a developer but also closely with the business to meet new functionality requirements. He successfully eliminated the legacy application and migrated all clients to the new platform, streamlining operations and improving system efficiency.
-
-Saji is a highly hands-on technical leader with extensive contributions, making over 1,000 commits to Bitbucket in 2023 and 700+ in 2024. As an engineering lead, he collaborates closely with teams such as Ambrosia, TenantOps, DevOps, and ITRS, providing critical feedback to improve the quality and performance of their products and services. Saji is the author and maintainer of the TRON Stack Solution, an innovative framework designed to streamline cloud service development and address observability and monitoring requirements with a no-code approach. This solution includes centralized dashboards for managing microservices on OpenShift clusters and integrates OpenTelemetry for performance and trace metrics, feeding into a unified Grafana platform.
-
-Additionally, he played a pivotal role in delivering sub-millisecond performance with the RTCS FX low-latency library and contributed to key projects like OneConfirms, PRIMO, and RTCS applications. Saji also championed Ambrosia in the Middle Office space, contributing to telemetry development and resolving critical end-of-life technology challenges, establishing himself as a technology leader.
-
-
-Saji champions progress by driving technological innovation and fostering a culture of continuous improvement within the organization. He spearheaded the development of the TRON Stack Solution, simplifying cloud service development and enhancing observability through no-code approaches. His leadership in projects like the RTCS FX low-latency library achieved remarkable sub-millisecond performance, positioning the firm at the forefront of efficiency. By collaborating with cross-functional teams such as Ambrosia, TenantOps, and DevOps, Saji ensures alignment between technical solutions and business objectives. He actively mentors engineers, empowering them to grow their skills and drive collective progress toward shared goals and excellence.
-
-**************************************************************************
-Saji drives results through his hands-on approach and strategic leadership across engineering teams. By developing impactful solutions like the TRON Stack, he accelerates cloud service delivery and improves observability with no-code capabilities. His work on the RTCS FX low-latency library, achieving sub-millisecond performance, exemplifies his commitment to high-quality outcomes. Additionally, he ensures timely and efficient project delivery in initiatives like OneConfirms and PRIMO, aligning technical innovations with business objectives. Through collaboration and mentoring, Saji fosters an environment that consistently produces results, driving success for both the organization and its clients.
-************************************
-
-Saji consistently delivers results by designing solutions that eliminate redundancies and improve productivity across teams. Through ongoing collaboration, he ensures that his innovations are widely adopted, driving tangible outcomes for the business. His approach focuses on creating scalable, reusable solutions that streamline processes, helping teams achieve faster delivery while maintaining high-quality standards.
-
-Key features developed by Saji have been successfully integrated into the Middle Office (MO) and beyond, including seamless connections to CyberArk and Cortosis for secure password retrieval, and Venafi for SSL certificates using a no-code approach. He also created a generic ITRS-netprobe and automated sampler generation at the gateway, as well as seamless integration with Property Central for SpringBoot applications. Additionally, his annotation-based cache injection allows for flexible on-heap or off-heap storage, and his centralized reference data service distributes real-time updates to microservices while maintaining a single connection to the data source
-**************************************************************************
-
-
-Saji drives value for clients by developing robust, scalable solutions like the RTCS FX low-latency library, delivering sub-millisecond performance for critical applications. His TRON Stack Solution enhances cloud service development and observability, allowing clients to efficiently monitor and manage their services. By collaborating closely with business teams, Saji tailors solutions to meet evolving client needs, ensuring timely delivery of high-quality results. His focus on innovation and operational excellence not only improves client satisfaction but also positions the firm as a trusted partner in achieving their business objectives.
-******************
-Saji is instrumental not only in building innovative solutions but also in identifying areas where they can be effectively implemented. He actively communicates new developments by sending announcements and newsletters to a wider technology audience at Citi, ensuring the visibility of his team's work. Additionally, he tracks the reach and impact of these solutions through a dashboard, providing senior management with measurable insights.
-
-One of his key contributions is the TRON Stack Solution, which enhances cloud service development and observability. This framework has been widely adopted in the Middle Office, supporting the development and deployment of over 100 microservices in production, with more than 50 in progress. Saji also created a self-service project builder tool that generates TRON/Spring Boot projects in just five minutes, complete with CI/CD scripts and an OpenShift deployment descriptor.
-
-Recently, Saji delivered a self-service endpoint that automates OpenShift DeploymentConfig migration. This solution reduces migration time from 30 minutes to less than two seconds per migration. With over 200 migrations needed in the Middle Office, this innovation saves more than five days of effort. The solution has been shared with TenantOps for further expansion.
-**************************************************************************
-
-Saji works as a partner by fostering strong collaborations with teams such as Ambrosia, TenantOps, DevOps, and ITRS, providing essential feedback to enhance product quality and service delivery. His leadership in developing the TRON Stack Solution aligns technical capabilities with business goals, ensuring effective solutions that meet client needs. By mentoring and coaching engineers, Saji cultivates a supportive environment that encourages teamwork and shared success. His proactive approach and commitment to open communication empower teams to navigate challenges together, reinforcing a partnership-oriented culture that drives collective achievement across the organization.
-*********************************
-
-Saji partnered with the Ambrosia team to enhance the OTEL publisher process by addressing missing features and resolving defects. His collaboration helped improve the efficiency and functionality of the system, ensuring better performance for the team. Through this partnership, Saji contributed key technical solutions that strengthened the overall delivery process.
-
-In addition, Saji worked closely with Citi’s ITRS team and the vendor to resolve a long-standing ITRS gateway connectivity issue. His proactive investigation and collaboration led to identifying and implementing a solution. He also partnered with Middle Office (MO) application leads and developers to understand their architectural challenges. By addressing these issues through common, reusable solutions, he made these enhancements easily accessible via the Artifactory common repository or UDeploy platform
-
-****************************************************************************************
-
-Saji develops people by actively mentoring and coaching engineering teams, transforming developers into skilled engineers through continuous guidance and support. He fosters a culture of learning and technical excellence, encouraging team members to take ownership of their projects and innovate. By leading high-impact initiatives like the TRON Stack and RTCS FX library, Saji provides opportunities for skill enhancement and professional growth. His collaborative approach ensures that team members feel empowered to contribute ideas, ultimately building a strong, capable workforce that drives success for both the organization and its clients.
-*************************************
-Saji develops people by actively mentoring and coaching engineering teams, transforming developers into skilled engineers through continuous support. Despite having a small team of just two members, he has made a significant impact by driving a series of transformations. Over the past two years, he introduced various frameworks, tools, automation processes, and DevOps practices that have greatly benefited the developer community.
-
-He fosters a culture of learning and technical excellence, encouraging team members to take ownership of their projects. His continuous engagement with developers resulted in contributions from outside his team, such as the GAS application team contributing File Watcher and Email Watcher services to the common repository. The RTCS team also enhanced the Refdata service, supporting Couchbase real-time updates and creating a metrics broker to route application metrics to Prometheus.
-
-Saji also trained developers in using Chronicle JLBH for latency testing and Java Mission Control for troubleshooting memory or CPU-intensive applications. This initiative was well received, enabling the RTCS team to enhance their applications and fix issues through advanced diagnostics techniques.
-***********************************************************************************
-
-
-Saji has been with the firm for 13 years and has over 20 years of experience in banking and software development. Throughout his tenure at Citi, he has successfully leveraged mobility options, proving his ability to manage business, technology, and infrastructure deliveries in both Front Office and Middle Office environments. He has held diverse roles, including Application Developer, Manager, Individual Contributor, and now serves as an Engineering & Architecture Lead.
-
-Hi Raj, good morning. I apologize for reaching out directly through chat, I hope it's not a bother. Following up on our conversation last week regarding the role, I wanted to clarify two things. If possible, could we have a quick 5-minute call? Please suggest a time, or I’m happy to ask you here if that's more convenient.
-
-Have you already shortlisted candidates for this role?
-You mentioned the need for EQ Derivatives knowledge. How much weightage does this demands (%) compared to the other qualifications listed in the job description?
-
-I have been with the firm for 13 years and bring over 20 years of experience in banking and software development. During my time at Citi, I’ve taken advantage of mobility opportunities to demonstrate my ability to manage business, technology, and infrastructure deliveries across both Front Office and Middle Office environments. Over the years, I’ve held various roles, including Application Developer, Manager, Individual Contributor, and currently serve as an Engineering & Architecture Lead
-
-
-I have managed several critical Middle Office business applications that interface with Front Office systems handling EQ Cash and Derivative products. I have extensive knowledge of the trade life cycle and middle office functions, including trade netting, allocation matching, confirmation generation, trade creation, client profiling, and charge calculations. As the application manager for CPACS, a global configuration service essential to Front Office systems, I oversaw charge calculations for EQ products. My strong support, along with timely and high-quality deliveries, earned me recognition from Middle Office operations and senior management
-
-
-In the past two years as Engineering Lead, I’ve made significant strides by transforming the microservices landscape through a no/low-code framework, speeding up development processes. I introduced reusable cloud components like job agents, ITRS, and Tron hub, reducing the need for application teams to manage them. I also built comprehensive dashboards for microservices monitoring and administration across clusters. As the architect of the RTCS FX low-latency library, I delivered sub-millisecond performance, laying the foundation for RTCS. I’ve led key projects such as OneConfirms, PRIMO, and RTCS, while mitigating end-of-life technology risks with the TRON solution. I also championed Ambrosia in the MO space, contributing valuable insights into telemetry development, solidifying my role as a technology leader.
-
-Additionally, as the lead developer of the CDSD application—a prestigious platform built using Ambrosia—I delivered the shortsell locates module, working closely with the business to meet functionality requirements. I successfully eliminated the legacy application and migrated all clients to the new platform, improving efficiency.
-
-I’m a hands-on technical leader with over 1,000 Bitbucket commits in 2023 and 700+ in 2024. I collaborate with teams like Ambrosia, TenantOps, DevOps, and ITRS, offering feedback to enhance product quality and performance. I authored and maintain the TRON Stack Solution, an innovative framework streamlining cloud development, observability, and monitoring through a no-code approach. This solution includes centralized dashboards for microservice management on OpenShift clusters and integrates OpenTelemetry for performance and trace metrics into a unified Grafana platform.
-
----------------------------------------------------------------------------------------------------
-This role drives technology advancements in the EQ MO space by aligning with the firm's tech strategy. Responsibilities include overseeing the design, development, and deployment of projects with a focus on AI/ML adoption. The role also creates a roadmap for automation, observability, and hybrid cloud adoption.
---------------------------------------------------
-This role drives technology advancements in the EQ MO space by aligning with the firm's tech strategy. Responsibilities include overseeing the design, development, and deployment of projects, with potential opportunities to explore AI/ML adoption where applicable. The role also creates a roadmap for automation, observability, and hybrid cloud adoption.
-
-Additionally, it addresses technical debt, develops scalable low-latency platforms for operational efficiency, and integrates emerging technologies. Close collaboration with QA teams ensures streamlined testing and task automation.
-Key aspects include mentoring teams, fostering continuous learning, and ensuring design consistency to enhance reliability and accelerate digital transformation for faster time-to-market.
-*******************************************************************
-This role drives technology advancements in the EQ MO space by aligning with the firm’s tech strategy. Core responsibilities include overseeing the design, development, and deployment of projects, establishing roadmaps for automation, observability, and hybrid cloud adoption, and serving as a developer advocate for new technologies introduced by the firm, ensuring their integration into both new and existing developments.
-
-In addition, the role focuses on addressing technical debt, building scalable low-latency platforms to boost operational efficiency, and integrating emerging technologies. Close collaboration with QA teams ensures efficient testing and task automation.
-
-Key aspects include mentoring teams, fostering continuous learning, and ensuring design consistency to enhance reliability and accelerate digital transformation. Opportunities to explore AI/ML adoption will also be pursued where applicable, though at a lower priority.
-
-Hi Leads,
-
-I recently completed the FDHG assessment and found it extremely valuable. I highly recommend that every developer on your team attend this training. Lois from the DJHF team is looking to track the developers in our space who need to take this training. Please share the list of individuals from your area.
-
-Thank you!
-
-
-My vision is to drive innovation and operational excellence by creating scalable, low-latency solutions and reusable cloud components that streamline development, reduce duplication, and foster collaboration. Through technology leadership and a focus on empowering teams, I aim to enhance productivity, improve observability, and shape a future where developers can focus on delivering high-quality, functional outcomes while leveraging automated and efficient platforms.
-
-
-Hi everyone,
-As many of you know, I’ve been a part of Citi's prestigious E3 training for the past 7 months. It has been an incredible journey filled with learning, collaboration, and team activities. This is truly an opportunity that no one should miss, as it provides unique insights and experiences. Though it was intensive, with over 60 hours of engagement, the effort is well worth it for the growth and knowledge you gain.
-
-
-For the final presentation, the teams were divided into two groups, each consisting of six teams. We were part of Group 2 and secured 2nd place for our project presentation.
-
-
-
-/^(?!.*tron).*(["']?level["']?\s*:\s*["']?error["']?).*$/i
-
-/(?!.*tron)['"]?level['"]?\s*[:=]\s*['"]?error['"]?/i
+#!/bin/bash
+
+# Check if the file path is provided
+if [ -z "$1" ]; then
+  echo "Usage: $0 <file_path>"
+  exit 1
+fi
+
+FILE_PATH="$1"
+
+# Check if the file exists
+if [ ! -f "$FILE_PATH" ]; then
+  echo "File not found: $FILE_PATH"
+  exit 1
+fi
+
+# Create a backup of the original file
+cp "$FILE_PATH" "$FILE_PATH.bak"
+
+# Replace each placeholder with the value of the corresponding environment variable
+# This preserves the formatting by processing each environment variable individually
+for var in $(compgen -e); do
+  value=$(printenv "$var")
+  # Escape slashes in the value to prevent sed issues
+  escaped_value=$(printf '%s\n' "$value" | sed 's/[&/\]/\\&/g')
+  sed -i "s|\${$var}|$escaped_value|g; s|\$$var|$escaped_value|g" "$FILE_PATH"
+done
+
+echo "Environment variables have been replaced in $FILE_PATH (backup created as $FILE_PATH.bak)."
