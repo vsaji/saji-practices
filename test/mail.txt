@@ -67,3 +67,11 @@ Encouraging Innovation and Collaboration: Embracing a more creative and collabor
 
 
 Denny demonstrates a polite and calm demeanor in the workplace. He is receptive to feedback and readily acknowledges areas for improvement when they are pointed out. However, there is a general observation that while he understands and accepts feedback, the follow-through on implementing it and showing consistent improvement in his behavior tends to be slow or, at times, lacking.
+
+
+
+Hi Mic,
+
+I lead the Engineering & Architecture initiatives in the EQ MO space, where my responsibilities focus on enhancing application development standards and enabling robust monitoring and observability for over 300 applications. My manager, Scot Brady (Global Head of EQ MO), mentioned meeting you at the EE Tech Conference on October 21 and learning about Grafana Enterprise's offerings. I’d like to schedule a call to explore the latest developments in Grafana Enterprise and discuss how quickly we might onboard our applications.
+
+Thank you!
