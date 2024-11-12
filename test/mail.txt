@@ -4,7 +4,6 @@ We've noticed an excessive amount of single trace data coming from your trading 
 I'm quite disappointed that, despite having an approved position, we have been unable to create a job ad on Workday for the past two months due to a system error, with no resolution in sight. As you know, getting a position approved these days is already a challenge, and this system issue is now further delaying our hiring process.
 
 It’s also concerning that your team has not been involved in addressing or resolving this issue. Since no assistance has been offered, we are left with no choice but to cancel and recreate the position, which will unfortunately cause further delays in hiring.
-
 I urge you to please look into this matter and offer the necessary support to prevent further setbacks.
 
 
@@ -78,3 +77,8 @@ Thank you!
 
 
 Here are some key incidents and evidence collected during the 30-day observation period, highlighting instances where Denny repeatedly demonstrated inattentiveness and other deficiencies.
+
+
+Denny does not consistently update JIRA with progress or close tasks upon completion. Despite multiple reminders, he has not adopted this practice. For example, as shown below, there is a task still marked as "open," even though it has already been completed.
+
+I instructed Adrien to create a JIRA ticket before starting any task. For the items listed below, I specifically asked him on October 30 to create the JIRA entries, but he did not follow this instruction. After I questioned him on November 7, he created the tickets in bulk but, as usual, did not update their statuses, leaving all of them marked as "in progress."
