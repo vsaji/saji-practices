@@ -82,3 +82,7 @@ Here are some key incidents and evidence collected during the 30-day observation
 Denny does not consistently update JIRA with progress or close tasks upon completion. Despite multiple reminders, he has not adopted this practice. For example, as shown below, there is a task still marked as "open," even though it has already been completed.
 
 I instructed Adrien to create a JIRA ticket before starting any task. For the items listed below, I specifically asked him on October 30 to create the JIRA entries, but he did not follow this instruction. After I questioned him on November 7, he created the tickets in bulk but, as usual, did not update their statuses, leaving all of them marked as "in progress."
+
+
+
+Upon joining the team, I requested the Pune team to provide a knowledge transfer session to Denny. However, he didn’t attend the sessions consistently and wasn’t proactive in notifying us when he couldn’t join. Additionally, from the team members’ perspective, he seemed disengaged and inattentive to details during the sessions.
