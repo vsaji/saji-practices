@@ -49,3 +49,5 @@ As the new re-architecture project is being developed using a combination of Jav
 
 
 The candidate communicated clearly and articulated responses well; however, they struggled with basic Java questions, indicating limited recent coding experience. Additionally, they showed weaknesses in handling situational technical questions, which suggests a gap in practical problem-solving skills. Overall, while their communication skills are strong, their technical abilities do not meet the expectations for this role.
+
+The candidate appears too junior for this role, lacking a strong understanding of overall project architecture in her work experience. While she is currently in a coding role, she struggled to explain the rationale behind using specific collection objects, indicating limited depth in technical knowledge. Additionally, she demonstrated weaknesses in responding to situational technical questions, which raises concerns about her problem-solving skills and readiness for this position.
