@@ -47,3 +47,5 @@ Jen’s approachable nature fosters open discussions and smooth decision-making.
 
 As the new re-architecture project is being developed using a combination of Java and cloud technologies, I would encourage Jen to enhance his skills in areas like microservice development with Java and Spring Boot, as well as gaining a deeper understanding of Linux and cloud platforms. This will enable him to work more independently, contribute more directly to the tech roadmap in line with the firm’s strategy, and potentially accelerate the delivery of ongoing tasks by being able to contribute hands-on.
 
+
+The candidate communicated clearly and articulated responses well; however, they struggled with basic Java questions, indicating limited recent coding experience. Additionally, they showed weaknesses in handling situational technical questions, which suggests a gap in practical problem-solving skills. Overall, while their communication skills are strong, their technical abilities do not meet the expectations for this role.
