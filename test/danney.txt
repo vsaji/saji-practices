@@ -1,7 +1,75 @@
-Denny was assigned a task that involved following a few steps to lock certain library component versions. The instructions were provided during the start-of-day (SOD) call, and he acknowledged understanding them, as there were only four steps. The task required freezing three components; he successfully locked one, but missed a step that involved creating a tag for the remaining two components. When asked about this oversight, he responded that he simply forgot.
+give the following requirement, which AI solution should be considered to build a solution
 
-Denny was assigned a task involving modifications across multiple files to update library versions, adjust configuration parameters, and verify the presence of certain settings. Given the number of validation steps required, I suggested that Denny create an Excel sheet to document each validation rule he should check against each component upon completing the changes. I also requested that he send an email capturing these details for our records before beginning the task. However, he proceeded with the migration task without sending the email and made an error that could have been avoided if he had documented the validation rules. When questioned about it in the end-of-day (EOD) call, he stated he wasn’t aware he needed to send the email. Additionally, he has yet to provide the Excel sheet confirming his validation of the migration task according to the instructions.
+A rate data is a static data which consists of rate_id, product_code, deal_id, side, country_code,rate_in_bps_min, rate_in_bps_max. This data could be changed by the users  50 times in a day. While processing the trading data, a process will look up this table and assign a rate based on the product_code,deal_id,side,country_code etc. Currently, there is no AI recommendations are made to guide the user to setup a new rate data or tweak the transaction data in order to match a rate. We don't want to intergate the AI solution during the request processing, becuase we may get high volume of request. Users will use a UI to seach trades where they may notice some of the columns are not assigned with rates, so at that point time, AI recommendation is required to same what could be done to get an appropriate rate to be assigned. While search the record, user can enable to get a AI recommendation, only such request can analyze the trade data which are not assigned with rate info and recommend. 
 
-Denny was assigned to implement a data retention period for a metrics database and received guidance throughout the deployment on the DEV environment. After the change was made, he did not proactively check if the data retention was working as expected, despite data being evicted correctly. I asked him to file an issue ticket with the appropriate team for further investigation, which he confirmed he did, but there have been no updates on the matter since then.
+Suggest a possible models or end-to-end architecture which could be used for building this solution
 
-As part of the ongoing review process, Prati asked Denny to reach out to me for feedback on his performance over the past 30 days. While he acknowledged that he would follow through with this request, he did not schedule a call with me to discuss his performance.
+This use case involves recommending appropriate rate adjustments based on static data for trades where rates are missing. Since real-time AI integration isn't required during high-volume transaction processing, the focus is on asynchronous AI-driven recommendations during user-initiated searches. Here's a high-level architecture and suggested AI models:
+
+Proposed Architecture
+1. Data Ingestion and Preprocessing
+Input Data:
+Static Rate Data: Preprocessed to ensure clean and normalized records.
+Trade Data: Filtered to identify trades missing rate information.
+ETL Pipeline:
+Build an Extract-Transform-Load (ETL) pipeline to prepare static and transactional data for AI model training and inference.
+2. Feature Engineering
+Static Features: Derived from the static rate data (e.g., rate ranges, product mappings).
+Dynamic Features: Trade attributes like product_code, deal_id, side, country_code, and time of trade.
+Create composite features (e.g., matching score, historical trends).
+3. AI Models
+Classification Model (Binary/Multiclass): Predict whether a trade is likely to match an existing rate.
+Model Options: Random Forest, Gradient Boosting (e.g., XGBoost), or deep learning models (e.g., Feedforward Neural Networks).
+Recommendation Model: Suggest the best rate or changes in transaction data to match an existing rate.
+Approach: Multi-Label Classification or Ranking Model.
+Model Options: Neural Collaborative Filtering (NCF), Matrix Factorization, or Transformers (e.g., BERT for tabular data).
+Anomaly Detection: Identify outlier trades or rates using Isolation Forest or Autoencoders.
+4. Model Training
+Training Dataset:
+Historical trade data with labeled rate assignments.
+Augment data for trades without assigned rates.
+Evaluation Metrics:
+Classification Accuracy, Precision, Recall for rate assignment.
+Mean Average Precision (MAP) for recommendations.
+5. AI Model Integration
+Train models offline and deploy them as a REST API service.
+Periodically retrain models with updated data for continuous improvement.
+Use batch inference for user-triggered recommendation requests.
+6. UI/UX Layer
+Search Trades: A web-based UI where users can view trades with missing rate information.
+Enable AI Recommendation:
+User triggers AI analysis for selected trades.
+Display recommended rates and suggested changes in an intuitive interface.
+7. Workflow
+User searches trades via UI.
+Trades with missing rates are identified.
+User requests AI recommendations for these trades.
+The AI model processes data asynchronously and returns suggestions.
+Suggestions are displayed for user action.
+Technology Stack
+Backend:
+
+Python-based frameworks: FastAPI, Flask for serving AI recommendations.
+Data processing: Apache Spark or Pandas for ETL.
+AI Models:
+
+TensorFlow/PyTorch or Scikit-learn for model training and deployment.
+Database:
+
+Static Rate Data: Relational DB (PostgreSQL/MySQL).
+Trade Data: NoSQL (MongoDB) or Data Lake (AWS S3).
+Batch Processing:
+
+Apache Airflow or AWS Lambda for asynchronous recommendation workflows.
+Frontend:
+
+React.js/Angular for the user interface.
+Hosting & Scaling:
+
+AWS/GCP/Azure for hosting.
+Kubernetes for container orchestration.
+Key Benefits
+Efficiency: Keeps high-volume transaction processing independent of AI recommendations.
+Scalability: Batch inference supports asynchronous workflows.
+Adaptability: AI models improve as new trade and rate data are added.
+Would you like to dive deeper into any component of this solution?
