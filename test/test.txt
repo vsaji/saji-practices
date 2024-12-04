@@ -9,3 +9,13 @@ You've had a remarkable career journey in the Middle Office space. Your polite d
 
 
 Please be reminded that this SN may not be implemented today due to delays in responding to emails and a lack of prompt and collective questioning by your team. Kindly improve the quality of asking questions promptly to avoid such scenarios in the future.
+
+
+
+Hi Rthh,
+
+I came across the email below from the TGG team, instructing users to migrate deployment descriptors from DeploymentConfig to Deployment. As you may recall from our previous meeting, the MO E&A team has developed an automated solution for this migration using a simple curl command.
+
+I have CC’d you in the announcement email I sent in September 2024, and I’ve attached it here for reference. Could you please review it and help promote this solution among your users to ensure broader adoption?
+
+Thanks!
