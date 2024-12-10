@@ -1,6 +1,4 @@
-I highly recommend Manoj for this position. He possesses extensive experience in delivering numerous big data projects utilizing technologies such as Java, Spark, Hadoop, and Hive. Moreover, as a former Citi employee, he is well-acquainted with the firm's culture and processes, which typically take months for newcomers to adapt to. He meets over 80% of the requirements for this role, making him an excellent fit.
-
-
+Tejas demonstrated good communication skills and was able to articulate his responses effectively. However, he lacked in-depth knowledge of some of the skills listed on his CV, such as Spring Boot and RESTful services. He appeared uncertain about their functionality and implementation. We can consider placing him on the waiting list while we evaluate other candidates or await confirmation from Jitendra.
 We've noticed an excessive amount of single trace data coming from your trading service in production. Please suppress these, as we've determined that this particular trace point is neither critical nor relevant to your application. Publishing single trace points doesn't add value and could unnecessarily consume space, potentially affecting performance.
 
 
