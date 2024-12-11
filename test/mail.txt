@@ -1,4 +1,11 @@
+
+
+This year has been marked by significant achievements, continuous learning, and overcoming challenges. I’ve contributed to key projects, aligned with team goals, and focused on growth areas. I’ve also had productive discussions with my manager to seek feedback and align on priorities. Looking forward to contributing further next year.
+
+
 Tejas demonstrated good communication skills and was able to articulate his responses effectively. However, he lacked in-depth knowledge of some of the skills listed on his CV, such as Spring Boot and RESTful services. He appeared uncertain about their functionality and implementation. We can consider placing him on the waiting list while we evaluate other candidates or await confirmation from Jitendra.
+
+
 We've noticed an excessive amount of single trace data coming from your trading service in production. Please suppress these, as we've determined that this particular trace point is neither critical nor relevant to your application. Publishing single trace points doesn't add value and could unnecessarily consume space, potentially affecting performance.
 
 
