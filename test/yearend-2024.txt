@@ -1,3 +1,49 @@
+Start with Gratitude and Context
+Open by thanking your manager for their support and guidance. Set the stage for a constructive conversation by stating your objectives for the review.
+
+Example: “I’d like to use this time to reflect on my contributions, gather feedback, and align on priorities for next year.”
+
+Highlight Key Achievements
+Present your top 3-5 achievements with measurable outcomes. Include how they aligned with organizational goals and benefited your team or department.
+
+Example: “One key accomplishment this year was developing a no-code framework that reduced microservice delivery time by X%.”
+
+Discuss Areas of Growth
+Acknowledge areas where you faced challenges, the steps you took to overcome them, and the progress made. This demonstrates self-awareness and a growth mindset.
+
+Share Feedback You’ve Received
+Mention feedback from peers or stakeholders and how you’ve acted on it. Highlighting continuous improvement will resonate positively.
+
+Request Feedback
+Ask for candid feedback on your performance and areas where you can improve. Encourage your manager to share their perspective.
+
+Example: “I’d love to hear your thoughts on how I can enhance my leadership skills or approach technical challenges differently.”
+
+Discuss Career Development Goals
+Outline your aspirations, such as gaining new responsibilities, mastering specific skills, or pursuing leadership roles. Seek input on aligning these goals with organizational needs.
+
+Example: “I’m interested in taking on more cloud strategy initiatives. What skills or experiences should I focus on to prepare for that?”
+
+Address Challenges Together
+Discuss any challenges you encountered during the year and ask for your manager's perspective or support in overcoming similar issues in the future.
+
+Align on Next Year’s Priorities
+Collaboratively set high-level goals for the upcoming year. Ensure they align with team and organizational objectives, while addressing your career development.
+
+Conclude Positively
+Recap the main points discussed and express enthusiasm for the coming year. Thank your manager for their time and insights.
+
+
+
+
+
+
+
+
+
+
+
+
 Ambrosia Telemetry Integration
 Led the integration of Ambrosia's telemetry tracing component into RTCS 2.0 services, becoming the first application to leverage this offering.
 Spearheaded the end-to-end integration, customizing the OTEL publisher to capture and report RTCS IDs.
