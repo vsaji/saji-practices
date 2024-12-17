@@ -1,3 +1,11 @@
+
+This situation is extremely disappointing. I had been following up with you on the joining status of this candidate until Thursday. While you were not completely sure of the outcome, this result is frustrating. While candidates are free to make their own decisions, as an employer, it is concerning if we cannot gauge their intentions and commitments. On what grounds should I invest time interviewing candidates if there is no assurance they will join?
+
+I have already expressed my concerns regarding the pre-screening process conducted by Synechron, as many candidates did not meet the minimum criteria.
+
+Tejas is an average candidate, and I am no longer considering him for this position.
+
+
 Jim effectively explained the projects he has worked on and delivered in the past, providing clear reasoning behind the choice of tools and frameworks used and their purposes. However, he appeared to lack up-to-date knowledge of the current tech stack and its applications. During the assessment of his Java fundamentals and system design skills, he demonstrated a moderate level of proficiency. Therefore, I recommend conducting an additional technical round to evaluate his Java skills more thoroughly.
 
 
