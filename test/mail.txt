@@ -1,3 +1,5 @@
+Nishant is currently leading a team, dedicating 20% of his efforts to coding. He is seeking a similar role where he can leverage his leadership skills and drive change with the support of a team. After learning that the position requires over 70% coding effort, he decided not to pursue the opportunity.
+
 Gujant demonstrated strong communication skills and effectively explained his previous experience and projects. However, the role requires a higher level of engineering expertise, problem-solving abilities, and initiative-driving skills, which were found to be limited. Therefore, we have decided not to move forward with the candidate.
 
 Viresh struggled to articulate his responses effectively. When asked about Java threading or Spring Boot versus framework-related questions, his answers lacked a clear understanding of the underlying concepts. I find his knowledge quite average, and he would need significant training to meet our expectations.
