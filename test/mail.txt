@@ -1,3 +1,17 @@
+Strengths
+Keran demonstrated excellent communication skills and was able to articulate her thoughts and ideas effectively.
+She has a strong background in designing and executing applications.
+Proficient in Java programming, as evidenced by her completion of 4/4 exercises within 30 minutes.
+Displayed enthusiasm for the role, particularly in areas requiring research and development.
+Suitable for developer responsibilities related to frameworks and best practices.
+Experienced in team management and conducting peer reviews.
+Showed a willingness to learn and improve in areas where she currently lacks expertise.
+Proficient in developing microservices using the Spring stack.
+Weaknesses
+Lacks experience working with low-latency applications, resulting in limited knowledge of JVM internals and garbage collection (GC) specifics.
+Has only moderate knowledge of UX design and development.
+
+
 Denny has been identified as an enthusiastic and knowledgeable candidate with strong capabilities in project delivery and execution. She effectively articulated her responses to questions on system design and DevOps processes. However, we recommend conducting an additional technical round to further assess her expertise in core technical concepts such as Java concurrency, memory model, threading, and collections. Therefore, I propose scheduling one more round before moving forward to the final stage.
 
 Nishant is currently leading a team, dedicating 20% of his efforts to coding. He is seeking a similar role where he can leverage his leadership skills and drive change with the support of a team. After learning that the position requires over 70% coding effort, he decided not to pursue the opportunity.
