@@ -1,3 +1,10 @@
+Gine mentioned that Dave's role will be hired in Canada. As you know, we have been interviewing candidates for the RTCS/Architecture role. During this process, we have identified a few candidates who we believe would be a great fit for the App Lead position.
+
+Attached is the profile of one such candidate for your review. Once the job is posted in Workday, please proceed with discussions with this candidate.
+
+Let me know if you need any additional information.
+
+
 The solution includes a feature-rich dashboard built with ReactJS, seamlessly integrated with the CitiVelocity platform and a comprehensive Grafana setup powered by CORTEX, TEMPO, and S3. It enables real-time monitoring of microservices deployed across various clusters and allows remote diagnostics of microservices through pre-built endpoints.
 
 The candidate struggled to provide clear and satisfactory answers to the questions, including explaining project details or the rationale behind specific design and implementation choices. Despite the questions being based on the candidate's CV, she was unable to effectively articulate the concepts or skills listed. Java and microservices expertise appeared to be weak. Therefore, we are unable to move forward with this candidate.
