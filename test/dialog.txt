@@ -2,3 +2,9 @@ Saji provided an overview of the architecture and features of various components
 A detailed discussion was held on the TRON Telemetry Platform, during which Saji explained how the MO and Principle Internalizer applications have utilized the platform for capturing metrics and traces.
 It was identified that the PI integration can serve as a reference for implementing OT-LMS.
 Puneet will collaborate with Saji to gather the necessary details and understand the solution for implementation.
+
+
+The requirement is to utilize the Ambrosia ITRS service to route events from other services to ITRS Geneious.
+Abhijit attempted to configure this setup, but the system failed to recognize the netprobe instance running on the cluster.
+Saji reviewed the setup and recommended configuring separate netprobe instances for the primary and secondary POD instances.
+Saji also identified an issue with the service name being used and advised using the name specified in the ITRS POD configuration.
