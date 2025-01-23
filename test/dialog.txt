@@ -8,3 +8,14 @@ The requirement is to utilize the Ambrosia ITRS service to route events from oth
 Abhijit attempted to configure this setup, but the system failed to recognize the netprobe instance running on the cluster.
 Saji reviewed the setup and recommended configuring separate netprobe instances for the primary and secondary POD instances.
 Saji also identified an issue with the service name being used and advised using the name specified in the ITRS POD configuration.
+
+
+I wanted to bring to your attention a pressing concern regarding the backfill for Shrikant's position, which has now been vacant for nearly four months. Unfortunately, despite Dixie's efforts, we have not yet been able to identify a suitable candidate to fill this role.
+
+I personally interviewed over eight candidates so far, but none of them have met the basic requirements outlined in our job description. Additionally, I have observed a noticeable decline in the frequency of interview schedules recently, which is adding to the delay.
+
+Given the prolonged timeline, there is a growing risk that this position may be cancelled if we do not finalize a candidate by next week. This would undoubtedly impact the team's workload and deliverables.
+
+I would appreciate it if we could explore additional measures to expedite this process, such as widening the talent pool, revisiting the JD to ensure alignment with market expectations, or seeking internal referrals.
+
+Looking forward to your guidance on how we can address this situation effectively.
