@@ -43,11 +43,12 @@ Manages tenants efficiently with a limited number, reducing overhead.
 Complies with OpenTelemetry standards, ensuring flexibility for future backend changes.
 Secures data access with isolated controls via LDAP groups.
 
-Simplified Onboarding Process: The platform provides an easy onboarding experience with minimal steps, ensuring that teams can get started quickly without unnecessary complexity.
-Accelerates Prototyping: By streamlining observability setup, the platform enables faster prototyping, allowing teams to test and validate ideas more efficiently.
-Efficient Tenant Management: With a limited number of tenants, the platform ensures better resource allocation, reduced overhead, and improved management of observability data.
-Adherence to OpenTelemetry Standards: By following OpenTelemetry standards, the platform ensures compatibility and flexibility, making it easier for applications to switch to different backends in the future without significant rework.
-Secure and Isolated Access Control: Access to observability data is tightly controlled through LDAP group-based permissions, ensuring that each user or team has isolated and secure access to their data.
+Includes managed storage for Metrics, Traces, and a Grafana UI.
+Offers a streamlined onboarding process with minimal steps for quick and easy setup.
+Simplifies observability configuration, accelerating prototyping efforts.
+Efficiently handles tenants with a limited number, minimizing overhead.
+Adheres to OpenTelemetry standards, providing flexibility for seamless future backend transitions.
+Ensures secure and isolated data access through LDAP group-based controls.
 
 
 Identify application-specific KPIs and expose them using the Ambrosia memory map.
