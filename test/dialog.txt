@@ -37,6 +37,11 @@ Provided the OT-LMS team with endpoints for collecting KPIs on the telemetry pla
 Shared examples from the PI application to demonstrate how to export application-specific and infrastructure-level KPIs to the Telemetry Platform.
 Assisted in resolving issues related to enabling ITRS service on the ECS platform.
 
+Provides a simple onboarding process with minimal steps, enabling quick setup.
+Speeds up prototyping by simplifying observability configuration.
+Manages tenants efficiently with a limited number, reducing overhead.
+Complies with OpenTelemetry standards, ensuring flexibility for future backend changes.
+Secures data access with isolated controls via LDAP groups.
 
 Simplified Onboarding Process: The platform provides an easy onboarding experience with minimal steps, ensuring that teams can get started quickly without unnecessary complexity.
 Accelerates Prototyping: By streamlining observability setup, the platform enables faster prototyping, allowing teams to test and validate ideas more efficiently.
