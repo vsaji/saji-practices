@@ -28,3 +28,11 @@ Thanks!
 
 
 Hi Allen, it was great talking to you. However, the intention of the call was different and unrelated to the Caerus role, which I wasn’t even aware of. I’d like to clarify this further, so I’ll set up a call with you on Monday to provide more background and context.
+
+
+Conducted a session to provide an overview of TRON components and features.
+Delivered a detailed walkthrough of the TRON Telemetry Platform, focusing on exporting and visualizing data.
+Created a new Grafana space (organization) for OT-LMS in DEV/UAT environments, with plans to add the same to Production on January 24.
+Provided the OT-LMS team with endpoints for collecting KPIs on the telemetry platform.
+Shared examples from the PI application to demonstrate how to export application-specific and infrastructure-level KPIs to the Telemetry Platform.
+Assisted in resolving issues related to enabling ITRS service on the ECS platform.
