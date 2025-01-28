@@ -30,16 +30,5 @@ I have CC’d you in the announcement email I sent in September 2024, and I’ve
 Thanks!
 
 
-Hi Dswwi,
 
-I wanted to address my concerns directly with you regarding the way our recruitment process is progressing. I spoke with you yesterday to highlight this in a softer tone, but I feel the need to reiterate my points clearly.
-
-As a hiring manager, getting a position opened and fully approved is a challenging process. Once the requisition is listed, our expectation is to close it within two weeks. Given that our requirement is fairly standard, we should be seeing a steady flow of relevant profiles. A recruiter’s role is critical in streamlining this process efficiently.
-
-Our first requisition was opened on October 10, but so far, we’ve only received a handful of profiles, and just four interviews have been scheduled. I’ve noticed a recurring pattern where, when we follow up for profiles, you often assure us that resumes will be sent by EOD. However, this commitment is frequently not met, which is concerning.
-
-If you’re facing challenges, such as being overloaded or struggling to source profiles, I encourage you to escalate this to your manager or let me know. I’m happy to involve my manager to explore options for better managing the situation.
-
-Delays in recruitment have already caused setbacks, including requisitions being canceled. We want to avoid similar issues in the future, especially given the unpredictable nature of approvals within the firm.
-
-I kindly request that you prioritize sourcing profiles and scheduling interviews as promptly as possible. Your attention and proactive effort in this matter would be greatly appreciated.
+The DDE Dashboard serves as the UI layer for visualizing events from the DDE-HUB. It provides a unified view for monitoring microservices running across clusters. Additionally, it includes a module that enables application teams to interact with pods running on different clusters.
