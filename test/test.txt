@@ -32,3 +32,6 @@ Thanks!
 
 
 The DDE Dashboard serves as the UI layer for visualizing events from the DDE-HUB. It provides a unified view for monitoring microservices running across clusters. Additionally, it includes a module that enables application teams to interact with pods running on different clusters.
+
+
+A deployable agent component designed to execute commands from the Autosys server. It comes with pre-built scripts to start and stop pods and manage processes running on different pods.
