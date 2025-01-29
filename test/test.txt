@@ -47,3 +47,6 @@ As mentioned earlier, we won’t be moving forward with Govind since he didn’t
 
 The process has been ongoing since October 2024, and we are seeking a candidate with 6-8 years of experience. We've already explored external options, but there's no guarantee that even if someone is selected, they will actually join. Continuing down that path would likely just be a waste of time.
 
+
+
+The idea emerged when teams sought to transition to a microservice architecture while maintaining their existing client interfaces, such as GRPC, REST, JMS, and EMAIL. We developed support for all these interfaces on top of Ambrosia, allowing teams to integrate Ambrosia services into their existing systems and interact seamlessly through Service APIs.
