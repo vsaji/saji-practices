@@ -1,3 +1,13 @@
+Our AI-driven approach leverages Stellar Inference models deployed on Citi's CTI infrastructure, offering unparalleled accuracy and intelligent insights. Users can interact with the system via an intuitive interface, receiving results in graphical, textual, or tabular formats.
+
+✅ Improved user experience with intuitive interfaces and smarter interactions powered by our advanced NLP capabilities, leveraging word vectors and cosine similarity for precise outcome weighting.
+✅ Solution will also leverage LLM models to transform text into SQL for queries that require searches on large transaction tables.
+✅ The solution will use Pandas, Dask, and Polars libraries to efficiently run in-memory searches for queries dealing with static data.
+✅ Less time to market to make data-based decisions.
+✅ Increased productivity for business by reducing manual effort and enabling focus on high-value tasks.
+
+By integrating AI-driven rate prediction, we empower teams across Sales, Operations, and Technology to make faster, smarter, and more informed decisions—ultimately driving profitability and efficiency across the trade ecosystem.
+
 Strengths
 Keran demonstrated excellent communication skills and was able to articulate her thoughts and ideas effectively.
 She has a strong background in designing and executing applications.
