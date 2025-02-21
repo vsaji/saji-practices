@@ -1,3 +1,26 @@
+AI-Driven Trade Rate Prediction & Profitability Analysis
+Introduction
+The Commission Sharing Agreement (CSA) business is a $300 million per year grossing business. To enhance efficiency and strategic decision-making, an AI-driven solution has been conceptualized to address repetitive exceptions, reduce manual touchpoints, and provide a unified intelligence layer for Sales, Operations, and Technology teams.
+
+Currently, rate card profiling and trade exception resolution are time-consuming, requiring manual intervention and expert knowledge. The AI solution is designed to predict rates and rate card profiles for trades, optimize commission calculations, and analyze client commission profitability based on trade volumes. By implementing an AI-driven recommendation module, CSA business users can quickly determine appropriate rate card profiles based on historical trade data analysis.
+
+Key Benefits
+🔹 For Operations – Quickly identify the best rate card profile match for trade parameters, analyze historical trade patterns, and automate rate card profiling to reduce manual touchpoints.
+🔹 For Sales – Gain client commission profitability insights, perform trend analysis (year-over-year, month-over-month, regional distribution, and product usage), and provide peer rate suggestions for sales pitches.
+🔹 For Technology – Reduce ad-hoc data requests and improve data-driven decision-making efficiency.
+
+AI Solution & Technology
+The solution is powered by Stellar Inference models on Citi’s Gen AI platform, ensuring high precision and efficiency. Users will interact with an intuitive interface that delivers results in graphical, textual, or tabular formats.
+
+🔹 Advanced NLP capabilities enable text-to-SQL conversion, allowing users to run complex searches on large transaction datasets.
+🔹 Pandas, Dask, and Polars optimize in-memory searches for static data, ensuring faster processing.
+🔹 Embedding models perform RAG (Retrieval-Augmented Generation) operations, leveraging Python libraries or vector databases like PGVector and Elasticsearch for scalable retrieval.
+
+By integrating AI-driven rate prediction, this solution enhances decision-making, reduces time-to-market, and empowers teams with faster, smarter, and more accurate insights—driving profitability and efficiency across the trade ecosystem.
+
+
+
+
 Queries that require searches on static data will leverage embedding models to perform Retrieval-Augmented Generation (RAG) operations. This will be achieved using lightweight Python libraries or vector databases such as PGVector or Elasticsearch for efficient and scalable retrieval
 
 Our AI-driven approach leverages Stellar Inference models deployed on Citi's CTI infrastructure, offering unparalleled accuracy and intelligent insights. Users can interact with the system via an intuitive interface, receiving results in graphical, textual, or tabular formats.
