@@ -1,3 +1,5 @@
+Queries that require searches on static data will leverage embedding models to perform Retrieval-Augmented Generation (RAG) operations. This will be achieved using lightweight Python libraries or vector databases such as PGVector or Elasticsearch for efficient and scalable retrieval
+
 Our AI-driven approach leverages Stellar Inference models deployed on Citi's CTI infrastructure, offering unparalleled accuracy and intelligent insights. Users can interact with the system via an intuitive interface, receiving results in graphical, textual, or tabular formats.
 
 ✅ Improved user experience with intuitive interfaces and smarter interactions powered by our advanced NLP capabilities, leveraging word vectors and cosine similarity for precise outcome weighting.
