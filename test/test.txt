@@ -1,3 +1,58 @@
+Ownership & Accountability
+Engineers take responsibility for their work from design to deployment.
+A "you build it, you own it" mentality ensures quality and reliability.
+2. Continuous Learning & Growth
+Encouraging upskilling, experimentation, and knowledge-sharing.
+Fostering mentorship and coaching within the team.
+3. Collaboration & Teamwork
+Promoting open communication and cross-functional collaboration.
+Supporting peer code reviews and shared decision-making.
+4. Innovation & Experimentation
+Encouraging new ideas, PoCs, and technical innovation.
+Providing a safe space to fail fast and iterate quickly.
+5. Customer-Centric Mindset
+Building solutions with end users in mind.
+Ensuring reliability, scalability, and usability of products.
+6. Technical Excellence & Best Practices
+Following clean code principles, design patterns, and high standards.
+Prioritizing automation, performance, and security.
+7. Transparency & Open Communication
+Promoting a culture of honest feedback and open discussions.
+Ensuring visibility into decisions, priorities, and challenges.
+8. Agility & Adaptability
+Embracing change and responding to new challenges with flexibility.
+Iterating based on feedback rather than sticking to rigid plans.
+9. Psychological Safety & Respect
+Creating an environment where team members feel safe to express ideas.
+Encouraging respect for diverse perspectives and backgrounds.
+10. Work-Life Balance & Well-being
+Recognizing that sustainable productivity requires a healthy balance.
+Avoiding burnout through reasonable expectations and support.
+
+
+1. Strong Problem-Solving Skills
+Ability to break down complex problems and find efficient solutions.
+Analytical thinking and logical reasoning.
+2. Technical Proficiency
+Strong foundation in programming languages, frameworks, and tools.
+Understanding of system design, data structures, and algorithms.
+3. Continuous Learning Mindset
+Willingness to stay updated with new technologies and industry trends.
+Proactively learning from mistakes and seeking improvements.
+5. Attention to Detail
+Writing clean, maintainable, and efficient code.
+Ensuring accuracy in implementations and testing rigorously.
+10. Passion for Innovation
+Thinking creatively to improve existing systems and workflows.
+Experimenting with new technologies and best practices.
+11. Strong Debugging & Troubleshooting Skills
+Quickly identifying and resolving issues in production and development.
+Using logs, monitoring tools, and debugging techniques effectively.
+12. Security & Performance Mindset
+Writing secure code and considering potential vulnerabilities.
+Optimizing performance to handle scale efficiently.
+
+
 I was expecting an email from you regarding Chetan's onboarding and introduction, as today was supposed to be his first day. However, I haven't received any email, nor have I seen Chetan today. Could you clarify the situation?
 
 
