@@ -1,3 +1,16 @@
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: route-to-getemplist
+          uri: http://localhost:8080
+          predicates:
+            - Path=/abc/getemplist, /getemplist
+          filters:
+            - RewritePath=/.*/getemplist, /getemplist
+
+
+
 Ownership & Accountability
 Engineers take responsibility for their work from design to deployment.
 A "you build it, you own it" mentality ensures quality and reliability.
