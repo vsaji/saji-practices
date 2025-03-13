@@ -1,14 +1,4 @@
-spring:
-  cloud:
-    gateway:
-      routes:
-        - id: route-to-getemplist
-          uri: http://localhost:8080
-          predicates:
-            - Path=/abc/getemplist, /getemplist
-          filters:
-            - RewritePath=/.*/getemplist, /getemplist
-
+Hi Shirisha, it was a pleasure speaking with you on Monday. I appreciate the insights on the COMET role. While it’s a great opportunity, I’m currently seeking a role focused on platform rebuilding. I’d like to respectfully pass on this opportunity but truly appreciate your time. Thanks again!
 
 
 Ownership & Accountability
