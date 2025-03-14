@@ -1,5 +1,11 @@
-Hi Shirisha, it was a pleasure speaking with you on Monday. I appreciate the insights on the COMET role. While it’s a great opportunity, I’m currently seeking a role focused on platform rebuilding. I’d like to respectfully pass on this opportunity but truly appreciate your time. Thanks again!
-
+TRON Microservice for AMPS (No-Code/Low-Code) simplifies AMPS integration and accelerates development.
+Migration of SecretAgent to NGC Client enhances features, security, and future readiness.
+Creation of a new documentation site for TRON Stack improves accessibility and developer productivity.
+Migration of TRON Components to LightSpeed Enterprises ensures better performance and long-term support.
+PoC migration to Citi Observability Platform standardizes monitoring for better insights.
+Automation of functional testing using the FAST framework reduces manual effort and improves reliability.
+Migration of TRON Dashboard to OneTouch UI provides a modern, unified monitoring interface.
+Migration of deployable components to HELM Chart streamlines deployment and scalability.
 
 Ownership & Accountability
 Engineers take responsibility for their work from design to deployment.
